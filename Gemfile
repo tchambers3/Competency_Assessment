@@ -50,8 +50,10 @@ group :test do
   gem 'factory_girl_rails'
   gem 'shoulda'
   gem 'shoulda-matchers'
+  gem 'minitest', '5.8.4'
+  gem 'minitest-rails', '2.2.0'
+  gem 'minitest-reporters', '1.1.7'
   gem 'simplecov'
-  gem 'turn'
   gem 'single_test'
 end
 
