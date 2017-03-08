@@ -45,3 +45,13 @@ group :development do
   gem 'spring'
 end
 
+# Gems used only in testing
+group :test do
+  gem 'factory_girl_rails'
+  gem 'shoulda'
+  gem 'shoulda-matchers'
+  gem 'simplecov'
+  gem 'turn'
+  gem 'single_test'
+end
+
