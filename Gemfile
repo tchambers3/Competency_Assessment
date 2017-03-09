@@ -45,3 +45,15 @@ group :development do
   gem 'spring'
 end
 
+# Gems used only in testing
+group :test do
+  gem 'factory_girl_rails'
+  gem 'shoulda'
+  gem 'shoulda-matchers'
+  gem 'minitest', '5.8.4'
+  gem 'minitest-rails', '2.2.0'
+  gem 'minitest-reporters', '1.1.7'
+  gem 'simplecov'
+  gem 'single_test'
+end
+
