@@ -31,7 +31,6 @@ class CompetencyTest < ActiveSupport::TestCase
 
     # test alphabetical scope
     should "have competenices listed alphabetically" do
-      
       assert_equal ["Communication", "Decision Making", "Problem Solving"], Competency.alphabetical.map { |e| e.name }
     end
 
