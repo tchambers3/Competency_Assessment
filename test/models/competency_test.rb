@@ -6,6 +6,7 @@ class CompetencyTest < ActiveSupport::TestCase
 
   # Basic Validations
   should validate_presence_of(:name)
+  should validate_presence_of(:description)
 
   should allow_value("Communication").for(:name)
   should_not allow_value("").for(:name)
@@ -31,7 +32,6 @@ class CompetencyTest < ActiveSupport::TestCase
 
     # test alphabetical scope
     should "have competenices listed alphabetically" do
-      
       assert_equal ["Communication", "Decision Making", "Problem Solving"], Competency.alphabetical.map { |e| e.name }
     end
 
