@@ -5,7 +5,9 @@ class Level < ActiveRecord::Base
   # Validations
   validates_presence_of :name
   # The lower the ranking the higher the level
-  validates :ranking, presence: true, uniqueness: true, numericality: true
+  validates :ranking, presence: true, numericality: true
+  # Only validate uniqueness if it is an active level
+  validates_uniqueness_of :ranking, if: 'active'
 
 
   # Scopes

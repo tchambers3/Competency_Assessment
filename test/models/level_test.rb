@@ -41,6 +41,12 @@ class LevelTest < ActiveSupport::TestCase
       deny bad_level.valid?
     end
 
+    # test uniqueness of ranking for inactive levels
+    should "be able to create a Level with an existing ranking if level is inactive" do
+      bad_level = FactoryGirl.build(:level, name: "Bad Level", ranking: 3, active: false)
+      assert bad_level.valid?
+    end
+
     # test alphabetical scope
     should "have levels listed alphabetically" do
       assert_equal ["Champion", "Companion", "Contributer", "Novice"], Level.alphabetical.map { |e| e.name }
