@@ -6,6 +6,7 @@ class CompetencyTest < ActiveSupport::TestCase
 
   # Basic Validations
   should validate_presence_of(:name)
+  should validate_presence_of(:description)
 
   should allow_value("Communication").for(:name)
   should_not allow_value("").for(:name)
