@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  competency_id: 1
+  level_id: 1
+  description: MyText
+  active: false
+
+two:
+  competency_id: 1
+  level_id: 1
+  description: MyText
+  active: false
