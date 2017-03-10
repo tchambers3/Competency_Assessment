@@ -4,7 +4,7 @@ class CreateIndicators < ActiveRecord::Migration
       t.integer :competency_id
       t.integer :level_id
       t.text :description
-      t.boolean :active
+      t.boolean :active,     default: true
 
       t.timestamps null: false
     end
