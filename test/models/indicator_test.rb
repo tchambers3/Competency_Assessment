@@ -1,7 +1,9 @@
 require 'test_helper'
 
 class IndicatorTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  # Test Relationships
+  should belong_to(:level)
+  should belong_to(:competency)
+
+  
 end
