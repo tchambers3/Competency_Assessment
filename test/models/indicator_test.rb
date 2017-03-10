@@ -111,5 +111,20 @@ class IndicatorTest < ActiveSupport::TestCase
         Indicator.for_competency("Problem Solving").alphabetical.map { |e| e.description }        
     end
 
+    # test active scope
+    should "have all active indicators listed" do
+      assert_equal ["Able to identify common nonverbal cues.",
+        "Able to outline a plan to gather data that will aid in the completion of a familiar task.", 
+        "Able to present written communication in an easy–to-read format.", 
+        "Engages in difficult conversations with others while maintaining respect."], 
+        Indicator.active.alphabetical.map { |e| e.description }
+    end
+
+    # test inactive scope
+    should "have all inactive indicators listed" do
+      assert_equal ["Able to identify apparent causes of a problem."], 
+        Indicator.inactive.alphabetical.map { |e| e.description }
+    end
+
   end
 end
