@@ -9,8 +9,8 @@ class Competency < ActiveRecord::Base
 
 
   # Scopes
-  scope :alphabetical, -> { order("name") }
-  scope :active, -> { where("active = ?", true) }
-  scope :inactive, -> { where("active = ?", false) }
+  scope :alphabetical, -> { order("competencies.name") }
+  scope :active, -> { where("competencies.active = ?", true) }
+  scope :inactive, -> { where("competencies.active = ?", false) }
 
 end

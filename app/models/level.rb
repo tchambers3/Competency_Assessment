@@ -11,9 +11,9 @@ class Level < ActiveRecord::Base
 
 
   # Scopes
-  scope :alphabetical, -> { order("name") }
-  scope :by_ranking, -> { order("ranking") }
-  scope :active, -> { where("active = ?", true) }
-  scope :inactive, -> { where("active = ?", false) }
+  scope :alphabetical, -> { order("levels.name") }
+  scope :by_ranking, -> { order("levels.ranking") }
+  scope :active, -> { where("levels.active = ?", true) }
+  scope :inactive, -> { where("levels.active = ?", false) }
 
 end

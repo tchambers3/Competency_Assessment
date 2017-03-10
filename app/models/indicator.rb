@@ -9,13 +9,13 @@ class Indicator < ActiveRecord::Base
   validates_numericality_of :level_id, only_integer: true
 
   # Scopes
-  scope :alphabetical, -> { order("description") }
+  scope :alphabetical, -> { order("indicators.description") }
   scope :by_level, -> { joins(:level).order("levels.ranking") }
   scope :by_competency, -> { joins(:competency).order("competencies.name") }
-  scope :for_level, -> (level) { joins(:level).where("name LIKE ?", level) }
-  scope :for_description, -> (desc) { where("description LIKE ?", desc) }
-  scope :for_competency, -> (competency) { joins(:competency).where("name LIKE ?", competency) }
-  scope :active, -> { where("active = ?", true) }
-  scope :inactive, -> { where("active = ?", false) }
+  scope :for_level, -> (level) { joins(:level).where("levels.name LIKE ?", level) }
+  scope :for_description, -> (desc) { where("indicators.description LIKE ?", desc) }
+  scope :for_competency, -> (competency) { joins(:competency).where("competencies.name LIKE ?", competency) }
+  scope :active, -> { where("indicators.active = ?", true) }
+  scope :inactive, -> { where("indicators.active = ?", false) }
 
 end
