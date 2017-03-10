@@ -1,6 +1,6 @@
 class Competency < ActiveRecord::Base
   # Relationships
-  # has_many :indicators
+  has_many :indicators
 
   # Validations
   validates_presence_of :name
