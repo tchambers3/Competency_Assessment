@@ -18,7 +18,7 @@ levels =
   [
     ["Champion", "The highest level of indicators.", 1, true],
     ["Contributer", "The middle level of indicators.", 2, true],
-    ["Contributer", "The lowest level of indicators.", 3, true]
+    ["Companion", "The lowest level of indicators.", 3, true]
   ]
 levels.each do |level|
   l = Level.new
