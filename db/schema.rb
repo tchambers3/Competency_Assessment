@@ -11,11 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170308070654) do
+ActiveRecord::Schema.define(version: 20170309174634) do
 
   create_table "competencies", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
+    t.boolean  "active",      default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  create_table "levels", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "ranking"
     t.boolean  "active",      default: true
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
