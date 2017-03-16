@@ -15,4 +15,15 @@ FactoryGirl.define do
     active true
   end
 
+  # Question factory set up
+  factory :question do
+    question "When I have something to say, I prepare by organizing my thoughts and outlinging my intention."
+    active true
+  end
+
+  # User factory
+  factory :user do
+    username "admin"
+  end
+
 end
