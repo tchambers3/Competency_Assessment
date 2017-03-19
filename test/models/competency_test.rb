@@ -2,6 +2,7 @@ require 'test_helper'
 
 class CompetencyTest < ActiveSupport::TestCase
   # Test Relationships
+  should have_many(:indicators)
 
 
   # Basic Validations

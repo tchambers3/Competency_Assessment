@@ -15,4 +15,12 @@ FactoryGirl.define do
     active true
   end
 
+  # Indicator factory set up
+  factory :indicator do
+    association :competency
+    association :level
+    description "Able to identify common nonverbal cues."
+    active true
+  end
+
 end

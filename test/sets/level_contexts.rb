@@ -1,7 +1,7 @@
 module Contexts
   module LevelContexts
 
-    # Create three levels
+    # Create four levels
     def create_levels
       @champion = FactoryGirl.create(:level)
       @contributer = FactoryGirl.create(:level, name: "Contributer", 
