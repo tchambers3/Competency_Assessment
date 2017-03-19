@@ -2,7 +2,7 @@ require 'test_helper'
 
 class LevelTest < ActiveSupport::TestCase
   # Test Relationships
-
+  should have_many(:indicators)
 
   # Basic Validations
   should validate_presence_of(:name)
