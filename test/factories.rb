@@ -22,8 +22,6 @@ FactoryGirl.define do
     active true
   end
 
-end
-
   # Indicator factory set up
   factory :indicator do
     association :competency
