@@ -95,3 +95,16 @@ questions.each do |question|
   q.active = question[2]
   q.save!
 end
+
+#Step 5: Create users
+users =
+[
+  ["admin",true]
+]
+
+users.each do |user|
+  u = User.new
+  u.username = user[0]
+  u.active = user[1]
+  u.save!
+end

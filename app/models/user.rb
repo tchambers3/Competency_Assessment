@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   # validates_presence_of :password_confirmation, on: :create
   # validates_confirmation_of :password, message: "does not match"
   # validates_length_of :password, minimum: 6, message: "Password too short. Must be at least 6 characters", allow_blank: true
-  
+
+  scope :alphabetical, -> {order("username")}
   scope :find_by_username, -> (username) {where("username = ?", username)}
 end

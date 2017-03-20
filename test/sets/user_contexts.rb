@@ -2,17 +2,17 @@ module Contexts
   module UserContexts
 
     # Create three Questions
-    def create_questions
-      @communication_q1 = FactoryGirl.create(:question)
-      @communication_q2 = FactoryGirl.create(:question, question: "I pay attention and focus when someone is talking to me.")
-      @communication_q3 = FactoryGirl.create(:question, question: "I can recognize non-verbal cues from others.", active: false)
+    def create_user
+      @userAdmin = FactoryGirl.create(:user)
+      @user2 = FactoryGirl.create(:user, username: "user1", active: true)
+      @user3 = FactoryGirl.create(:user, username: "user2", active: false)
     end
 
     # Destroy the question objects
-    def remove_questions
-      @communication_q1.destroy
-      @communication_q2.destroy
-      @communication_q3.destroy
+    def remove_user
+      @user1.destroy
+      @user2.destroy
+      @user3.destroy
     end
 
   end
