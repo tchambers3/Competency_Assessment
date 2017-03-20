@@ -4,8 +4,8 @@ module Contexts
     # Create three Questions
     def create_user
       @userAdmin = FactoryGirl.create(:user)
-      @user2 = FactoryGirl.create(:user, username: "user1", active: true)
-      @user3 = FactoryGirl.create(:user, username: "user2", active: false)
+      @user2 = FactoryGirl.create(:user, username: "user2", password: "pass", active: true)
+      @user3 = FactoryGirl.create(:user, username: "user3", password: "word", active: false)
     end
 
     # Destroy the question objects

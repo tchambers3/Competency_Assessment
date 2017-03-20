@@ -24,8 +24,8 @@ FactoryGirl.define do
   # User factory
   factory :user do
     username "admin"
+    password "password"
     #TODO Add these in with user controllers
-    #password "password"
     #password_confirmation "password"
     active true
   end

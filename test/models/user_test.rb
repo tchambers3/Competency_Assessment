@@ -13,5 +13,21 @@ class UserTest < ActiveSupport::TestCase
       remove_user
     end
 
+    should "Show users in alphabetical order" do
+      assert_equal [@userAdmin, @user2, @user3], User.alphabetical.map { |e| e }
+    end
+
+    should "Show active users" do
+      assert_equal [@userAdmin, @user2], User.active.alphabetical.map { |e| e }
+    end
+
+    should "Show inactive users" do
+      assert_equal [@user3], User.inactive.alphabetical.map { |e| e }
+    end
+
+    should "Find by username" do
+      assert_equal [@userAdmin] U
+    end
+
   end
 end
