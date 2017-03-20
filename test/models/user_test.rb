@@ -6,11 +6,11 @@ class UserTest < ActiveSupport::TestCase
 
   context "With a proper context, " do
     setup do
-      create_user
+      create_users
     end
 
     teardown do
-      remove_user
+      remove_users
     end
 
     should "Show users in alphabetical order" do

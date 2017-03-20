@@ -16,3 +16,17 @@ levels.each do |level|
   l.active = level[3]
   l.save!
 end
+
+#Step 2: Create admin
+
+users =
+[
+  ["admin","password",true]
+]
+
+users.each do |user|
+  u = User.new
+  u.username = user[0]
+  u.password = user[1]
+  u.active = user[2]
+end
