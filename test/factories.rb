@@ -22,7 +22,7 @@ FactoryGirl.define do
     active true
   end
 
-  # User factory
+  # User factory set up
   factory :user do
     username "admin"
     password "password"
@@ -39,4 +39,10 @@ FactoryGirl.define do
     active true
   end
 
+  # Paradigm factory set up
+  factory :paradigm do
+    name "Build Understanding"
+    description "Books that help you understand what you're buildling"
+    ranking 1
+    active true
 end
