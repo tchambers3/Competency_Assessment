@@ -15,6 +15,15 @@ FactoryGirl.define do
     active true
   end
 
+  # Question factory set up
+  factory :question do
+    question "When I have something to say, I prepare by organizing my thoughts and outlining my intention."
+    question_number 2
+    active true
+  end
+
+end
+
   # Indicator factory set up
   factory :indicator do
     association :competency
