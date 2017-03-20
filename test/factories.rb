@@ -22,6 +22,15 @@ FactoryGirl.define do
     active true
   end
 
+  # User factory
+  factory :user do
+    username "admin"
+    password "password"
+    #TODO Add these in with user controllers
+    #password_confirmation "password"
+    active true
+  end
+
   # Indicator factory set up
   factory :indicator do
     association :competency
