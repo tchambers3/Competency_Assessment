@@ -14,5 +14,5 @@ class Paradigm < ActiveRecord::Base
   scope :inactive, -> { where('active = ?', false) }
 
   #TODO: Implement methods for ranking alteration based on user input
-  
+
 end

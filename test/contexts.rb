@@ -12,4 +12,5 @@ module Contexts
   include Contexts::QuestionContexts
   include Contexts::IndicatorContexts
   include Contexts::UserContexts
+  include Contexts::ParadigmContexts
 end
