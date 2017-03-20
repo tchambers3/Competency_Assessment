@@ -1,0 +1,4 @@
+<% opt = "#{object.nil? ? model_name.capitalize: object.name}" %>
+<h1><%= action.capitalize %> <%= opt %></h1>
+
+<%= render "form" %>

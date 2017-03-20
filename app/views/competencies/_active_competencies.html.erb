@@ -1,0 +1,29 @@
+<% if @active_competencies.empty? %>
+  <p><em>There are no active comptencies at this time.</em></p>
+<% else %>
+    <h3>Active Competencies</h3>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @active_competencies.each do |c| %>
+          <tr>
+            <td><%= link_to c.name, competency_path(c) %></td>
+            <td><%= c.description %></td>
+            <td><%= link_to "Edit", edit_competency_path(c) %></td>
+            <td>
+              <%= link_to "Delete", competency_path(c), 
+                  method: 'delete', 
+                  data: {confirm: "Are you sure you want to permanently delete #{c.name}?"} %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+<% end %>

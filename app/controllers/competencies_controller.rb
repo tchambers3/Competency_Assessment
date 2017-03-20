@@ -4,7 +4,8 @@ class CompetenciesController < ApplicationController
 
   # GET /competencies
   def index
-    @competencies = Competency.all
+    @active_competencies = Competency.active.alphabetical
+    @inactive_competencies = Competency.inactive.alphabetical
   end
 
   # GET /competencies/1
