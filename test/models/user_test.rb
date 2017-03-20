@@ -26,7 +26,7 @@ class UserTest < ActiveSupport::TestCase
     end
 
     should "Find by username" do
-      assert_equal [@userAdmin] U
+      assert_equal [@userAdmin], User.find_by_username("admin")
     end
 
   end

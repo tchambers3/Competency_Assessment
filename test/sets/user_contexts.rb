@@ -10,7 +10,7 @@ module Contexts
 
     # Destroy the question objects
     def remove_user
-      @user1.destroy
+      @userAdmin.destroy
       @user2.destroy
       @user3.destroy
     end
