@@ -24,6 +24,17 @@ FactoryGirl.define do
   # User factory
   factory :user do
     username "admin"
+    question "When I have something to say, I prepare by organizing my thoughts and outlining my intention."
+    question_number 2
+    active true
+  end
+
+  # Indicator factory set up
+  factory :indicator do
+    association :competency
+    association :level
+    description "Able to identify common nonverbal cues."
+    active true
   end
 
 end
