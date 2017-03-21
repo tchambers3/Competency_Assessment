@@ -39,6 +39,15 @@ ActiveRecord::Schema.define(version: 20170320014102) do
     t.datetime "updated_at",                 null: false
   end
 
+  create_table "paradigms", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "ranking"
+    t.boolean  "active"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "questions", force: :cascade do |t|
     t.text     "question"
     t.boolean  "active",          default: true

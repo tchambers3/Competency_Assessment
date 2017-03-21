@@ -26,7 +26,22 @@ class ParadigmTest < ActiveSupport::TestCase
       assert_equal "Get Connected", @get_connected.name
       assert_equal "Learn More", @learn_more.name
     end
-    
+
+    # test alphabetical scope
+    should "Show paradigms in alphabetical order" do
+      assert_equal ["Build Understanding", "Do Something", "Get Connected", "Learn More"], Paradigm.alphabetical.map { |e| e.name}
+    end
+
+    # test asc_rank scope
+    should "Show paradigms in ascending ranking" do
+      assert_equal ["Build Understanding", "Get Connected", "Do Something", "Learn More"], Paradigm.asc_rank.map { |e| e.name}
+    end
+
+    #test desc_rank scope
+    should "Show paradigms in descending ranking" do
+      assert_equal ["Learn More", "Do Something", "Get Connected", "Build Understanding"], Paradigm.desc_rank.map { |e| e.name}
+    end
+
   end
 
 end

@@ -45,4 +45,5 @@ FactoryGirl.define do
     description "Books that help you understand what you're buildling"
     ranking 1
     active true
+  end
 end
