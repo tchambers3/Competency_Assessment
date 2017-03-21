@@ -10,6 +10,7 @@ class ParadigmTest < ActiveSupport::TestCase
   should validate_presence_of(:ranking)
   should validate_numericality_of(:ranking)
   should validate_uniqueness_of(:ranking)
+  should validate_uniqueness_of(:name)
 
   context "With a proper context," do
     setup do

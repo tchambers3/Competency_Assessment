@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20170320014102) do
     t.string   "name"
     t.text     "description"
     t.integer  "ranking"
-    t.boolean  "active"
+    t.boolean  "active", default: true 
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
