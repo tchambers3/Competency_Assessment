@@ -58,6 +58,7 @@ Your controllers should include:
     * Create
     * Edit
     * Update
+    * Destroy
   * Follow general 272 structure
     * use the private methods for set_{model_name} and {model_name}_params
   * Notices
