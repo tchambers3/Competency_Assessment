@@ -47,7 +47,6 @@ Structure your model code as follows:
   * always include alphabetical scope
   * all ordering scopes should be named with by underscore attribute i.e `by_level` or `by_competency`
   * all filter scopes should be named with for underscore attribute i.e `for_level` or `for_competency`
-  * 
 
 ### Controllers
 Your controllers should include:
