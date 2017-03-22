@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+
+  # Regirstration Routes
+  get '/signup' => 'users#new'
+  post '/users' => 'users#create'
+  # QUESTION: Do we need something like this?
+  get '/all_users' => 'users#index'
+
+  # Login/Logout Routes
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
