@@ -38,6 +38,17 @@ Structure your model code as follows:
   4. Public methods
   5. Private methods
 
+###### Validation Standards 
+  * validate presence of description for all models
+  * for ranking models, validate numericality of ranking, only integer true
+  * validate numericaly of foreign keys, only integer true 
+  
+###### Scope Standards
+  * always include alphabetical scope
+  * all ordering scopes should be named with by underscore attribute i.e `by_level` or `by_competency`
+  * all filter scopes should be named with for underscore attribute i.e `for_level` or `for_competency`
+  * 
+
 ### Controllers
 Your controllers should include:
   * Actions
