@@ -1,16 +1,10 @@
 Rails.application.routes.draw do
 
-  get 'users/index'
-
-  get 'users/show'
-
-  get 'users/edit'
-
-  get 'users/destroy'
-
+  # Regirstration Routes
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
 
+  # Login/Logout Routes
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'

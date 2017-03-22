@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
   def new
   end
 
+  # POST /login
   def create
     user = User.find_by_username(params[:username]).first
     # If the user exists AND the password entered is correct.
@@ -14,6 +15,7 @@ class SessionsController < ApplicationController
     end
   end
 
+  # GET Logout
   def destroy
     session[:user_id] = nil
     redirect_to '/login'

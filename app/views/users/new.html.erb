@@ -1,4 +1,13 @@
 <h1>Signup!</h1>
+<% if @user.errors.any? %>
+  <div>
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <%= form_for :user, url: '/users' do |f| %>
 
