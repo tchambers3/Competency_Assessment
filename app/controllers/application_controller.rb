@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   # Check if user is logged in. If not send them to login page
-  def authorize
-    redirect_to '/login' unless current_user
+  def check_login
+    redirect_to login_path unless current_user
   end
 end

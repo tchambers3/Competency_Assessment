@@ -21,16 +21,10 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "Registration Successful"
-      redirect_to "/"
+      redirect_to root_path
     else
-      render "new"
+      render login_path
     end
-  end
-
-  def edit
-  end
-
-  def destroy
   end
 
   private

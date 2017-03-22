@@ -19,7 +19,7 @@ class SessionsControllerTest < ActionController::TestCase
   # Test creating new session (a.k.a logging in)
   test "should get create session" do
     post :create, {username:"admin", password:"password"}
-    assert_redirected_to '/'
+    assert_redirected_to root_path
   end
 
   test "should fail to create session" do
