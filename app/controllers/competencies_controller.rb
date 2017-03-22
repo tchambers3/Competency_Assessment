@@ -21,7 +21,8 @@ class CompetenciesController < ApplicationController
   def create
     @competency = Competency.new(competency_params)
     if @competency.save
-      redirect_to competency_path(@competency), notice: "Successfully created #{@competency.name}"
+      flash[:notice] = "Successfully created #{@competency.name}"
+      redirect_to competency_path(@competency)
     else
       render "new"
     end
@@ -34,7 +35,8 @@ class CompetenciesController < ApplicationController
   # PATCH/PUT /competencies/1
   def update
     if @competency.update(competency_params)
-      redirect_to competency_path(@competency), notice: "Successfully updated #{@competency.name}"
+      flash[:notice] = "Successfully updated #{@competency.name}"
+      redirect_to competency_path(@competency)
     else
       render "edit"
     end
@@ -43,7 +45,8 @@ class CompetenciesController < ApplicationController
   # DELETE /competencies/1
   def destroy
     @competency.destroy
-    redirect_to competencies_url, notice: "Successfully deleted #{@competency.name}"
+    flash[:notice] = "Successfully deleted #{@competency.name}"
+    redirect_to competencies_url
   end
 
 
