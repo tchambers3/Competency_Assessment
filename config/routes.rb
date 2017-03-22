@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
+  #Root Path
+  root 'home#home'
+
   # Regirstration Routes
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
-  # QUESTION: Do we need something like this?
-  get '/all_users' => 'users#index'
+  get '/users' => 'users#index'
 
   # Login/Logout Routes
   get '/login' => 'sessions#new'

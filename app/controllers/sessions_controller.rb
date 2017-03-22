@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
       flash[:notice] = "Login Successful"
       redirect_to root_path
     else
+      flash[:error] = "Login Failed"
       redirect_to login_path
     end
   end
