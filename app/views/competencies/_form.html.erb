@@ -1,0 +1,29 @@
+<%= form_for(@competency) do |f| %>
+  <% if @competency.errors.any? %>
+    <div>
+      <strong><%= pluralize(@competency.errors.count, "error") %> prohibited this competency from being saved:</strong>
+      <ul>
+        <% @competency.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div>
+    <%= f.label :active %><br>
+    <%= f.check_box :active %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
