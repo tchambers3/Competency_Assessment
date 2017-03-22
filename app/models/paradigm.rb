@@ -1,8 +1,7 @@
 class Paradigm < ActiveRecord::Base
 
-  #TODO: Need to create the resource model before adding this relationship
   #Relationships
-  # belongs_to :resource
+  belongs_to :resource
 
   #Validations
   validates_presence_of :name, :description, :ranking

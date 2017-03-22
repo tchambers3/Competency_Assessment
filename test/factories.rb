@@ -46,4 +46,13 @@ FactoryGirl.define do
     ranking 1
     active true
   end
+
+  # Resource factory set up
+  factory :resource do
+    association :paradigm
+    title "Communication Skills for Dummies"
+    link "www.google.com"
+    active true
+  end
+
 end
