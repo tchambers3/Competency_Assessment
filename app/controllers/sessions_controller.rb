@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  # GET /login
   def new
   end
 
@@ -9,15 +10,18 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       # Save the user id
       session[:user_id] = user.id
-      redirect_to '/'
+      flash[:notice] = "Login Successful"
+      redirect_to root_path
     else
-      redirect_to '/login'
+      flash[:error] = "Login Failed"
+      redirect_to login_path
     end
   end
 
   # GET Logout
   def destroy
     session[:user_id] = nil
-    redirect_to '/login'
+    flash[:notice] = "Logged Out"
+    redirect_to login_path
   end
 end

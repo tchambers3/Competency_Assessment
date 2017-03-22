@@ -1,7 +1,7 @@
 module Contexts
   module UserContexts
 
-    # Create three Questions
+    # Create three users
     def create_users
       @userAdmin = FactoryGirl.create(:user)
       @user2 = FactoryGirl.create(:user, username: "user2", password: "password", active: true)
