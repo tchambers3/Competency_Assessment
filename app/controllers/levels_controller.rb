@@ -4,8 +4,8 @@ class LevelsController < ApplicationController
 
   # GET /levels
   def index
-    @active_levels = Level.active.alphabetical
-    @inactive_levels = Level.inactive.alphabetical
+    @active_levels = Level.active.by_ranking
+    @inactive_levels = Level.inactive.by_ranking
   end
 
   # GET /levels/:id
