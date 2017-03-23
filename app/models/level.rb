@@ -3,11 +3,10 @@ class Level < ActiveRecord::Base
   has_many :indicators
 
   # Validations
-  validates_presence_of :name
+  validates_presence_of :name, :description, :ranking
   # The lower the ranking the higher the level
-  validates :ranking, presence: true, numericality: true
-  # Only validate uniqueness if it is an active level
-  validates_uniqueness_of :ranking, if: 'active'
+  validates_numericality_of :ranking, only_integer: true
+  validates_uniqueness_of :ranking, :name
 
 
   # Scopes
