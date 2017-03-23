@@ -1,5 +1,18 @@
 Rails.application.routes.draw do
 
+  #Root Path
+  root 'home#home'
+
+  # Regirstration Routes
+  get '/signup' => 'users#new'
+  post '/users' => 'users#create'
+  get '/users' => 'users#index'
+
+  # Login/Logout Routes
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+  
   # Model Resources for CRUD operations
   resources :competencies
 
