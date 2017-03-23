@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   
   # Model Resources for CRUD operations
   resources :competencies
+  resources :levels
 
 
   # The priority is based upon order of creation: first created -> highest priority.
