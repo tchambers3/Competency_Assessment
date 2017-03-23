@@ -1,4 +1,4 @@
-class CompetenciesController < ApplicationController
+class LevelsController < ApplicationController
   # Callback Methods
   before_action :set_level, only: [:show, :edit, :update, :destroy]
 

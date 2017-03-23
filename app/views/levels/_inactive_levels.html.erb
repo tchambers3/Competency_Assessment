@@ -1,0 +1,31 @@
+<h3>Inactive Levels</h3>
+<% if @inactive_levels.empty? %>
+  <p><em>There are no inactive comptencies at this time.</em></p>
+<% else %>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Ranking</th>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @inactive_levels.each do |l| %>
+          <tr>
+            <td><%= link_to l.name, level_path(l) %></td>
+            <td><%= l.description %></td>
+            <td><%= l.ranking %></td>
+            <td><%= link_to "Edit", edit_level_path(l) %></td>
+            <td>
+              <%= link_to "Delete", level_path(l), 
+                  method: 'delete', 
+                  data: {confirm: "Are you sure you want to permanently delete #{l.name}?"} %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+<% end %>
