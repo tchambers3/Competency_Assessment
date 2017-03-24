@@ -99,13 +99,14 @@ end
 #Step 5: Create users
 users =
 [
-  ["admin","password",true]
+  ["admin","password","password",true]
 ]
 
 users.each do |user|
   u = User.new
   u.username = user[0]
   u.password = user[1]
-  u.active = user[2]
+  u.password_confirmation = user[2]
+  u.active = user[3]
   u.save!
 end
