@@ -38,6 +38,7 @@ gem 'populator3'
 
 # For .csv, .xls, .xlsx import and export
 gem "roo", "~> 2.7.0"
+# Special gem for specifically xls files
 gem 'roo-xls'
 
 group :development, :test do
