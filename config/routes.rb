@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
-  #Root Path
+  # Root Path
   root 'home#home'
 
-  # Regirstration Routes
+  # Registration Routes
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
   get '/users' => 'users#index'
