@@ -1,0 +1,33 @@
+<%= form_for(@indicator) do |i| %>
+  <% if @indicator.errors.any? %>
+    <div>
+      <strong><%= pluralize(@indicator.errors.count, "error") %> prohibited this indicator from being saved:</strong>
+      <ul>
+        <% @indicator.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= i.label :description %><br>
+    <%= i.text_area :description %>
+  </div>
+  <div>
+    <%= i.label :competency_id %><br>
+    <%= i.number_field :competency_id %>
+  </div>
+  <div>
+    <%= i.label :level_id %><br>
+    <%= i.number_field :level_id %>
+  </div>
+  <div>
+    <%= i.label :active %><br>
+    <%= i.check_box :active %>
+  </div>
+
+  <div>
+    <%= i.submit %>
+  </div>
+<% end %>
