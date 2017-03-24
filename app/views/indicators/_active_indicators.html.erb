@@ -1,22 +1,23 @@
-<h3>Active Indicators</h3>
-<% if @active_indicators.empty? %>
-  <p><em>There are no active comptencies at this time.</em></p>
-<% else %>
+<h2>Active Indicators</h2>
+
+<% @competencies.each do |c| %>
+  <h4><%= link_to c.name, competency_path(c) %></h4>
+  <% if c.indicators.active.empty? %>
+    <p><em><%= "There are no active indicators at this time for the #{c.name} competency." %></em></p>
+  <% else %>
     <table border="1">
       <thead>
         <tr>
           <th>Description</th>
-          <th>Competency</th>
           <th>Level</th>
           <th>&nbsp;</th>
           <th>&nbsp;</th>
         </tr>
       </thead>
       <tbody>
-        <% @active_indicators.each do |i| %>
+        <% c.indicators.active.by_level.alphabetical.each do |i| %>
           <tr>
             <td><%= link_to i.description, indicator_path(i) %></td>
-            <td><%= link_to i.competency.name, competency_path(i.competency) %></td>
             <td><%= link_to i.level.name, level_path(i.level) %></td>
             <td><%= link_to "Edit", edit_indicator_path(i) %></td>
             <td>
@@ -28,4 +29,6 @@
         <% end %>
       </tbody>
     </table>
+  <% end %>
 <% end %>
+

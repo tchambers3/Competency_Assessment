@@ -7,6 +7,7 @@ class IndicatorsController < ApplicationController
   def index
     @active_indicators = Indicator.active.alphabetical
     @inactive_indicators = Indicator.inactive.alphabetical
+    @competencies = Competency.all.alphabetical
   end
 
   # GET /indicators/:id
