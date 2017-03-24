@@ -3,11 +3,13 @@
 </p>
 
 <p>
-  <strong>Competency:</strong> <%= @indicator.competency_id %>
+  <strong>Competency:</strong> 
+  <%= link_to @indicator.competency.name, competency_path(@indicator.competency) %>
 </p>
 
 <p>
-  <strong>Level:</strong> <%= @indicator.level_id %>
+  <strong>Level:</strong> 
+  <%= link_to @indicator.level.name, level_path(@indicator.level) %>
 </p>
 
 <p>

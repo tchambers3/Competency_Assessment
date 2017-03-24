@@ -1,4 +1,4 @@
-<%= form_for(@indicator) do |i| %>
+<%= form_for(@indicator) do |f| %>
   <% if @indicator.errors.any? %>
     <div>
       <strong><%= pluralize(@indicator.errors.count, "error") %> prohibited this indicator from being saved:</strong>
@@ -11,23 +11,25 @@
   <% end %>
 
   <div>
-    <%= i.label :description %><br>
-    <%= i.text_area :description %>
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
   </div>
   <div>
-    <%= i.label :competency_id %><br>
-    <%= i.number_field :competency_id %>
+    <%= f.label :competency_id %><br>
+    <%= f.collection_select :competency_id, @active_competencies, 
+      :id, :name, { prompt: "Choose a competency..." } %>
   </div>
   <div>
-    <%= i.label :level_id %><br>
-    <%= i.number_field :level_id %>
+    <%= f.label :level_id %><br>
+    <%= f.collection_select :level_id, @active_levels, 
+      :id, :name, { prompt: "Choose a level..." } %>
   </div>
   <div>
-    <%= i.label :active %><br>
-    <%= i.check_box :active %>
+    <%= f.label :active %><br>
+    <%= f.check_box :active %>
   </div>
 
   <div>
-    <%= i.submit %>
+    <%= f.submit %>
   </div>
 <% end %>

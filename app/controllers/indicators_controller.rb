@@ -1,6 +1,7 @@
 class IndicatorsController < ApplicationController
   # Callback Methods
   before_action :set_indicator, only: [:show, :edit, :update, :destroy]
+  before_action :set_competencies_levels, only: [:new, :create, :edit, :update]
 
   # GET /indicators
   def index
@@ -55,6 +56,12 @@ class IndicatorsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_indicator
     @indicator = Indicator.find(params[:id])
+  end
+
+  # Use callback to create the competencies and levels for forms
+  def set_competencies_levels
+    @active_competencies = Competency.active.alphabetical
+    @active_levels = Level.active.alphabetical
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
