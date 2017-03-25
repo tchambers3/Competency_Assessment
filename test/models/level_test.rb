@@ -6,15 +6,19 @@ class LevelTest < ActiveSupport::TestCase
 
   # Basic Validations
   should validate_presence_of(:name)
+  should validate_presence_of(:description)
   should validate_presence_of(:ranking)
   should validate_uniqueness_of(:ranking)
   should validate_numericality_of(:ranking)
 
   should allow_value("Champion").for(:name)
   should_not allow_value("").for(:name)
+  should allow_value("Champion Description").for(:description)
+  should_not allow_value("").for(:description)
   should allow_value(1).for(:ranking)
   should_not allow_value("").for(:ranking)
   should_not allow_value("Level1").for(:ranking)
+  should_not allow_value(1.5).for(:ranking)
 
 
   # Scope and method tests
@@ -41,10 +45,10 @@ class LevelTest < ActiveSupport::TestCase
       deny bad_level.valid?
     end
 
-    # test uniqueness of ranking for inactive levels
-    should "be able to create a Level with an existing ranking if level is inactive" do
-      bad_level = FactoryGirl.build(:level, name: "Bad Level", ranking: 3, active: false)
-      assert bad_level.valid?
+    # test uniqueness of name
+    should "not be able to create a Level with an existing name" do
+      bad_level = FactoryGirl.build(:level, name: "Contributer", ranking: 7)
+      deny bad_level.valid?
     end
 
     # test alphabetical scope

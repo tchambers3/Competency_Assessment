@@ -1,8 +1,11 @@
 class Question < ActiveRecord::Base
+  # Relationships
 #has_many :indicators through: :indicator_questions
 
+  # Validations
   validates_presence_of :question
 
+  # Scopes
   # QUESTION: Should we allow some way to order the questions?:
   scope :active, -> { where("active = ?", true) }
   scope :inactive, -> { where("active = ?",false) }

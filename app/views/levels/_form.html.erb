@@ -1,0 +1,33 @@
+<%= form_for(@level) do |f| %>
+  <% if @level.errors.any? %>
+    <div>
+      <strong><%= pluralize(@level.errors.count, "error") %> prohibited this level from being saved:</strong>
+      <ul>
+        <% @level.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div>
+    <%= f.label :ranking %><br>
+    <%= f.number_field :ranking %>
+  </div>
+  <div>
+    <%= f.label :active %><br>
+    <%= f.check_box :active %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
