@@ -35,7 +35,7 @@ class ImportsController < ApplicationController
     indicators = parse_indicators(spreadsheet, competencies, levels)
 
     unless validate_save_models([indicators])
-      # rollback_saved_models([competencies, new_levels])
+      rollback_saved_models([competencies, new_levels])
       aggregate_errors([indicators])
       return redirect_to root_url
     end
@@ -130,6 +130,14 @@ class ImportsController < ApplicationController
           flash[:error] << "#{m.class.name.pluralize} Sheet - Row #{index+2}: #{message}"
         end
       end
+    end
+  end
+
+  # This what will be called if any of the models were created and later on models
+  # had an error. We will need to delete the already created models.
+  def rollback_saved_models(models_list)
+    models_list.each do |models|
+      models.each(&:destroy!)
     end
   end
 
