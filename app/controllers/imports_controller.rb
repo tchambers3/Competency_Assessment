@@ -21,14 +21,15 @@ class ImportsController < ApplicationController
     # we don't need to redundantly save it into the database each time. 
     competencies = parse_competencies(spreadsheet)
     levels, new_levels = parse_levels(spreadsheet)
+    indicators = parse_indicators(spreadsheet, competencies, levels)
     
     # Validate that the new models are all valid and save them to the database.
     # If any of the new models are not valid, the aggregate_errors method will be
     # called to aggregate all the errors that need to be fixed.
-    if validate_save_models(competencies, new_levels)
+    if validate_save_models(competencies, new_levels, indicators)
       flash[:notice] = "Successfully uploaded and imported the #{file.original_filename} spreadsheet."
     else
-      aggregate_errors(competencies, levels)
+      aggregate_errors(competencies, levels, indicators)
     end
 
     # Redirect to the original page regardless of success
@@ -72,13 +73,30 @@ class ImportsController < ApplicationController
     return levels, new_levels
   end
 
+  def parse_indicators(spreadsheet, competencies, levels)
+    indicators_sheet = spreadsheet.sheet("Indicators")
+    indicators_hash = 
+      indicators_sheet.parse(level_id: "Level_ID", description: "Description")
+
+    indicators = []
+    indicators_hash.each_with_index do |i, index|
+      indicator = Indicator.new
+      i[:competency_id] = competencies[0].id
+      i[:level_id] = levels[i[:level_id] - 2].id
+      indicator.attributes = i.to_hash
+      indicators << indicator
+    end
+    return indicators
+  end
+
   # Takes in the list of all models that need to be saved into the database.
   # Checks if the new objects are valid, before saving into the databse.
   # Nothing is saved unless everything is valid.
-  def validate_save_models(competencies, new_levels)
-    if competencies.map(&:valid?).all? && new_levels.map(&:valid?).all?
+  def validate_save_models(competencies, new_levels, indicators)
+    if competencies.map(&:valid?).all? && new_levels.map(&:valid?).all? && indicators.map(&:valid?).all?
       competencies.each(&:save!)
       new_levels.each(&:save!)
+      indicators.each(&:save!)
       return true
     end
     return false
@@ -87,7 +105,7 @@ class ImportsController < ApplicationController
   # This method is called if an error exists in the list of models.
   # Goes through all the models in order to aggregate the errors into flash[:error]
   # Didn't use the new models (ex. new_levels vs. levels) because of Row #'s for error message.
-  def aggregate_errors(competencies, levels)
+  def aggregate_errors(competencies, levels, indicators)
     flash[:error] = []
     competencies.each_with_index do |competency, index|
       competency.errors.full_messages.each do |message|
@@ -97,6 +115,11 @@ class ImportsController < ApplicationController
     levels.each_with_index do |level, index|
       level.errors.full_messages.each do |message|
         flash[:error] << "Levels Sheet - Row #{index+2}: #{message}"
+      end
+    end
+    indicators.each_with_index do |indicator, index|
+      indicator.errors.full_messages.each do |message|
+        flash[:error] << "Indicators Sheet - Row #{index+2}: #{message}"
       end
     end
   end
