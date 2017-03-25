@@ -13,7 +13,7 @@ class ImportsController < ApplicationController
       return redirect_to root_url
     end
 
-    # Parses each fo the sheets
+    # Parses each of the sheets
     # Returns a list of ActiveRecords that need to be saved into the database
     # For specific models like Level, it returns a list of all levels listed in 
     # the Excel file as well as the the list of new objects that need to be saved.
@@ -25,18 +25,23 @@ class ImportsController < ApplicationController
     # Validate that the new models are all valid and save them to the database.
     # If any of the new models are not valid, the aggregate_errors method will be
     # called to aggregate all the errors that need to be fixed.
-    if validate_save_models(competencies, new_levels)
-      indicators = parse_indicators(spreadsheet, competencies, levels)
-      if validate_save_indicators(indicators)
-        flash[:notice] = "Successfully uploaded and imported the #{file.original_filename} spreadsheet."
-      else
-        aggregate_errors(competencies, levels, indicators)
-      end
-    else
-      aggregate_errors(competencies, levels, indicators)
+    unless validate_save_models([competencies, new_levels])
+      aggregate_errors([competencies, levels])
+      return redirect_to root_url
     end
 
-    # Redirect to the original page regardless of success
+    # Because these following models are dependent on the id's and creation of the previous models,
+    # they have to be parsed afterwards, validated and saved.
+    indicators = parse_indicators(spreadsheet, competencies, levels)
+
+    unless validate_save_models([indicators])
+      # rollback_saved_models([competencies, new_levels])
+      aggregate_errors([indicators])
+      return redirect_to root_url
+    end
+
+    # Redirect to the original page with success message if no errors have occurred in any of the models
+    flash[:notice] = "Successfully uploaded and imported the #{file.original_filename} spreadsheet."
     redirect_to root_url
   end
 
@@ -96,41 +101,34 @@ class ImportsController < ApplicationController
   # Takes in the list of all models that need to be saved into the database.
   # Checks if the new objects are valid, before saving into the databse.
   # Nothing is saved unless everything is valid.
-  def validate_save_models(competencies, new_levels)
-    if competencies.map(&:valid?).all? && new_levels.map(&:valid?).all?
-      competencies.each(&:save!)
-      new_levels.each(&:save!)
-      return true
+  #
+  # Note: Stops after the first sheet that encounters and error, therefore, error messages
+  # will only be for the first sheet that has errors, not error messages for all sheets.
+  def validate_save_models(models_list)
+    # Goes through all the models and see if its valid
+    # returns false if any of them are invalid
+    models_list.each do |models|
+      unless models.map(&:valid?).all?
+        return false
+      end
     end
-    return false
-  end
-
-  def validate_save_indicators(indicators)
-    if indicators.map(&:valid?).all?
-      indicators.each(&:save!)
-      return true
+    # If all are valid, then save them and return true
+    models_list.each do |models|
+      models.each(&:save!)
     end
-    return false
+    return true
   end
 
   # This method is called if an error exists in the list of models.
   # Goes through all the models in order to aggregate the errors into flash[:error]
   # Didn't use the new models (ex. new_levels vs. levels) because of Row #'s for error message.
-  def aggregate_errors(competencies, levels, indicators)
+  def aggregate_errors(models_list)
     flash[:error] = []
-    competencies.each_with_index do |competency, index|
-      competency.errors.full_messages.each do |message|
-        flash[:error] << "Competencies Sheet - Row #{index+2}: #{message}"
-      end
-    end
-    levels.each_with_index do |level, index|
-      level.errors.full_messages.each do |message|
-        flash[:error] << "Levels Sheet - Row #{index+2}: #{message}"
-      end
-    end
-    indicators.each_with_index do |indicator, index|
-      indicator.errors.full_messages.each do |message|
-        flash[:error] << "Indicators Sheet - Row #{index+2}: #{message}"
+    models_list.each do |models|
+      models.each_with_index do |m, index|
+        m.errors.full_messages.each do |message|
+          flash[:error] << "#{m.class.name.pluralize} Sheet - Row #{index+2}: #{message}"
+        end
       end
     end
   end
