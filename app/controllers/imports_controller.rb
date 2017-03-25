@@ -12,8 +12,11 @@ class ImportsController < ApplicationController
     end
 
     competencies = parse_competencies(spreadsheet)
-
-    save_models(competencies)
+    levels, new_levels = parse_levels(spreadsheet)
+    byebug
+    if save_models(competencies, levels, new_levels)
+      flash[:notice] = "Successfully uploaded and imported the #{file.original_filename} spreadsheet."
+    end
 
     redirect_to root_url
   end
@@ -35,15 +38,41 @@ class ImportsController < ApplicationController
     competencies
   end
 
-  def save_models(competencies)
-    if competencies.map(&:valid?).all?
+  def parse_levels(spreadsheet)
+    levels_sheet = spreadsheet.sheet("Levels")
+    levels_hash = 
+      levels_sheet.parse(name: "Name", description: "Description", ranking: "Ranking")
+
+    levels = []
+    new_levels = []
+    levels_hash.each_with_index do |l, index|
+      if Level.exists?(name: l[:name])
+        level = Level.find_by_name(l[:name])
+      else
+        level = Level.new
+        level.attributes = l.to_hash
+        new_levels << level
+      end
+      levels << level
+    end
+    return levels, new_levels
+  end
+
+  def save_models(competencies, levels, new_levels)
+    if competencies.map(&:valid?).all? && new_levels.map(&:valid?).all?
       competencies.each(&:save!)
+      new_levels.each(&:save!)
       true
     else
       flash[:error] = []
       competencies.each_with_index do |competency, index|
         competency.errors.full_messages.each do |message|
-          flash[:error] << "Row #{index+2}: #{message}"
+          flash[:error] << "Competencies Sheet - Row #{index+2}: #{message}"
+        end
+      end
+      levels.each_with_index do |level, index|
+        level.errors.full_messages.each do |message|
+          flash[:error] << "Levels Sheet - Row #{index+2}: #{message}"
         end
       end
       false
