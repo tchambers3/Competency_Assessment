@@ -1,5 +1,9 @@
 <h2>Active Indicators</h2>
 
+<% if @competencies.empty? %>
+  <p><em>There are no active indicators at this time.</em></p>
+<% end %>
+
 <% @competencies.each do |c| %>
   <h4><%= link_to c.name, competency_path(c) %></h4>
   <% if c.indicators.active.empty? %>
