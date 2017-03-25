@@ -43,7 +43,7 @@ gem 'roo-xls'
 # With importing a lot of Excel data (more than 4kb) we need to store data somewhere else besides
 # the cookie. The error is: ActionDispatch::Cookies::CookieOverflow. So we need to use this gem to 
 # store sessions in the db.
-# gem 'activerecord-session_store'
+gem 'activerecord-session_store'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

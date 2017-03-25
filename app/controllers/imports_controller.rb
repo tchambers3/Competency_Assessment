@@ -21,13 +21,17 @@ class ImportsController < ApplicationController
     # we don't need to redundantly save it into the database each time. 
     competencies = parse_competencies(spreadsheet)
     levels, new_levels = parse_levels(spreadsheet)
-    indicators = parse_indicators(spreadsheet, competencies, levels)
     
     # Validate that the new models are all valid and save them to the database.
     # If any of the new models are not valid, the aggregate_errors method will be
     # called to aggregate all the errors that need to be fixed.
-    if validate_save_models(competencies, new_levels, indicators)
-      flash[:notice] = "Successfully uploaded and imported the #{file.original_filename} spreadsheet."
+    if validate_save_models(competencies, new_levels)
+      indicators = parse_indicators(spreadsheet, competencies, levels)
+      if validate_save_indicators(indicators)
+        flash[:notice] = "Successfully uploaded and imported the #{file.original_filename} spreadsheet."
+      else
+        aggregate_errors(competencies, levels, indicators)
+      end
     else
       aggregate_errors(competencies, levels, indicators)
     end
@@ -92,10 +96,17 @@ class ImportsController < ApplicationController
   # Takes in the list of all models that need to be saved into the database.
   # Checks if the new objects are valid, before saving into the databse.
   # Nothing is saved unless everything is valid.
-  def validate_save_models(competencies, new_levels, indicators)
-    if competencies.map(&:valid?).all? && new_levels.map(&:valid?).all? && indicators.map(&:valid?).all?
+  def validate_save_models(competencies, new_levels)
+    if competencies.map(&:valid?).all? && new_levels.map(&:valid?).all?
       competencies.each(&:save!)
       new_levels.each(&:save!)
+      return true
+    end
+    return false
+  end
+
+  def validate_save_indicators(indicators)
+    if indicators.map(&:valid?).all?
       indicators.each(&:save!)
       return true
     end
