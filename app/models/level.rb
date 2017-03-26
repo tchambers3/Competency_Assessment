@@ -15,4 +15,26 @@ class Level < ActiveRecord::Base
   scope :active, -> { where("levels.active = ?", true) }
   scope :inactive, -> { where("levels.active = ?", false) }
 
+
+  # Methods
+  def self.parse(spreadsheet)
+    levels_sheet = spreadsheet.sheet("Levels")
+    levels_hash = 
+      levels_sheet.parse(name: "Name", description: "Description", ranking: "Ranking")
+
+    levels = []
+    new_levels = []
+    levels_hash.each_with_index do |l, index|
+      if Level.exists?(name: l[:name])
+        level = Level.find_by_name(l[:name])
+      else
+        level = Level.new
+        level.attributes = l.to_hash
+        new_levels << level
+      end
+      levels << level
+    end
+    return levels, new_levels
+  end
+
 end

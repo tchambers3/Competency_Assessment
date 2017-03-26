@@ -9,7 +9,7 @@ class ImportsController < ApplicationController
     begin
       spreadsheet = open_spreadsheet(file)
     rescue => exception
-      flash[:error] = "#{file.original_filename} is in the wrong format. Has to be .xls or .xlsx"
+      flash[:error] = "#{file.nil? ? 'File' : file.original_filename} is in the wrong format. Has to be .xls or .xlsx"
       return redirect_to root_url
     end
 
@@ -19,9 +19,9 @@ class ImportsController < ApplicationController
     # the Excel file as well as the the list of new objects that need to be saved.
     # This is because the same exact levels will generally be in every Excel file, but
     # we don't need to redundantly save it into the database each time. 
-    competencies = parse_competencies(spreadsheet)
-    levels, new_levels = parse_levels(spreadsheet)
-    paradigms, new_paradigms = parse_paradigms(spreadsheet)
+    competencies = Competency.parse(spreadsheet)
+    levels, new_levels = Level.parse(spreadsheet)
+    paradigms, new_paradigms = Paradigm.parse(spreadsheet)
     all_models = [competencies, levels, paradigms]
     new_models = [competencies, new_levels, new_paradigms]
     
@@ -35,7 +35,7 @@ class ImportsController < ApplicationController
 
     # Because these following models are dependent on the id's and creation of the previous models,
     # they have to be parsed afterwards, validated and saved.
-    indicators = parse_indicators(spreadsheet, competencies, levels)
+    indicators = Indicator.parse(spreadsheet, competencies, levels)
     dependent_models = [indicators]
 
     # Validate the new models are valid and have the same behavior as before. However, since the previous
@@ -53,76 +53,6 @@ class ImportsController < ApplicationController
 
 
   private
-
-  def parse_competencies(spreadsheet)
-    competencies_sheet = spreadsheet.sheet("Competencies")
-    competencies_hash = 
-      competencies_sheet.parse(name: "Name", description: "Description")
-
-    competencies = []
-    competencies_hash.each_with_index do |c, index|
-      competency = Competency.new
-      competency.attributes = c.to_hash
-      competencies << competency
-    end
-    return competencies
-  end
-
-  def parse_levels(spreadsheet)
-    levels_sheet = spreadsheet.sheet("Levels")
-    levels_hash = 
-      levels_sheet.parse(name: "Name", description: "Description", ranking: "Ranking")
-
-    levels = []
-    new_levels = []
-    levels_hash.each_with_index do |l, index|
-      if Level.exists?(name: l[:name])
-        level = Level.find_by_name(l[:name])
-      else
-        level = Level.new
-        level.attributes = l.to_hash
-        new_levels << level
-      end
-      levels << level
-    end
-    return levels, new_levels
-  end
-
-  def parse_indicators(spreadsheet, competencies, levels)
-    indicators_sheet = spreadsheet.sheet("Indicators")
-    indicators_hash = 
-      indicators_sheet.parse(level_id: "Level_ID", description: "Description")
-
-    indicators = []
-    indicators_hash.each_with_index do |i, index|
-      indicator = Indicator.new
-      i[:competency_id] = competencies[0].id
-      i[:level_id] = levels[i[:level_id] - 2].id
-      indicator.attributes = i.to_hash
-      indicators << indicator
-    end
-    return indicators
-  end
-
-  def parse_paradigms(spreadsheet)
-    paradigms_sheet = spreadsheet.sheet("Paradigms")
-    paradigms_hash = 
-      paradigms_sheet.parse(name: "Name", description: "Description", ranking: "Ranking")
-
-    paradigms = []
-    new_paradigms = []
-    paradigms_hash.each_with_index do |p, index|
-      if Paradigm.exists?(name: p[:name])
-        paradigm = Paradigm.find_by_name(p[:name])
-      else
-        paradigm = Paradigm.new
-        paradigm.attributes = p.to_hash
-        new_paradigms << paradigm
-      end
-      paradigms << paradigm
-    end
-    return paradigms, new_paradigms
-  end
 
   # Takes in the list of all models that need to be saved into the database.
   # Checks if the new objects are valid, before saving into the databse.

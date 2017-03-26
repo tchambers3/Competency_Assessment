@@ -18,4 +18,22 @@ class Indicator < ActiveRecord::Base
   scope :active, -> { where("indicators.active = ?", true) }
   scope :inactive, -> { where("indicators.active = ?", false) }
 
+
+  # Methods
+  def self.parse(spreadsheet, competencies, levels)
+    indicators_sheet = spreadsheet.sheet("Indicators")
+    indicators_hash = 
+      indicators_sheet.parse(level_id: "Level_ID", description: "Description")
+
+    indicators = []
+    indicators_hash.each_with_index do |i, index|
+      indicator = Indicator.new
+      i[:competency_id] = competencies[0].id
+      i[:level_id] = levels[i[:level_id] - 2].id
+      indicator.attributes = i.to_hash
+      indicators << indicator
+    end
+    return indicators
+  end
+
 end
