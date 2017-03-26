@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170325183536) do
+ActiveRecord::Schema.define(version: 20170325235204) do
 
   create_table "competencies", force: :cascade do |t|
     t.string   "name"
@@ -50,10 +50,9 @@ ActiveRecord::Schema.define(version: 20170325183536) do
 
   create_table "questions", force: :cascade do |t|
     t.text     "question"
-    t.boolean  "active",          default: true
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.integer  "question_number"
+    t.boolean  "active",     default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "sessions", force: :cascade do |t|

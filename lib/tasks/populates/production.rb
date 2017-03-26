@@ -20,7 +20,7 @@ end
 #Step 2: Create admin
 users =
 [
-  ["admin","password","password",true]
+  ["admin","password", "password",true]
 ]
 
 users.each do |user|
