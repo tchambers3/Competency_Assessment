@@ -27,6 +27,10 @@ class Paradigm < ActiveRecord::Base
     paradigms = []
     new_paradigms = []
     paradigms_hash.each_with_index do |p, index|
+      # Checks if a Paradigm of the same name exists
+      # If it does, then set the paradigm to the existing paradigm instance
+      # Else create a whole new paradigm instance and add it to the 
+      # new_paradigms list in order to be saved later
       if Paradigm.exists?(name: p[:name])
         paradigm = Paradigm.find_by_name(p[:name])
       else

@@ -25,6 +25,10 @@ class Level < ActiveRecord::Base
     levels = []
     new_levels = []
     levels_hash.each_with_index do |l, index|
+      # Checks if a Level of the same name exists
+      # If it does, then set the level to the existing level instance
+      # Else create a whole new level instance and add it to the 
+      # new_levels list in order to be saved later
       if Level.exists?(name: l[:name])
         level = Level.find_by_name(l[:name])
       else
