@@ -21,7 +21,7 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     if @question.save
-      flash[:notice] = "Successfully created #{@question.name}"
+      flash[:notice] = "Successfully created #{@question.question}"
       redirect_to question_path(@question)
     else
       render "new"
@@ -35,7 +35,7 @@ class QuestionsController < ApplicationController
   # PATCH/PUT /questions/:id
   def update
     if @question.update(question_params)
-      flash[:notice] = "Successfully updated #{@question.name}"
+      flash[:notice] = "Successfully updated #{@question.question}"
       redirect_to question_path(@question)
     else
       render "edit"
@@ -45,7 +45,7 @@ class QuestionsController < ApplicationController
   # DELETE /questions/:id
   def destroy
     @question.destroy
-    flash[:notice] = "Successfully deleted #{@question.name}"
+    flash[:notice] = "Successfully deleted #{@question.question}"
     redirect_to questions_url
   end
 

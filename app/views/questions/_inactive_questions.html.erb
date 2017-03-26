@@ -5,7 +5,7 @@
     <table border="1">
       <thead>
         <tr>
-          <th>Name</th>
+          <th>Question</th>
           <th>&nbsp;</th>
           <th>&nbsp;</th>
         </tr>
@@ -13,7 +13,7 @@
       <tbody>
         <% @inactive_questions.each do |q| %>
           <tr>
-            <td><%= link_to q.name, question_path(q) %></td>
+            <td><%= link_to q.question, question_path(q) %></td>
             <td><%= link_to "Edit", edit_question_path(q) %></td>
             <td>
               <%= link_to "Delete", question_path(q),
