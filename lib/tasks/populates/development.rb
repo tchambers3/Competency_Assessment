@@ -99,7 +99,7 @@ end
 #Step 5: Create users
 users =
 [
-  ["admin","password","password",true]
+  ["admin","password", "password", true]
 ]
 
 users.each do |user|
@@ -109,4 +109,22 @@ users.each do |user|
   u.password_confirmation = user[2]
   u.active = user[3]
   u.save!
+end
+
+#Step 6: Create paradigms
+paradigms =
+[
+  ["Build Understanding", "Books that help you understand what you're buildling", 1, true],
+  ["Get Connected", "Workshops for you to try live!", 2, true],
+  ["Do Something", "Actionable ways to better you", 3, true],
+  ["Learn More", "Watch educational videos", 4, true]
+]
+
+paradigms.each do |paradigm|
+  p = Paradigm.new
+  p.name = paradigm[0]
+  p.description = paradigm[1]
+  p.ranking = paradigm[2]
+  p.active = paradigm[3]
+  p.save!
 end
