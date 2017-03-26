@@ -27,8 +27,9 @@ class ImportsController < ApplicationController
     competencies = Competency.parse(spreadsheet)
     levels, new_levels = Level.parse(spreadsheet)
     paradigms, new_paradigms = Paradigm.parse(spreadsheet)
-    all_models = [competencies, levels, paradigms]
-    new_models = [competencies, new_levels, new_paradigms]
+    questions = Question.parse(spreadsheet)
+    all_models = [competencies, levels, paradigms, questions]
+    new_models = [competencies, new_levels, new_paradigms, questions]
     
     # Validate that the new models are all valid and save them to the database.
     # If any of the new models are not valid, the aggregate_errors method will be
