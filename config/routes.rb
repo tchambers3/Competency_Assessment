@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   # Model Resources for CRUD operations
   resources :competencies
+  resources :paradigms
   resources :questions
   resources :levels
 
