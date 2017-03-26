@@ -21,22 +21,28 @@ class ImportsController < ApplicationController
     # we don't need to redundantly save it into the database each time. 
     competencies = parse_competencies(spreadsheet)
     levels, new_levels = parse_levels(spreadsheet)
+    paradigms, new_paradigms = parse_paradigms(spreadsheet)
+    all_models = [competencies, levels, paradigms]
+    new_models = [competencies, new_levels, new_paradigms]
     
     # Validate that the new models are all valid and save them to the database.
     # If any of the new models are not valid, the aggregate_errors method will be
     # called to aggregate all the errors that need to be fixed.
-    unless validate_save_models([competencies, new_levels])
-      aggregate_errors([competencies, levels])
+    unless validate_save_models(new_models)
+      aggregate_errors(all_models)
       return redirect_to root_url
     end
 
     # Because these following models are dependent on the id's and creation of the previous models,
     # they have to be parsed afterwards, validated and saved.
     indicators = parse_indicators(spreadsheet, competencies, levels)
+    dependent_models = [indicators]
 
-    unless validate_save_models([indicators])
-      rollback_saved_models([competencies, new_levels])
-      aggregate_errors([indicators])
+    # Validate the new models are valid and have the same behavior as before. However, since the previous
+    # models were save, this will rollback and destroy the created models if there is something invalid.
+    unless validate_save_models(dependent_models)
+      rollback_saved_models(new_models)
+      aggregate_errors(dependent_models)
       return redirect_to root_url
     end
 
@@ -96,6 +102,26 @@ class ImportsController < ApplicationController
       indicators << indicator
     end
     return indicators
+  end
+
+  def parse_paradigms(spreadsheet)
+    paradigms_sheet = spreadsheet.sheet("Paradigms")
+    paradigms_hash = 
+      paradigms_sheet.parse(name: "Name", description: "Description", ranking: "Ranking")
+
+    paradigms = []
+    new_paradigms = []
+    paradigms_hash.each_with_index do |p, index|
+      if Paradigm.exists?(name: p[:name])
+        paradigm = Paradigm.find_by_name(p[:name])
+      else
+        paradigm = Paradigm.new
+        paradigm.attributes = p.to_hash
+        new_paradigms << paradigm
+      end
+      paradigms << paradigm
+    end
+    return paradigms, new_paradigms
   end
 
   # Takes in the list of all models that need to be saved into the database.
