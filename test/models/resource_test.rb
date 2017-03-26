@@ -4,10 +4,11 @@ class ResourceTest < ActiveSupport::TestCase
 
   # Test Relationships
   should belong_to(:paradigm)
+  should have_many(:indicator_resources)
+  should have_many(:indicators).through(:indicator_resources)
 
   # Test Validations
   should validate_presence_of(:title)
-  should validate_uniqueness_of(:title)
 
   # Test scopes
   context "With a proper context" do

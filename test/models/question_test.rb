@@ -6,6 +6,9 @@ class QuestionTest < ActiveSupport::TestCase
   should allow_value("A question?").for(:question)
   should_not allow_value("").for(:question)
 
+  should have_many(:indicator_questions)
+  should have_many(:questions).through(:indicator_questions)
+
   context "With a proper context, " do
     setup do
       create_questions

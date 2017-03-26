@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20170325235204) do
   end
 
   create_table "indicator_resources", force: :cascade do |t|
-    t.integer  "indictaor_id"
+    t.integer  "indicator_id"
     t.integer  "resource_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false

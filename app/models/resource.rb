@@ -2,11 +2,12 @@ class Resource < ActiveRecord::Base
 
   # Relationships
   belongs_to :paradigm
-  #TODO: has many indicators through indictator_model
+
+  has_many :indicator_resources
+  has_many :indicators, through: :indicator_resources
 
   # Validations
   validates_presence_of :title, :paradigm_id
-  validates_uniqueness_of :title
 
   # Scopes
   scope :alphabetical, -> { order("title") }
