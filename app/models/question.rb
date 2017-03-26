@@ -7,7 +7,6 @@ class Question < ActiveRecord::Base
   scope :active, -> { where("active = ?", true) }
   scope :inactive, -> { where("active = ?",false) }
   scope :alphabetical, -> { order("question") }
-  scope :by_number, -> {order("question_number")}
 
   #TODO: Test when indicator_questions and indicators have been made
   # scope :for_indicator, -> (indicator_id) {joins(:indicator_questions).where("indicator_questions.indicator_id = ? AND indicator_questions.question_id = id",indicator_id)}
