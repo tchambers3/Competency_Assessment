@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
 
-  #Root Path
+
+  # Root Path
   root 'home#home'
 
-  # Regirstration Routes
+  # Registration Routes
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
   get '/users' => 'users#index'
@@ -12,9 +13,13 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
-  
+
   # Model Resources for CRUD operations
   resources :competencies
+  resources :paradigms
+  resources :questions
+  resources :levels
+  resources :indicators
 
 
   # The priority is based upon order of creation: first created -> highest priority.
