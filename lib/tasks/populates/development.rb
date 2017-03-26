@@ -111,7 +111,7 @@ users.each do |user|
   u.save!
 end
 
-#Step 5: Create paradigms
+#Step 6: Create paradigms
 paradigms =
 [
   ["Build Understanding", "Books that help you understand what you're buildling", 1, true],
