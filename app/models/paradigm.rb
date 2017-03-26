@@ -6,8 +6,7 @@ class Paradigm < ActiveRecord::Base
   # Validations
   validates_presence_of :name, :description, :ranking
   validates_numericality_of :ranking, only_integer: true
-  validates_uniqueness_of :ranking
-  validates_uniqueness_of :name
+  validates_uniqueness_of :ranking, :name
 
   # Scopes
   scope :alphabetical, -> { order("name") }

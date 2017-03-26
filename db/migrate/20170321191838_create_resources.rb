@@ -4,7 +4,7 @@ class CreateResources < ActiveRecord::Migration
       t.integer :paradigm_id
       t.string :title
       t.text :link
-      t.boolean :active
+      t.boolean :active, default: true
 
       t.timestamps null: false
     end
