@@ -34,9 +34,5 @@ class QuestionTest < ActiveSupport::TestCase
       assert_equal [@communication_q3, @communication_q2, @communication_q1], Question.alphabetical.map { |e| e  }
     end
 
-    should "Show in question order" do
-      assert_equal [@communication_q2, @communication_q1, @communication_q3], Question.by_number.map { |e| e }
-    end
-
   end
 end

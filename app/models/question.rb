@@ -1,13 +1,15 @@
 class Question < ActiveRecord::Base
+  # Relationships
 #has_many :indicators through: :indicator_questions
 
+  # Validations
   validates_presence_of :question
 
+  # Scopes
   # QUESTION: Should we allow some way to order the questions?:
   scope :active, -> { where("active = ?", true) }
   scope :inactive, -> { where("active = ?",false) }
   scope :alphabetical, -> { order("question") }
-  scope :by_number, -> {order("question_number")}
 
   #TODO: Test when indicator_questions and indicators have been made
   # scope :for_indicator, -> (indicator_id) {joins(:indicator_questions).where("indicator_questions.indicator_id = ? AND indicator_questions.question_id = id",indicator_id)}

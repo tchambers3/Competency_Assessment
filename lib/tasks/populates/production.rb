@@ -18,7 +18,6 @@ levels.each do |level|
 end
 
 #Step 2: Create admin
-
 users =
 [
   ["admin","password", "password",true]
@@ -30,4 +29,5 @@ users.each do |user|
   u.password = user[1]
   u.password_confirmation = user[2]
   u.active = user[3]
+  u.save!
 end

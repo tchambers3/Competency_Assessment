@@ -18,7 +18,6 @@ FactoryGirl.define do
   # Question factory set up
   factory :question do
     question "When I have something to say, I prepare by organizing my thoughts and outlining my intention."
-    question_number 2
     active true
   end
 

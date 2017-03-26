@@ -8,7 +8,7 @@ class CompetenciesController < ApplicationController
     @inactive_competencies = Competency.inactive.alphabetical
   end
 
-  # GET /competencies/1
+  # GET /competencies/:id
   def show
   end
 
@@ -28,11 +28,11 @@ class CompetenciesController < ApplicationController
     end
   end
 
-  # GET /competencies/1/edit
+  # GET /competencies/:id/edit
   def edit
   end
 
-  # PATCH/PUT /competencies/1
+  # PATCH/PUT /competencies/:id
   def update
     if @competency.update(competency_params)
       flash[:notice] = "Successfully updated #{@competency.name}"
@@ -42,11 +42,11 @@ class CompetenciesController < ApplicationController
     end
   end
 
-  # DELETE /competencies/1
+  # DELETE /competencies/:id
   def destroy
     @competency.destroy
     flash[:notice] = "Successfully deleted #{@competency.name}"
-    redirect_to competencies_url
+    redirect_to competencies_path
   end
 
 
