@@ -2,11 +2,16 @@ require 'roo'
 
 class ImportsController < ApplicationController
 
+  ACCEPTED_FORMATS = [".xls", ".xlsx"]
+
   def parse
     file = params[:file]
     # Check if the the file is of the right type.
     # Redirect to the original upload url early if it's not correct.
     begin
+      unless ACCEPTED_FORMATS.include? File.extname(file.original_filename)
+        raise TypeError
+      end
       spreadsheet = open_spreadsheet(file)
     rescue => exception
       flash[:error] = "#{file.nil? ? 'File' : file.original_filename} is in the wrong format. Has to be .xls or .xlsx"
