@@ -1,7 +1,7 @@
 class Paradigm < ActiveRecord::Base
 
   #Relationships
-  belongs_to :resource
+  has_many :resources
 
   # Validations
   validates_presence_of :name, :description, :ranking

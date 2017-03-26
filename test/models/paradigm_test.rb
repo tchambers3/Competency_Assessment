@@ -2,7 +2,8 @@ require 'test_helper'
 
 class ParadigmTest < ActiveSupport::TestCase
 
-  #TODO: test relationship once its added
+  # Relationships
+  should have_many(:resources)
 
   # Validation tests
   should validate_presence_of(:name)
@@ -33,14 +34,9 @@ class ParadigmTest < ActiveSupport::TestCase
       assert_equal ["Build Understanding", "Do Something", "Get Connected", "Learn More"], Paradigm.alphabetical.map { |e| e.name}
     end
 
-    # test asc_rank scope
+    # test by_ranking scope
     should "Show paradigms in ascending ranking" do
-      assert_equal ["Build Understanding", "Get Connected", "Do Something", "Learn More"], Paradigm.asc_rank.map { |e| e.name}
-    end
-
-    #test desc_rank scope
-    should "Show paradigms in descending ranking" do
-      assert_equal ["Learn More", "Do Something", "Get Connected", "Build Understanding"], Paradigm.desc_rank.map { |e| e.name}
+      assert_equal ["Build Understanding", "Get Connected", "Do Something", "Learn More"], Paradigm.by_ranking.map { |e| e.name}
     end
 
   end

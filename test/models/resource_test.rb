@@ -3,11 +3,11 @@ require 'test_helper'
 class ResourceTest < ActiveSupport::TestCase
 
   # Test Relationships
-  should have_one(:paradigm)
+  should belong_to(:paradigm)
 
   # Test Validations
-  should validate_presence_of(:title, :link)
-  should validates_uniqueness_of(:title, :link)
+  should validate_presence_of(:title)
+  should validate_uniqueness_of(:title)
 
   # Test scopes
   context "With a proper context" do
@@ -29,7 +29,7 @@ class ResourceTest < ActiveSupport::TestCase
     end
 
     should "have all resources listed alphabetically" do
-      assert_equal ["Communication Skills for Dummies", "How to Succeed in Business", "How to Fail in Business", "Public Speaking 101 Workshop"], Resource.alphabetical.map  { |e| e.name }
+      assert_equal ["Communication Skills for Dummies", "How to Fail in Business", "How to Succeed in Business", "Public Speaking 101 Workshop"], Resource.alphabetical.map  { |e| e.title }
     end
 
 

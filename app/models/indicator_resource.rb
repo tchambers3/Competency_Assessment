@@ -5,8 +5,8 @@ class IndicatorResource < ActiveRecord::Base
   belongs_to :resource
 
   # Validations
-  validate_presence_of :indicator_id, :resource_id
-  validate_numericality_of :indicator_id, only_integer: true
-  validate_numericality_of :resource_id, only_integer: true
+  validates_presence_of :indicator_id, :resource_id
+  validates_numericality_of :indicator_id, only_integer: true
+  validates_numericality_of :resource_id, only_integer: true
 
 end

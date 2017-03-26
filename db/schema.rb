@@ -21,6 +21,20 @@ ActiveRecord::Schema.define(version: 20170325235204) do
     t.datetime "updated_at",                 null: false
   end
 
+  create_table "indicator_questions", force: :cascade do |t|
+    t.integer  "indicator_id"
+    t.integer  "question_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "indicator_resources", force: :cascade do |t|
+    t.integer  "indictaor_id"
+    t.integer  "resource_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "indicators", force: :cascade do |t|
     t.integer  "competency_id"
     t.integer  "level_id"
@@ -43,9 +57,9 @@ ActiveRecord::Schema.define(version: 20170325235204) do
     t.string   "name"
     t.text     "description"
     t.integer  "ranking"
-    t.boolean  "active",      default: true
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "active"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "questions", force: :cascade do |t|
@@ -53,6 +67,15 @@ ActiveRecord::Schema.define(version: 20170325235204) do
     t.boolean  "active",     default: true
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+  end
+
+  create_table "resources", force: :cascade do |t|
+    t.integer  "paradigm_id"
+    t.string   "title"
+    t.text     "link"
+    t.boolean  "active"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: :cascade do |t|

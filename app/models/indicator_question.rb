@@ -5,8 +5,8 @@ class IndicatorQuestion < ActiveRecord::Base
   belongs_to :question
 
   #Validations
-  validate_presence_of :indicator_id, :question_id
-  validate_numericality_of :indicator_id, only_integer: true
-  validate_numericality_of :question_id, only_integer: true
+  validates_presence_of :indicator_id, :question_id
+  validates_numericality_of :indicator_id, only_integer: true
+  validates_numericality_of :question_id, only_integer: true
 
 end
