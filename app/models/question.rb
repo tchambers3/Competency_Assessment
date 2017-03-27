@@ -1,6 +1,8 @@
 class Question < ActiveRecord::Base
+
   # Relationships
-#has_many :indicators through: :indicator_questions
+  has_many :indicator_questions
+  has_many :questions, through: :indicator_questions
 
   # Validations
   validates_presence_of :question
