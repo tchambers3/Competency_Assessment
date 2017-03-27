@@ -4,7 +4,7 @@ module Contexts
     # Create four levels
     def create_levels
       @champion = FactoryGirl.create(:level)
-      @contributer = FactoryGirl.create(:level, name: "Contributer",
+      @contributer = FactoryGirl.create(:level, name: "Contributor",
         description: "The middle level of indicators.", ranking: 2)
       @companion = FactoryGirl.create(:level, name: "Companion",
         description: "The lowest level of indicators.", ranking: 3)

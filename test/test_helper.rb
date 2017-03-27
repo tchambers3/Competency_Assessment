@@ -42,4 +42,13 @@ class ActiveSupport::TestCase
     end
   end
 
+  # Uploads file and return the uploaded file object
+  def upload_file(file_name)
+    uploaded_file = ActionDispatch::Http::UploadedFile.new({
+        :tempfile => File.new(Rails.root.join("test/fixtures/files/#{file_name}"))
+    })
+    uploaded_file.original_filename = file_name
+    uploaded_file
+  end
+
 end
