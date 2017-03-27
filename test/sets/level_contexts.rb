@@ -4,7 +4,7 @@ module Contexts
     # Create four levels
     def create_levels
       @champion = FactoryGirl.create(:level)
-      @contributer = FactoryGirl.create(:level, name: "Contributor",
+      @contributor = FactoryGirl.create(:level, name: "Contributor",
         description: "The middle level of indicators.", ranking: 2)
       @companion = FactoryGirl.create(:level, name: "Companion",
         description: "The lowest level of indicators.", ranking: 3)
@@ -15,7 +15,7 @@ module Contexts
     # Destroy the level objects
     def remove_levels
       @champion.destroy
-      @contributer.destroy
+      @contributor.destroy
       @companion.destroy
       @novice.destroy
     end

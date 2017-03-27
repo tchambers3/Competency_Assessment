@@ -34,7 +34,7 @@ class LevelTest < ActiveSupport::TestCase
     # Test that objects are created properly
     should "show that all factory objects are properly created" do
       assert_equal false, @novice.nil?
-      assert_equal "Contributer", @contributer.name
+      assert_equal "Contributor", @contributor.name
       assert_equal "Champion", @champion.name
       assert_equal "Companion", @companion.name
     end
@@ -47,23 +47,23 @@ class LevelTest < ActiveSupport::TestCase
 
     # test uniqueness of name
     should "not be able to create a Level with an existing name" do
-      bad_level = FactoryGirl.build(:level, name: "Contributer", ranking: 7)
+      bad_level = FactoryGirl.build(:level, name: "Contributor", ranking: 7)
       deny bad_level.valid?
     end
 
     # test alphabetical scope
     should "have levels listed alphabetically" do
-      assert_equal ["Champion", "Companion", "Contributer", "Novice"], Level.alphabetical.map { |e| e.name }
+      assert_equal ["Champion", "Companion", "Contributor", "Novice"], Level.alphabetical.map { |e| e.name }
     end
 
     # test by_ranking scope
     should "have levels listed by ranking" do
-      assert_equal ["Champion", "Contributer", "Companion", "Novice"], Level.by_ranking.map { |e| e.name }
+      assert_equal ["Champion", "Contributor", "Companion", "Novice"], Level.by_ranking.map { |e| e.name }
     end
 
     # test active scope
     should "have all active levels" do
-      assert_equal ["Champion", "Companion", "Contributer"], Level.active.alphabetical.map { |e| e.name }
+      assert_equal ["Champion", "Companion", "Contributor"], Level.active.alphabetical.map { |e| e.name }
     end
 
     # test inactive scope
