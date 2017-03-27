@@ -3,6 +3,11 @@ class Indicator < ActiveRecord::Base
   belongs_to :competency
   belongs_to :level
 
+  has_many :indicator_questions
+  has_many :questions, through: :indicator_questions
+  has_many :indicator_resources
+  has_many :resources, through: :indicator_resources
+
   # Validations
   validates_presence_of :competency_id, :level_id, :description
   validates_numericality_of :competency_id, only_integer: true

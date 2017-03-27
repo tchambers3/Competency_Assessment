@@ -40,7 +40,7 @@ class ImportsController < ApplicationController
     end
 
     # Because these following models are dependent on the id's and creation of the previous models,
-    # they have to be parsed afterwards, validated and saved.
+    # they have to be parsed, validated and saved afterwards.
     indicators = Indicator.parse(spreadsheet, competencies, levels)
     dependent_models = [indicators]
 
