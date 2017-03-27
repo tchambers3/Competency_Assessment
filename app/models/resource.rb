@@ -27,7 +27,8 @@ class Resource < ActiveRecord::Base
       # Used to set the foreign keys. 
       # paradigm_id should be the id of the paradigm relative to the row number of paradigms
       # the offset is because of 0 indexing plus the header in the excel file
-      r[:paradigm_id] = paradigms[r[:paradigm_id] - 2].id
+      pid = r[:paradigm_id]
+      r[:paradigm_id] = (pid.nil? || paradigms[pid - 2].nil?) ? nil : paradigms[pid - 2].id
       resource.attributes = r.to_hash
       resources << resource
     end

@@ -22,8 +22,10 @@ class IndicatorQuestion < ActiveRecord::Base
       # indicator_id and question_id should be the id of the indicator and question
       # relative to the row number of indicator and question sheets
       # the offset is because of 0 indexing plus the header in the excel file
-      iq[:indicator_id] = indicators[iq[:indicator_id] - 2].id
-      iq[:question_id] = questions[iq[:question_id] - 2].id
+      iid = iq[:indicator_id]
+      iq[:indicator_id] = (iid.nil? || indicators[iid - 2].nil?) ? nil : indicators[iid - 2].id
+      qid = iq[:question_id]
+      iq[:question_id] = (qid.nil? || questions[qid - 2].nil?) ? nil : questions[qid - 2].id
       
       indicator_question.attributes = iq.to_hash
       indicator_questions << indicator_question

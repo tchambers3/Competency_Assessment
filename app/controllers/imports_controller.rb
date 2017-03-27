@@ -22,11 +22,10 @@ class ImportsController < ApplicationController
     # Parses each of the sheets
 
     # Part 1
-    # Returns a list of ActiveRecords that need to be saved into the database
-    # For specific models like Level, it returns a list of all levels listed in 
-    # the Excel file as well as the the list of new objects that need to be saved.
-    # This is because the same exact levels will generally be in every Excel file, but
-    # we don't need to redundantly save it into the database each time. 
+    # Returns a list of ActiveRecords that need to be saved into the database.
+    # For specific models like Level, it returns a list of all levels listed in the Excel file as well as 
+    # the the list of new objects that need to be saved. This is because the same exact levels will generally 
+    # be in every Excel file, but we don't need to redundantly save it into the database each time. 
     begin
       competencies = Competency.parse(spreadsheet)
       levels, new_levels = Level.parse(spreadsheet)
@@ -40,8 +39,7 @@ class ImportsController < ApplicationController
     new_models = [competencies, new_levels, new_paradigms, questions]
     
     # Validate that the new models are all valid and save them to the database.
-    # If any of the new models are not valid, the aggregate_errors method will be
-    # called to aggregate all the errors that need to be fixed.
+    # If any of the new models are not valid, all errors that need to be fixed will be aggregated.
     unless validate_save_models(new_models)
       aggregate_errors(all_models)
       return redirect_to root_url
