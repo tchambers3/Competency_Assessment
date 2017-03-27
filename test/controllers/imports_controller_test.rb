@@ -93,6 +93,7 @@ class ImportsControllerTest < ActionController::TestCase
   end
 
   # Test that error should be thrown for missing or mispelled column name
+  # Should rollback previously created objects as well.
   test "should throw error with incorrect column name" do
     assert_no_difference(['Competency.count', 'Level.count', 'Indicator.count', 'Paradigm.count', 
       'Resource.count', 'IndicatorResource.count', 'Question.count', 'IndicatorQuestion.count']) do
@@ -106,6 +107,7 @@ class ImportsControllerTest < ActionController::TestCase
   end
 
   # Test that error should be thrown for missing or mispelled sheet and column name
+  # Should rollback previously created objects as well.
   test "should throw error with incorrect sheet and column name" do
     assert_no_difference(['Competency.count', 'Level.count', 'Indicator.count', 'Paradigm.count', 
       'Resource.count', 'IndicatorResource.count', 'Question.count', 'IndicatorQuestion.count']) do

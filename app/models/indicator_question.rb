@@ -18,12 +18,15 @@ class IndicatorQuestion < ActiveRecord::Base
     indicator_questions = []
     indicator_questions_hash.each_with_index do |iq, index|
       indicator_question = IndicatorQuestion.new
+
       # Used to set the foreign keys. 
       # indicator_id and question_id should be the id of the indicator and question
       # relative to the row number of indicator and question sheets
       # the offset is because of 0 indexing plus the header in the excel file
       iid = iq[:indicator_id]
+      # Check if the id is nil or if the id is out of bounds, if not then get the proper id
       iq[:indicator_id] = (iid.nil? || indicators[iid - 2].nil?) ? nil : indicators[iid - 2].id
+
       qid = iq[:question_id]
       iq[:question_id] = (qid.nil? || questions[qid - 2].nil?) ? nil : questions[qid - 2].id
       
