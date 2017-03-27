@@ -3,12 +3,11 @@ require 'roo'
 class ImportsController < ApplicationController
 
   ACCEPTED_FORMATS = [".xls", ".xlsx"]
-  GENERAL_ERROR_MSG = "Excel file, sheets, or columns may be in the wrong format or mispelled. Please check the template file for reference."
+  EXCEPTION_ERROR_MSG = "Excel file, sheets, or columns may be in the wrong format or mispelled. Please check the template file for reference."
 
   def parse
     file = params[:file]
-    # Check if the the file is of the right type.
-    # Redirect to the original upload url early if it's not correct.
+    # Check if the the file is of the right type. Redirect to the upload url early if it's not correct.
     begin
       unless ACCEPTED_FORMATS.include? File.extname(file.original_filename)
         raise TypeError
@@ -32,7 +31,7 @@ class ImportsController < ApplicationController
       paradigms, new_paradigms = Paradigm.parse(spreadsheet)
       questions = Question.parse(spreadsheet)
     rescue => exception
-      flash[:error] = GENERAL_ERROR_MSG
+      flash[:error] = EXCEPTION_ERROR_MSG
       return redirect_to root_url
     end
     all_models = [competencies, levels, paradigms, questions]
@@ -53,13 +52,13 @@ class ImportsController < ApplicationController
       resources = Resource.parse(spreadsheet, paradigms)
     rescue => exception
       rollback_saved_models(new_models)
-      flash[:error] = GENERAL_ERROR_MSG
+      flash[:error] = EXCEPTION_ERROR_MSG
       return redirect_to root_url
     end
     dependent_models = [indicators, resources]
 
-    # Validate the new models are valid and have the same behavior as before. However, since the previous
-    # models were save, this will rollback and destroy the created models if there is something invalid.
+    # Same behavior as before, except since previous models were saved, 
+    # this will rollback and destroy the created models if there is something invalid.
     unless validate_save_models(dependent_models)
       rollback_saved_models(new_models)
       aggregate_errors(dependent_models)
@@ -73,7 +72,7 @@ class ImportsController < ApplicationController
       indicator_questions = IndicatorQuestion.parse(spreadsheet, indicators, questions)
     rescue => exception
       rollback_saved_models(new_models + dependent_models)
-      flash[:error] = GENERAL_ERROR_MSG
+      flash[:error] = EXCEPTION_ERROR_MSG
       return redirect_to root_url
     end
     dependent_models_2 = [indicator_resources, indicator_questions]
@@ -100,8 +99,7 @@ class ImportsController < ApplicationController
   # Note: Stops after the first sheet that encounters and error, therefore, error messages
   # will only be for the first sheet that has errors, not error messages for all sheets.
   def validate_save_models(models_list)
-    # Goes through all the models and see if its valid
-    # returns false if any of them are invalid
+    # Goes through all the models and see if its valid and returns false if any of them are invalid
     models_list.each do |models|
       unless models.map(&:valid?).all?
         return false
@@ -116,7 +114,7 @@ class ImportsController < ApplicationController
 
   # This method is called if an error exists in the list of models.
   # Goes through all the models in order to aggregate the errors into flash[:error]
-  # Didn't use the new models (ex. new_levels vs. levels) because of Row #'s for error message.
+  # Don't use the new models (ex. new_levels vs. levels) because of Row #'s for error message.
   def aggregate_errors(models_list)
     flash[:error] = []
     models_list.each do |models|
@@ -128,17 +126,15 @@ class ImportsController < ApplicationController
     end
   end
 
-  # This what will be called if any of the models were created and later on models
-  # had an error. We will need to delete the already created models.
+  # This handles rollback actions if any of the models were created and later on models had an error.
   def rollback_saved_models(models_list)
     models_list.each do |models|
       models.each(&:destroy!)
     end
   end
 
+  # Using roo's library and opens up the file and parses it into a Roo object (either XLS, XLSX, or CSV)
   def open_spreadsheet(file)
-    # Using roo's library and opens up the file
-    # It parses it into a Roo object (either XLS, XLSX, or CSV)
     Roo::Spreadsheet.open(file.path)
   end
 

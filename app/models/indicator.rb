@@ -40,7 +40,7 @@ class Indicator < ActiveRecord::Base
       # the offset is because of 0 indexing plus the header in the excel file
       lid = i[:level_id]
       i[:level_id] = (lid.nil? || levels[lid - 2].nil?) ? nil : levels[lid - 2].id
-      # i[:level_id] = (i[:level_id].nil?) ? nil else levels[i[:level_id] - 2].id
+      
       indicator.attributes = i.to_hash
       indicators << indicator
     end

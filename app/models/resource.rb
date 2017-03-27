@@ -29,6 +29,7 @@ class Resource < ActiveRecord::Base
       # the offset is because of 0 indexing plus the header in the excel file
       pid = r[:paradigm_id]
       r[:paradigm_id] = (pid.nil? || paradigms[pid - 2].nil?) ? nil : paradigms[pid - 2].id
+      
       resource.attributes = r.to_hash
       resources << resource
     end
