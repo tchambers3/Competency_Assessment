@@ -32,6 +32,7 @@ class Indicator < ActiveRecord::Base
       # competency_id is always set to the first competency, since there's only 1 competency per spreadsheet
       i[:competency_id] = competencies[0].id
       # level_id should be the id of the level relative to the row number of levels
+      # the offset is because of 0 indexing plus the header in the excel file
       i[:level_id] = levels[i[:level_id] - 2].id
       indicator.attributes = i.to_hash
       indicators << indicator
