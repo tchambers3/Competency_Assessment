@@ -3,6 +3,7 @@ require 'roo'
 class ImportsController < ApplicationController
 
   ACCEPTED_FORMATS = [".xls", ".xlsx"]
+  GENERAL_ERROR_MSG = "Excel file, sheets, or columns may be in the wrong format or mispelled. Please check the template file for reference."
 
   def parse
     file = params[:file]
@@ -19,15 +20,22 @@ class ImportsController < ApplicationController
     end
 
     # Parses each of the sheets
+
+    # Part 1
     # Returns a list of ActiveRecords that need to be saved into the database
     # For specific models like Level, it returns a list of all levels listed in 
     # the Excel file as well as the the list of new objects that need to be saved.
     # This is because the same exact levels will generally be in every Excel file, but
     # we don't need to redundantly save it into the database each time. 
-    competencies = Competency.parse(spreadsheet)
-    levels, new_levels = Level.parse(spreadsheet)
-    paradigms, new_paradigms = Paradigm.parse(spreadsheet)
-    questions = Question.parse(spreadsheet)
+    begin
+      competencies = Competency.parse(spreadsheet)
+      levels, new_levels = Level.parse(spreadsheet)
+      paradigms, new_paradigms = Paradigm.parse(spreadsheet)
+      questions = Question.parse(spreadsheet)
+    rescue => exception
+      flash[:error] = GENERAL_ERROR_MSG
+      return redirect_to root_url
+    end
     all_models = [competencies, levels, paradigms, questions]
     new_models = [competencies, new_levels, new_paradigms, questions]
     
@@ -39,16 +47,43 @@ class ImportsController < ApplicationController
       return redirect_to root_url
     end
 
+    # Part 2
     # Because these following models are dependent on the id's and creation of the previous models,
     # they have to be parsed, validated and saved afterwards.
-    indicators = Indicator.parse(spreadsheet, competencies, levels)
-    dependent_models = [indicators]
+    begin
+      indicators = Indicator.parse(spreadsheet, competencies, levels)
+      resources = Resource.parse(spreadsheet, paradigms)
+    rescue => exception
+      rollback_saved_models(new_models)
+      flash[:error] = GENERAL_ERROR_MSG
+      return redirect_to root_url
+    end
+    dependent_models = [indicators, resources]
 
     # Validate the new models are valid and have the same behavior as before. However, since the previous
     # models were save, this will rollback and destroy the created models if there is something invalid.
     unless validate_save_models(dependent_models)
       rollback_saved_models(new_models)
       aggregate_errors(dependent_models)
+      return redirect_to root_url
+    end
+
+    # Part 3
+    # This begins the third level of dependencies for many to many association tables
+    begin
+      indicator_resources = IndicatorResource.parse(spreadsheet, indicators, resources)
+      indicator_questions = IndicatorQuestion.parse(spreadsheet, indicators, questions)
+    rescue => exception
+      rollback_saved_models(new_models + dependent_models)
+      flash[:error] = GENERAL_ERROR_MSG
+      return redirect_to root_url
+    end
+    dependent_models_2 = [indicator_resources, indicator_questions]
+
+    # Validate the new models and roll back the previous 2 levels of models.
+    unless validate_save_models(dependent_models_2)
+      rollback_saved_models(new_models + dependent_models)
+      aggregate_errors(dependent_models_2)
       return redirect_to root_url
     end
 
