@@ -22,16 +22,15 @@ class AssessmentsController < ApplicationController
     @developing_stages[:does_not_apply] = Array.new
 
     questions.each do |qid, answer_hash|
-      question = Question.find(qid)
       answer = answer_hash[:answer]
       if answer.eql?("always") || answer.eql?("often")
-          @developing_stages[:competent] << question
+          @developing_stages[:competent] << qid
       elsif answer.eql?("sometimes")
-          @developing_stages[:developing] << question
+          @developing_stages[:developing] << qid
       elsif answer.eql?("rarely") || answer.eql?("never")
-          @developing_stages[:emerging] << question
+          @developing_stages[:emerging] << qid
       else
-          @developing_stages[:does_not_apply] << question
+          @developing_stages[:does_not_apply] << qid
       end
     end
 
@@ -40,22 +39,21 @@ class AssessmentsController < ApplicationController
 
   def report
     @developing_stages = params[:developing_stages]
-
     @indicators_resources = Hash.new
-    @indicators_resources["competent"] = Set.new
-    @indicators_resources["developing"] = Set.new
-    @indicators_resources["emerging"] = Set.new
 
     @developing_stages.each do |stage, qids|
-      current_stage = @indicators_resources[stage]
+      current_stage = Set.new
 
       questions = qids.map do |qid|
         Question.find(qid)
       end
-      
+
       questions.each do |question|
         current_stage.merge(question.indicators)
       end
+
+      @indicators_resources[stage] = 
+        current_stage.to_a.sort {|a,b| a.level.ranking <=> b.level.ranking}
     end
   end
 
