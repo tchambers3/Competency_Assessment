@@ -1,0 +1,7 @@
+<h1>Pick an Assessment to Take</h1>
+
+<ul>
+  <% @active_competencies.each do |c| %>
+    <li><%= link_to c.name, take_assessment_path(competency_id: c) %></li>
+  <% end %>
+</ul>

@@ -1,0 +1,34 @@
+<h1><%= "Take #{@competency.name} Assessment" %></h1>
+
+<ul>
+  <% @questions.each do |q| %>
+    <li><%= q.question %></li>
+  <% end %>
+</ul>
+
+<%= form_tag(generate_report_assessment_path(competency_id: @competency), method: :post) do %>
+  <% @questions.each_with_index do |question, index| %>
+    <%= fields_for "questions[]", question do |qf| %>
+      <p><%= "#{(index + 1)}. #{question.question}" %></p>
+      <br>
+      <%= qf.radio_button :answer, 'always', :checked => false %> 
+      <%= label :answer, 'Always' %>
+
+      <%= qf.radio_button :answer, 'often', :checked => false %> 
+      <%= label :answer, 'Often' %>
+
+      <%= qf.radio_button :answer, 'sometimes', :checked => false %> 
+      <%= label :answer, 'Sometimes' %>
+
+      <%= qf.radio_button :answer, 'rarely', :checked => false %> 
+      <%= label :answer, 'Rarely' %>
+
+      <%= qf.radio_button :answer, 'never', :checked => false %> 
+      <%= label :answer, 'Never' %>
+
+      <%= qf.radio_button :answer, 'does not apply', :checked => false %> 
+      <%= label :answer, 'Does Not Apply' %>
+    <% end %>
+  <% end %>
+  <%= submit_tag "Finish" %>
+<% end %>
