@@ -1,15 +1,21 @@
 <h1><%= "Assessent Report for #{@competency.name}" %></h1>
 
-<% @indicators_resources.each do |stage, irs| %>
+<% @indicators_resources.each do |stage, indicators| %>
   <h3><%= stage.capitalize %></h3>
 
   <ul>
-    <% irs.each do |indicator, level_resources| %>
-      <li><%= "#{indicator} - Level: #{level_resources[:level].name}" %></li>
+    <% indicators.each do |indicator| %>
+      <li><%= "#{indicator.description} - Level: #{indicator.level.name}" %></li>
 
       <ul>
-        <% level_resources[:resources].each do |resource| %>
-          <li><%= link_to resource.title, resource.link %></li>
+        <% indicator.resources.group_by(&:paradigm).each do |paradigm, resources| %>
+          <li><%= paradigm.name %></li>
+
+          <ul>
+            <% resources.each do |resource| %>
+              <li><%= link_to resource.title, resource.link %></li>
+            <% end %>
+          </ul>
         <% end %>
       </ul>
     <% end %>

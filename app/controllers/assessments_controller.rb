@@ -1,3 +1,5 @@
+require 'set'
+
 class AssessmentsController < ApplicationController
   # Callback Methods
   before_action :set_competency, only: [:take, :generate_report, :report]
@@ -40,9 +42,9 @@ class AssessmentsController < ApplicationController
     @developing_stages = params[:developing_stages]
 
     @indicators_resources = Hash.new
-    @indicators_resources["competent"] = Hash.new
-    @indicators_resources["developing"] = Hash.new
-    @indicators_resources["emerging"] = Hash.new
+    @indicators_resources["competent"] = Set.new
+    @indicators_resources["developing"] = Set.new
+    @indicators_resources["emerging"] = Set.new
 
     @developing_stages.each do |stage, qids|
       current_stage = @indicators_resources[stage]
@@ -52,13 +54,7 @@ class AssessmentsController < ApplicationController
       end
       
       questions.each do |question|
-
-        question.indicators.each do |indicator|
-          descript = indicator.description
-          current_stage[descript] = Hash.new
-          current_stage[descript][:level] = indicator.level
-          current_stage[descript][:resources] = indicator.resources
-        end
+        current_stage.merge(question.indicators)
       end
     end
   end
