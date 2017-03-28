@@ -5,6 +5,7 @@ class ImportsController < ApplicationController
   ACCEPTED_FORMATS = [".xls", ".xlsx"]
   EXCEPTION_ERROR_MSG = "Excel file, sheets, or columns may be in the wrong format or mispelled. Please check the template file for reference."
 
+  # POST /imports/parse
   def parse
     file = params[:file]
     # Check if the the file is of the right type. Redirect to the upload url early if it's not correct.
