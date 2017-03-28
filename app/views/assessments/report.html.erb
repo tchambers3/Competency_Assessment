@@ -13,7 +13,7 @@
 
           <ul>
             <% resources.each do |resource| %>
-              <li><%= link_to resource.title, resource.link %></li>
+              <li><%= link_to resource.title, full_url(resource.link) %></li>
             <% end %>
           </ul>
         <% end %>
