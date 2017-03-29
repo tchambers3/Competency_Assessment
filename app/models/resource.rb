@@ -14,4 +14,13 @@ class Resource < ActiveRecord::Base
   scope :active, -> { where('active = ?', true) }
   scope :inactive, -> { where('active = ?', false) }
 
+  # Methods
+
+  def full_link
+    if !self.link.include?("http://")
+      self.link.insert(0,"http://")
+    end
+    self.link
+  end
+
 end
