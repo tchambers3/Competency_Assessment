@@ -1,6 +1,7 @@
 class ResourcesController < ApplicationController
   # Callback Methods
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
+  before_action :set_paradigm, only: [:new, :create, :edit, :update]
 
   # GET /resources
   def index
@@ -57,8 +58,12 @@ class ResourcesController < ApplicationController
     @resource = Resource.find(params[:id])
   end
 
+  def set_paradigm
+    @active_paradigms = Paradigm.active.alphabetical
+  end
+
   # Never trust parameters from the scary internet, only allow the white list through.
   def resource_params
-    params.require(:resource).permit(:resource, :active)
+    params.require(:resource).permit(:title, :link, :paradigm_id, :active)
   end
 end
