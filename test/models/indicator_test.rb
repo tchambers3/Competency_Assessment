@@ -4,7 +4,10 @@ class IndicatorTest < ActiveSupport::TestCase
   # Test Relationships
   should belong_to(:level)
   should belong_to(:competency)
-
+  should have_many(:indicator_questions)
+  should have_many(:questions).through(:indicator_questions)
+  should have_many(:indicator_resources)
+  should have_many(:resources).through(:indicator_resources)
 
   # Basic Validations
   should validate_presence_of(:description)
@@ -53,11 +56,11 @@ class IndicatorTest < ActiveSupport::TestCase
 
     # test alphabetical scope
     should "have indicators listed alphabetically" do
-      assert_equal ["Able to identify apparent causes of a problem.", 
+      assert_equal ["Able to identify apparent causes of a problem.",
         "Able to identify common nonverbal cues.",
-        "Able to outline a plan to gather data that will aid in the completion of a familiar task.", 
-        "Able to present written communication in an easy–to-read format.", 
-        "Engages in difficult conversations with others while maintaining respect."], 
+        "Able to outline a plan to gather data that will aid in the completion of a familiar task.",
+        "Able to present written communication in an easy–to-read format.",
+        "Engages in difficult conversations with others while maintaining respect."],
         Indicator.alphabetical.map { |e| e.description }
     end
 
@@ -67,7 +70,7 @@ class IndicatorTest < ActiveSupport::TestCase
         "Able to identify apparent causes of a problem.",
         "Able to present written communication in an easy–to-read format.",
         "Able to identify common nonverbal cues.",
-        "Able to outline a plan to gather data that will aid in the completion of a familiar task."], 
+        "Able to outline a plan to gather data that will aid in the completion of a familiar task."],
         Indicator.by_level.alphabetical.map { |e| e.description }
     end
 
@@ -77,7 +80,7 @@ class IndicatorTest < ActiveSupport::TestCase
         "Able to present written communication in an easy–to-read format.",
         "Engages in difficult conversations with others while maintaining respect.",
         "Able to outline a plan to gather data that will aid in the completion of a familiar task.",
-        "Able to identify apparent causes of a problem."], 
+        "Able to identify apparent causes of a problem."],
         Indicator.by_competency.alphabetical.map { |e| e.description }
     end
 
@@ -88,7 +91,7 @@ class IndicatorTest < ActiveSupport::TestCase
         Indicator.for_level("Contributer").alphabetical.map { |e| e.description }
 
       assert_equal ["Engages in difficult conversations with others while maintaining respect."],
-        Indicator.for_level("Champion").alphabetical.map { |e| e.description }        
+        Indicator.for_level("Champion").alphabetical.map { |e| e.description }
     end
 
     # test for_description scope
@@ -97,7 +100,7 @@ class IndicatorTest < ActiveSupport::TestCase
         Indicator.for_description("Able to identify apparent causes of a problem.").alphabetical.map { |e| e.description }
 
       assert_equal ["Able to identify common nonverbal cues."],
-        Indicator.for_description("Able to identify common nonverbal cues.").alphabetical.map { |e| e.description }        
+        Indicator.for_description("Able to identify common nonverbal cues.").alphabetical.map { |e| e.description }
     end
 
     # test for_competency scope
@@ -108,21 +111,21 @@ class IndicatorTest < ActiveSupport::TestCase
         Indicator.for_competency("Communication").by_level.map { |e| e.description }
 
       assert_equal ["Able to identify apparent causes of a problem."],
-        Indicator.for_competency("Problem Solving").alphabetical.map { |e| e.description }        
+        Indicator.for_competency("Problem Solving").alphabetical.map { |e| e.description }
     end
 
     # test active scope
     should "have all active indicators listed" do
       assert_equal ["Able to identify common nonverbal cues.",
-        "Able to outline a plan to gather data that will aid in the completion of a familiar task.", 
-        "Able to present written communication in an easy–to-read format.", 
-        "Engages in difficult conversations with others while maintaining respect."], 
+        "Able to outline a plan to gather data that will aid in the completion of a familiar task.",
+        "Able to present written communication in an easy–to-read format.",
+        "Engages in difficult conversations with others while maintaining respect."],
         Indicator.active.alphabetical.map { |e| e.description }
     end
 
     # test inactive scope
     should "have all inactive indicators listed" do
-      assert_equal ["Able to identify apparent causes of a problem."], 
+      assert_equal ["Able to identify apparent causes of a problem."],
         Indicator.inactive.alphabetical.map { |e| e.description }
     end
 

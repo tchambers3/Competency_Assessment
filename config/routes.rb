@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :paradigms
   resources :questions
   resources :levels
+  resources :indicators
 
 
   # The priority is based upon order of creation: first created -> highest priority.

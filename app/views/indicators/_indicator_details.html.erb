@@ -1,0 +1,17 @@
+<p>
+  <strong>Description:</strong> <%= @indicator.description %>
+</p>
+
+<p>
+  <strong>Competency:</strong> 
+  <%= link_to @indicator.competency.name, competency_path(@indicator.competency) %>
+</p>
+
+<p>
+  <strong>Level:</strong> 
+  <%= link_to @indicator.level.name, level_path(@indicator.level) %>
+</p>
+
+<p>
+  <strong>Active:</strong> <%= @indicator.active ? "Yes" : "No" %>
+</p>
