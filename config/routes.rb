@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   # Routes for taking an assessment
   get '/assessments' => 'assessments#index', as: :assessments
-  get '/assessments/take_assessment' => 'assessments#take', as: :take_assessment
+  get '/assessments/take' => 'assessments#take', as: :take_assessment
   post '/assessments/report' => 'assessments#generate_report', as: :generate_report_assessment
   get '/assessments/report' => 'assessments#report', as: :report_assessment
 

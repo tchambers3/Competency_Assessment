@@ -4,14 +4,21 @@ class AssessmentsController < ApplicationController
   # Callback Methods
   before_action :set_competency, only: [:take, :generate_report, :report]
 
+  COMPETENT_ANSWERS = ["always", "often"]
+  DEVELOPING_ANSWERS = ["sometimes"]
+  EMERGINg_ANSWERS = ["rarely", "never"]
+
+  # GET /assessments
   def index
     @active_competencies = Competency.active.alphabetical
   end
 
+  # GET /assessments/take
   def take
     @questions = Question.for_competency(@competency.id)
   end
 
+  # POST /assessments/report
   def generate_report
     questions = params[:questions]
 
@@ -23,11 +30,11 @@ class AssessmentsController < ApplicationController
 
     questions.each do |qid, answer_hash|
       answer = answer_hash[:answer]
-      if answer.eql?("always") || answer.eql?("often")
+      if COMPETENT_ANSWERS.include? answer
           @developing_stages[:competent] << qid
-      elsif answer.eql?("sometimes")
+      elsif DEVELOPING_ANSWERS.include? answer
           @developing_stages[:developing] << qid
-      elsif answer.eql?("rarely") || answer.eql?("never")
+      elsif EMERGINg_ANSWERS.include? answer
           @developing_stages[:emerging] << qid
       else
           @developing_stages[:does_not_apply] << qid
@@ -37,6 +44,7 @@ class AssessmentsController < ApplicationController
     redirect_to report_assessment_path(competency_id: @competency, developing_stages: @developing_stages)
   end
 
+  # GET /assessments/report
   def report
     @developing_stages = params[:developing_stages]
     @indicators_resources = Hash.new
