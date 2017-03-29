@@ -13,10 +13,10 @@
         </tr>
       </thead>
       <tbody>
-        <% @active_resources.each do |r| %>
+        <% @inactive_resources.each do |r| %>
           <tr>
             <td><%= link_to r.title, resource_path(r) %></td>
-            <td><%= r.link %></td>
+            <td><%= link_to r.link, r.full_link %></td>
             <td><%= r.paradigm_id %></td>
             <td><%= link_to "Edit", edit_resource_path(r) %></td>
             <td>
