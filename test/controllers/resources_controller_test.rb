@@ -11,6 +11,7 @@ class ResourcesControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
     assert_response :success
+    assert_not_nil assigns(:paradigms)
     assert_not_nil assigns(:active_resources)
     assert_not_nil assigns(:inactive_resources)
   end
