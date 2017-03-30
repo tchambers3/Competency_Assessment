@@ -163,23 +163,6 @@ resources =
   ["Attend an event or celebration with colleagues. Observe their non-verbal cues as they speak with you and with others.", 4, "http://www.google.com", true],
   ["Attend a conference or networking event where you know very few people. Practice introducing yourself and asking questions to get to know others.", 4, "http://www.google.com", true],
   ["Ask for feedback from colleagues or your supervisor on written and verbal messages – are you able to deliver your intended message in a way that encourages others and provides important information?", 4, "http://www.google.com", true],
-  ["Written Communication", 5, "http://www.google.com", true],
-  ["That's Not What I Wanted to Hear: Customer Service for the Unhappy Customer", 5, "http://www.google.com", true],
-  ["Speakers Bureau Program", 5, "http://www.google.com", true],
-  ["So You Are New… Communication and Culture at CMU", 5, "http://www.google.com", true],
-  ["Organizational Communication", 5, "http://www.google.com", true],
-  ["Listening Skills", 5, "http://www.google.com", true],
-  ["Get Up and Go: Motivating Others", 5, "http://www.google.com", true],
-  ["Conflict Resolution", 5, "http://www.google.com", true],
-  ["Think about a time when you needed clarification on a request from your supervisor. How did you seek clarification? Did you receive the information you needed?", 6, "http://www.google.com", true],
-  ["Think about a time when you chose to communicate in person, rather than by phone. Why did you make those choices? What were the outcomes? How would the outcomes have been different if you had chosen another mode of communication?", 6, "http://www.google.com", true],
-  ["Think about how you communicate with your supervisor. Then, think about how you communicate with co-workers. Do you change your communication style based on who you’re communicating with? How so?", 6, "http://www.google.com", true],
-  ["Does my communication approach result in others understanding my intended message?", 6, "http://www.google.com", true],
-  ["How often do I practice active listening skills?", 6, "http://www.google.com", true],
-  ["In what ways can you help people in your department improve their communication effectiveness?", 6, "http://www.google.com", true],
-  ["How comfortable do you believe others are in addressing concerns with you?  What factors lead you to this conclusion?  Are there ways you can increase your openness to feedback from others?", 6, "http://www.google.com", true],
-  ["Consider how you determine which communication medium you use for a given message.  Why did you choose this medium?  Can you articulate this choice to others in a way that may help them develop their ability to discern the most appropriate medium?", 6, "http://www.google.com", true],
-  ["Think of a time when you made a surprising and unintended impression on someone. How might your non-verbal cues have led to this impression?", 6, "http://www.google.com", true],
 ]
 
 resources.each do |resource|
