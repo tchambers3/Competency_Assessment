@@ -1,5 +1,8 @@
 <h1><%= "Assessent Report for #{@competency.name}" %></h1>
 
+<br>
+<%= link_to "Pick Another Assessment", assessments_path %>
+
 <% @indicators_resources.each do |stage, indicators| %>
   <h3><%= stage.capitalize %></h3>
 
