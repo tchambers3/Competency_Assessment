@@ -3,14 +3,10 @@ var num_questions = 0;
 
 function initAssessment(num_q){
   num_questions = num_q;
-  if(num_questions > 0){
-    $("#question-0").show();
+  for(var i = 1; i < num_questions; i++){
+    $("#question-" + i).hide();
   }
-  if(num_questions > 1){
-    $("#assessment-next").show();
-  } else {
-    $("#assessment-submit").show();
-  }
+  buttonUpdate();
 }
 
 function nextQuestion() {
@@ -25,30 +21,26 @@ function nextQuestion() {
 }
 
 function previousQuestion() {
-  if(hasCheckedRadio(question_number)) {
-    $("#question-" + question_number).hide();
-    question_number--;
-    $("#question-" + question_number).show();
-    buttonUpdate();
-  } else {
-    displayError("This question is required to continue.");
-  }
+  $("#question-" + question_number).hide();
+  question_number--;
+  $("#question-" + question_number).show();
+  buttonUpdate();
 }
 
 function buttonUpdate() {
   removeError();
-  if(question_number == 0) {
-    $("#assessment-submit").hide();
-    $("#assessment-prev").hide();
-    $("#assessment-next").show();
-  } else if(question_number == num_questions - 1){
+  if(question_number == num_questions - 1) {
     $("#assessment-submit").show();
-    $("#assessment-prev").show();
-    $("#assessment-next").hide();
+    $("#assessment-prev").prop('disabled', false);
+    $("#assessment-next").prop('disabled', true);;
+  } else if(question_number == 0){
+    $("#assessment-submit").hide();
+    $("#assessment-prev").prop('disabled', true);;
+    $("#assessment-next").prop('disabled', false);
   } else {
     $("#assessment-submit").hide();
-    $("#assessment-prev").show();
-    $("#assessment-next").show();
+    $("#assessment-prev").prop('disabled', false);
+    $("#assessment-next").prop('disabled', false);
   }
 }
 

@@ -3,21 +3,25 @@
 <% @indicators_resources.each do |stage, indicators| %>
   <h3><%= stage.capitalize %></h3>
 
-  <ul>
-    <% indicators.each do |indicator| %>
-      <li><%= "#{indicator.description} - Level: #{indicator.level.name}" %></li>
+  <% if indicators.empty? %>
+    <p><em>There are no indicators for this stage at this time.</em></p>
+  <% else %>
+    <ul>
+      <% indicators.each do |indicator| %>
+        <li><%= "#{indicator.description} - Level: #{indicator.level.name}" %></li>
 
-      <ul>
-        <% indicator.resources.group_by(&:paradigm).each do |paradigm, resources| %>
-          <li><%= paradigm.name %></li>
+        <ul>
+          <% indicator.resources.group_by(&:paradigm).each do |paradigm, resources| %>
+            <li><%= paradigm.name %></li>
 
-          <ul>
-            <% resources.each do |resource| %>
-              <li><%= link_to resource.title, full_url(resource.link) %></li>
-            <% end %>
-          </ul>
-        <% end %>
-      </ul>
-    <% end %>
-  </ul>
+            <ul>
+              <% resources.each do |resource| %>
+                <li><%= link_to resource.title, full_url(resource.link) %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </ul>
+      <% end %>
+    </ul>
+  <% end %>
 <% end %>

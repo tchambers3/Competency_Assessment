@@ -1,0 +1,32 @@
+<%= form_tag(generate_report_assessment_path(competency_id: @competency), 
+  method: :post, onsubmit: "return validAssessment();") do %>
+  <% @questions.each_with_index do |question, index| %>
+    <%= content_tag :div, id: "question-#{index}" do %>
+      <%= fields_for "questions[]", question do |qf| %>
+        <p><%= "#{(index + 1)}. #{question.question}" %></p>
+        <br>
+        <%= qf.radio_button :answer, 'always', :checked => false %> 
+        <%= label :answer, 'Always' %>
+
+        <%= qf.radio_button :answer, 'often', :checked => false %> 
+        <%= label :answer, 'Often' %>
+
+        <%= qf.radio_button :answer, 'sometimes', :checked => false %> 
+        <%= label :answer, 'Sometimes' %>
+
+        <%= qf.radio_button :answer, 'rarely', :checked => false %> 
+        <%= label :answer, 'Rarely' %>
+
+        <%= qf.radio_button :answer, 'never', :checked => false %> 
+        <%= label :answer, 'Never' %>
+
+        <%= qf.radio_button :answer, 'does not apply', :checked => false %> 
+        <%= label :answer, 'Does Not Apply' %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <br><br>
+  <%= submit_tag "Previous", type: "button", id: "assessment-prev", onclick: "previousQuestion();" %>
+  <%= submit_tag "Next", type: "button", id: "assessment-next", onclick: "nextQuestion();" %>
+  <%= submit_tag "Finish", id: "assessment-submit" %>
+<% end %>

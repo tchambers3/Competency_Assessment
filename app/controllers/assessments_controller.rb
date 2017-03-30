@@ -4,7 +4,7 @@ class AssessmentsController < ApplicationController
   # Callback Methods
   before_action :set_competency, only: [:take, :generate_report, :report]
 
-  COMPETENT_ANSWERS = ["always", "often"]
+  DEVELOPED_ANSWERS = ["always", "often"]
   DEVELOPING_ANSWERS = ["sometimes"]
   EMERGINg_ANSWERS = ["rarely", "never"]
 
@@ -23,15 +23,15 @@ class AssessmentsController < ApplicationController
     questions = params[:questions]
 
     @developing_stages = Hash.new
-    @developing_stages[:competent] = Array.new
+    @developing_stages[:developed] = Array.new
     @developing_stages[:developing] = Array.new
     @developing_stages[:emerging] = Array.new
     @developing_stages[:does_not_apply] = Array.new
 
     questions.each do |qid, answer_hash|
       answer = answer_hash[:answer]
-      if COMPETENT_ANSWERS.include? answer
-          @developing_stages[:competent] << qid
+      if DEVELOPED_ANSWERS.include? answer
+          @developing_stages[:developed] << qid
       elsif DEVELOPING_ANSWERS.include? answer
           @developing_stages[:developing] << qid
       elsif EMERGINg_ANSWERS.include? answer
@@ -48,6 +48,9 @@ class AssessmentsController < ApplicationController
   def report
     @developing_stages = params[:developing_stages]
     @indicators_resources = Hash.new
+    @indicators_resources["developed"] = Array.new
+    @indicators_resources["developing"] = Array.new
+    @indicators_resources["emerging"] = Array.new
 
     @developing_stages.each do |stage, qids|
       current_stage = Set.new

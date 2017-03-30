@@ -1,40 +1,15 @@
 <h1><%= "Take #{@competency.name} Assessment" %></h1>
 
-<div id="assessment-errors" class="hidden"></div>
+<div id="assessment-errors"></div>
 
-<%= form_tag(generate_report_assessment_path(competency_id: @competency), 
-  method: :post, onsubmit: "return validAssessment();") do %>
-  <% @questions.each_with_index do |question, index| %>
-    <div id=<%= "question-#{index}" %> class="hidden">
-      <%= fields_for "questions[]", question do |qf| %>
-        <p><%= "#{(index + 1)}. #{question.question}" %></p>
-        <br>
-        <%= qf.radio_button :answer, 'always', :checked => false %> 
-        <%= label :answer, 'Always' %>
+<% if @questions.empty? %>
+  <p><em>There are no questions for this assessment at this time.</em></p>
+<% else %>
 
-        <%= qf.radio_button :answer, 'often', :checked => false %> 
-        <%= label :answer, 'Often' %>
+  <%= render "form" %>
 
-        <%= qf.radio_button :answer, 'sometimes', :checked => false %> 
-        <%= label :answer, 'Sometimes' %>
+  <script>
+    initAssessment(<%= @questions.length %>);
+  </script>
 
-        <%= qf.radio_button :answer, 'rarely', :checked => false %> 
-        <%= label :answer, 'Rarely' %>
-
-        <%= qf.radio_button :answer, 'never', :checked => false %> 
-        <%= label :answer, 'Never' %>
-
-        <%= qf.radio_button :answer, 'does not apply', :checked => false %> 
-        <%= label :answer, 'Does Not Apply' %>
-      <% end %>
-    </div>
-  <% end %>
-  <br><br>
-  <%= submit_tag "Previous", type: "button", id: "assessment-prev", class: "hidden", onclick: "previousQuestion();" %>
-  <%= submit_tag "Next", type: "button", id: "assessment-next", class: "hidden", onclick: "nextQuestion();" %>
-  <%= submit_tag "Finish", id: "assessment-submit", class: "hidden" %>
 <% end %>
-
-<script>
-  initAssessment(<%= @questions.length %>);
-</script>
