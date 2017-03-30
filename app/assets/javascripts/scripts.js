@@ -66,3 +66,7 @@ function removeError() {
 function hasCheckedRadio(q_num) {
   return $("#question-" + q_num + " input[type=radio]:checked").length > 0;
 }
+
+function iAgree(){
+  $("#disclaimer-submit")[0].disabled = !$("#accept")[0].checked;
+}

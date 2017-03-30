@@ -2,7 +2,7 @@ require 'set'
 
 class AssessmentsController < ApplicationController
   # Callback Methods
-  before_action :set_competency, only: [:take, :generate_report, :report]
+  before_action :set_competency, only: [:disclaimer, :take, :generate_report, :report]
 
   # Grouping user answers for each question into each stage
   DEVELOPED_ANSWERS = ["always", "often"]
@@ -14,8 +14,16 @@ class AssessmentsController < ApplicationController
     @active_competencies = Competency.active.alphabetical
   end
 
-  # GET /assessments/take
+  # GET /assessments/disclaimer
+  def disclaimer
+  end
+
+  # POST /assessments/take
   def take
+    if !params[:accept]
+      flash[:error] = "You must accept the disclaimer first."
+      redirect_to disclaimer
+    end
     @questions = Question.for_competency(@competency.id)
   end
 
