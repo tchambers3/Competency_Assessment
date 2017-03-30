@@ -23,4 +23,31 @@ class Indicator < ActiveRecord::Base
   scope :active, -> { where("indicators.active = ?", true) }
   scope :inactive, -> { where("indicators.active = ?", false) }
 
+
+  # Methods
+  def self.parse(spreadsheet, competencies, levels)
+    indicators_sheet = spreadsheet.sheet("Indicators")
+    indicators_hash = 
+      indicators_sheet.parse(level_id: "Level_ID", description: "Description")
+
+    indicators = []
+    indicators_hash.each_with_index do |i, index|
+      indicator = Indicator.new
+      
+      # Used to set the foreign keys. 
+      # competency_id is always set to the first competency, since there's only 1 competency per spreadsheet
+      i[:competency_id] = competencies[0].nil? ? nil : competencies[0].id
+
+      # level_id should be the id of the level relative to the row number of levels
+      # the offset is because of 0 indexing plus the header in the excel file
+      lid = i[:level_id]
+      # Check if the id is nil or if the id is out of bounds, if not then get the proper id
+      i[:level_id] = (lid.nil? || levels[lid - 2].nil?) ? nil : levels[lid - 2].id
+      
+      indicator.attributes = i.to_hash
+      indicators << indicator
+    end
+    return indicators
+  end
+
 end

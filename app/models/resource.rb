@@ -24,4 +24,26 @@ class Resource < ActiveRecord::Base
     self.link
   end
 
+  def self.parse(spreadsheet, paradigms)
+    resources_sheet = spreadsheet.sheet("Resources")
+    resources_hash = 
+      resources_sheet.parse(paradigm_id: "Paradigm_ID", title: "Title/Resource", link: "Link")
+
+    resources = []
+    resources_hash.each_with_index do |r, index|
+      resource = Resource.new
+
+      # Used to set the foreign keys. 
+      # paradigm_id should be the id of the paradigm relative to the row number of paradigms
+      # the offset is because of 0 indexing plus the header in the excel file
+      pid = r[:paradigm_id]
+      # Check if the id is nil or if the id is out of bounds, if not then get the proper id
+      r[:paradigm_id] = (pid.nil? || paradigms[pid - 2].nil?) ? nil : paradigms[pid - 2].id
+      
+      resource.attributes = r.to_hash
+      resources << resource
+    end
+    return resources
+  end
+
 end

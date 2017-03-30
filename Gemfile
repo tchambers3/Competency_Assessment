@@ -36,6 +36,15 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'faker'
 gem 'populator3'
 
+# For .csv, .xls, .xlsx import and export
+gem "roo", "~> 2.7.0"
+# Special gem for specifically xls files
+gem 'roo-xls'
+# With importing a lot of Excel data (more than 4kb) we need to store data somewhere else besides
+# the cookie. The error is: ActionDispatch::Cookies::CookieOverflow. So we need to use this gem to 
+# store sessions in the db.
+gem 'activerecord-session_store'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
