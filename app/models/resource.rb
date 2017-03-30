@@ -8,6 +8,7 @@ class Resource < ActiveRecord::Base
 
   # Validations
   validates_presence_of :title, :paradigm_id
+  validates_numericality_of :paradigm_id, only_integer: true
 
   # Scopes
   scope :alphabetical, -> { order("title") }

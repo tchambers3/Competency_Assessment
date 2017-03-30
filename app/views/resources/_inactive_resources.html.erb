@@ -17,7 +17,7 @@
           <tr>
             <td><%= link_to r.title, resource_path(r) %></td>
             <td><%= link_to r.link, r.full_link %></td>
-            <td><%= r.paradigm_id %></td>
+            <td><%= link_to r.paradigm.name, paradigm_path(r.paradigm) %></td>
             <td><%= link_to "Edit", edit_resource_path(r) %></td>
             <td>
               <%= link_to "Delete", resource_path(r),
