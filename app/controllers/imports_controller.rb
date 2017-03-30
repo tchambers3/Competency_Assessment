@@ -26,6 +26,8 @@ class ImportsController < ApplicationController
     # For specific models like Level, it returns a list of all levels listed in the Excel file as well as 
     # the the list of new objects that need to be saved. This is because the same exact levels will generally 
     # be in every Excel file, but we don't need to redundantly save it into the database each time. 
+    # This is wrapped around with a begin rescue for errors that pertain to the overall format of the 
+    # excel spreadsheet including mispelled or incorrect sheet names and column names.
     begin
       competencies = Competency.parse(spreadsheet)
       levels, new_levels = Level.parse(spreadsheet)
@@ -113,7 +115,8 @@ class ImportsController < ApplicationController
     return true
   end
 
-  # This method is called if an error exists in the list of models.
+  # This method is called if an error exists in the list of models 
+  # (called for all model validation errors including blank rows or attributes and uniqueness)
   # Goes through all the models in order to aggregate the errors into flash[:error]
   # Don't use the new models (ex. new_levels vs. levels) because of Row #'s for error message.
   def aggregate_errors(models_list)
