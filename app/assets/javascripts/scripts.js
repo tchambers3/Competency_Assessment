@@ -47,7 +47,7 @@ function buttonUpdate() {
 function validAssessment() {
   for(var i = 0; i < num_questions; i++) {
     if(!hasCheckedRadio(i)) {
-      displayError("This question is required to continue.");
+      displayError("This question is required to submit.");
       return false;
     }
   }
