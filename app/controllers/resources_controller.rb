@@ -5,6 +5,7 @@ class ResourcesController < ApplicationController
 
   # GET /resources
   def index
+    @paradigms = Paradigm.all.alphabetical
     @active_resources = Resource.active.alphabetical
     @inactive_resources = Resource.inactive.alphabetical
   end

@@ -2,30 +2,35 @@
 <% if @active_resources.empty? %>
   <p><em>There are no active resources at this time.</em></p>
 <% else %>
-    <table border="1">
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Link</th>
-          <th>Paradigm</th>
-          <th>&nbsp;</th>
-          <th>&nbsp;</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @active_resources.each do |r| %>
+    <% @paradigms.each do |p| %>
+      <h4><%= link_to p.name, paradigm_path(p) %></h4>
+      <% if p.resources.active.empty? %>
+        <p><em><%= "There are no active resources at this time for the #{p.name} paradigm." %></em></p>
+      <% else %>
+      <table border="1">
+        <thead>
           <tr>
-            <td><%= link_to r.title, resource_path(r) %></td>
-            <td><%= link_to r.link, r.full_link %></td>
-            <td><%= link_to r.paradigm.name, paradigm_path(r.paradigm) %></td>
-            <td><%= link_to "Edit", edit_resource_path(r) %></td>
-            <td>
-              <%= link_to "Delete", resource_path(r),
-                  method: 'delete',
-                  data: {confirm: "Are you sure you want to permanently delete #{r.title}?"} %>
-            </td>
+            <th>Title</th>
+            <th>Link</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% p.resources.active.each do |r| %>
+            <tr>
+              <td><%= link_to r.title, resource_path(r) %></td>
+              <td><%= link_to r.link, r.full_link %></td>
+              <td><%= link_to "Edit", edit_resource_path(r) %></td>
+              <td>
+                <%= link_to "Delete", resource_path(r),
+                    method: 'delete',
+                    data: {confirm: "Are you sure you want to permanently delete #{r.title}?"} %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  <% end %>
 <% end %>
