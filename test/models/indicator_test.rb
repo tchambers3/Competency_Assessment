@@ -88,7 +88,7 @@ class IndicatorTest < ActiveSupport::TestCase
     should "have indicators listed for a certain level" do
       assert_equal ["Able to identify apparent causes of a problem.",
         "Able to present written communication in an easy–to-read format."],
-        Indicator.for_level("Contributer").alphabetical.map { |e| e.description }
+        Indicator.for_level("Contributor").alphabetical.map { |e| e.description }
 
       assert_equal ["Engages in difficult conversations with others while maintaining respect."],
         Indicator.for_level("Champion").alphabetical.map { |e| e.description }

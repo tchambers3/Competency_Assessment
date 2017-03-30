@@ -1,5 +1,9 @@
 <h2>Inactive Indicators</h2>
 
+<% if @competencies.empty? %>
+  <p><em>There are no inactive indicators at this time.</em></p>
+<% end %>
+
 <% @competencies.each do |c| %>
   <h4><%= link_to c.name, competency_path(c) %></h4>
   <% if c.indicators.inactive.empty? %>

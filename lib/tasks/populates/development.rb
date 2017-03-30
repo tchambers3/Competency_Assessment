@@ -17,7 +17,7 @@ end
 levels =
   [
     ["Champion", "The highest level of indicators.", 1, true],
-    ["Contributer", "The middle level of indicators.", 2, true],
+    ["Contributor", "The middle level of indicators.", 2, true],
     ["Companion", "The lowest level of indicators.", 3, true]
   ]
 levels.each do |level|
@@ -70,29 +70,28 @@ end
 #Step 4: Create Questions
 questions =
 [
-  ["When I have something to say, I prepare by organizing my thoughts and outlining my intention.",1,true],
-  ["I pay attention and focus when someone is talking to me.",2,true],
-  ["I can recognize non-verbal cues from others.",3,true],
-  ["When given direction by my supervisor, I understand what is being asked of me.",4,true],
-  ["I am able to present information to others in a clear and concise manner.",5,true],
-  ["When I don't understand something, I am able to resolve by asking clarifying questions.",6,true],
-  ["After interacting with an individual, I am able to tailor my communication style to meet his/her needs.",7,true],
-  ["My written communication is clear and concise.",8,true],
-  ["My written communication is free of grammatical errors.",9,true],
-  ["I am able to give direction that prompts the requested action.",10,true],
-  ["I am able to gauge my audience and know which communication method to use.",11,true],
-  ["I am able to paraphrase or restate a message I have received with accuracy.",12,true],
-  ["I am able to adjust my message in response to the non-verbal cues I receive.",13,true],
-  ["I encourage others to share their ideas and opinions.",14,true],
-  ["I can translate complex concepts into easy-to-understand ideas and information.",15,true],
-  ["I can inspire others by communicating a vision or plan.",16,true]
+  ["When I have something to say, I prepare by organizing my thoughts and outlining my intention.",true],
+  ["I pay attention and focus when someone is talking to me.",true],
+  ["I can recognize non-verbal cues from others.",true],
+  ["When given direction by my supervisor, I understand what is being asked of me.",true],
+  ["I am able to present information to others in a clear and concise manner.",true],
+  ["When I don't understand something, I am able to resolve by asking clarifying questions.",true],
+  ["After interacting with an individual, I am able to tailor my communication style to meet his/her needs.",true],
+  ["My written communication is clear and concise.",true],
+  ["My written communication is free of grammatical errors.",true],
+  ["I am able to give direction that prompts the requested action.",true],
+  ["I am able to gauge my audience and know which communication method to use.",true],
+  ["I am able to paraphrase or restate a message I have received with accuracy.",true],
+  ["I am able to adjust my message in response to the non-verbal cues I receive.",true],
+  ["I encourage others to share their ideas and opinions.",true],
+  ["I can translate complex concepts into easy-to-understand ideas and information.",true],
+  ["I can inspire others by communicating a vision or plan.",true]
 ]
 
 questions.each do |question|
   q = Question.new
   q.question = question[0]
-  q.question_number = question[1]
-  q.active = question[2]
+  q.active = question[1]
   q.save!
 end
 

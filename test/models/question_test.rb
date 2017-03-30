@@ -7,7 +7,7 @@ class QuestionTest < ActiveSupport::TestCase
   should_not allow_value("").for(:question)
 
   should have_many(:indicator_questions)
-  should have_many(:questions).through(:indicator_questions)
+  should have_many(:indicators).through(:indicator_questions)
 
   context "With a proper context, " do
     setup do
