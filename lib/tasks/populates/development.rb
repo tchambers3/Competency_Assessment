@@ -127,3 +127,66 @@ paradigms.each do |paradigm|
   p.active = paradigm[3]
   p.save!
 end
+
+# Step 7: Create resources
+resources =
+[
+  ["Basic Concepts of Intercultural Communication: Paradigms, Principles and Practices, Second Edition", 1, "http://www.google.com", true],
+  ["Communication Skills for Dummies", 1, "http://wwww.google.com", true],
+  ["Crisis Communications: The Definitive Guide to Managing the Message", 1, "http://wwww.google.com", true],
+  ["How to Read a Client from Across the Room: Win More Business with the Proven Character Code System to Decode Verbal & Nonverbal Communication", 1, "http://wwww.google.com", true],
+  ["How to Succeed with People: The Remarkable Truth about How to Get the Most Out of Dealing with Others", 1, "http://wwww.google.com",true],
+  ["How To Talk To Absolutely Anyone: Confident Communication in Every Situation", 1, "http://www.google.com", true],
+  ["I Hear You: Repair Communication Breakdowns; Negotiate Successfully; and Build Consensus . . . in Three Simple Steps", 1, "http://wwww.google.com", true],
+  ["On Message: Precision Communication for the Digital Age", 1, "http://www.google.com", true],
+  ["Communicating Across Cultures", 2, "http://www.google.com", true],
+  ["Improving Communication in Cross-Cultural Relationships", 2, "http://www.google.com", true],
+  ["Interpersonal Communication: Being Approachable", 2, "http://www.google.com", true],
+  ["Interpersonal Communication: Communicating Assertively", 2, "http://www.google.com", true],
+  ["Interpersonal Communication: Communicating with Confidence", 2, "http://www.google.com", true],
+  ["Culture and Its Effect on Communication", 2, "http://www.google.com", true],
+  ["Preparing to Communicate Effectively at the 'C' Level", 2, "http://www.google.com", true],
+  ["Techniques for Communicating Effectively with Senior Executives", 2, "http://www.google.com", true],
+  ["Volunteer to write an agenda for your team’s next meeting.", 3, "http://www.google.com", true],
+  ["Observe a presentation and observe the presenter’s communication skills. Identify which methods contributed to an impactful message and which detracted from the meaning of the message.", 3, "http://www.google.com", true],
+  ["Practice new communication skills when presenting familiar information to various individuals.", 3, "http://www.google.com", true],
+  ["Be aware of your nonverbal cues. Ask a colleague to indicate the message your nonverbal cues are delivering.", 3, "http://www.google.com", true],
+  ["Identify the cause(s) of a misunderstanding that occurred and develop a plan to avoid it in the future.", 3, "http://www.google.com", true],
+  ["Volunteer to teach a new work process or procedure to a colleague.", 3, "http://www.google.com", true],
+  ["Identify a situation where miscommunication occurs and develop a plan to clarify the miscommunication.", 3, "http://www.google.com", true],
+  ["Offer to review a colleague’s written communication.", 3, "http://www.google.com", true],
+  ["Discuss your communication style with others in your group. Ask for feedback.", 4, "http://www.google.com", true],
+  ["Ask others in your group how they prefer to communicate. Do their preferences change based on the situation?", 4, "http://www.google.com", true],
+  ["Invite a colleague out to lunch. Use your listening skills to learn more about him or her.", 4, "http://www.google.com", true],
+  ["Identify a colleague who you feel expresses his or her ideas effectively. Observe his or her behavior when faced with a conflict situation.", 4, "http://www.google.com", true],
+  ["Identify a colleague who communicates effectively in writing. Ask if he or she can review an important email before you send.", 4, "http://www.google.com", true],
+  ["Attend an event or celebration with colleagues. Observe their non-verbal cues as they speak with you and with others.", 4, "http://www.google.com", true],
+  ["Attend a conference or networking event where you know very few people. Practice introducing yourself and asking questions to get to know others.", 4, "http://www.google.com", true],
+  ["Ask for feedback from colleagues or your supervisor on written and verbal messages – are you able to deliver your intended message in a way that encourages others and provides important information?", 4, "http://www.google.com", true],
+  ["Written Communication", 5, "http://www.google.com", true],
+  ["That's Not What I Wanted to Hear: Customer Service for the Unhappy Customer", 5, "http://www.google.com", true],
+  ["Speakers Bureau Program", 5, "http://www.google.com", true],
+  ["So You Are New… Communication and Culture at CMU", 5, "http://www.google.com", true],
+  ["Organizational Communication", 5, "http://www.google.com", true],
+  ["Listening Skills", 5, "http://www.google.com", true],
+  ["Get Up and Go: Motivating Others", 5, "http://www.google.com", true],
+  ["Conflict Resolution", 5, "http://www.google.com", true],
+  ["Think about a time when you needed clarification on a request from your supervisor. How did you seek clarification? Did you receive the information you needed?", 6, "http://www.google.com", true],
+  ["Think about a time when you chose to communicate in person, rather than by phone. Why did you make those choices? What were the outcomes? How would the outcomes have been different if you had chosen another mode of communication?", 6, "http://www.google.com", true],
+  ["Think about how you communicate with your supervisor. Then, think about how you communicate with co-workers. Do you change your communication style based on who you’re communicating with? How so?", 6, "http://www.google.com", true],
+  ["Does my communication approach result in others understanding my intended message?", 6, "http://www.google.com", true],
+  ["How often do I practice active listening skills?", 6, "http://www.google.com", true],
+  ["In what ways can you help people in your department improve their communication effectiveness?", 6, "http://www.google.com", true],
+  ["How comfortable do you believe others are in addressing concerns with you?  What factors lead you to this conclusion?  Are there ways you can increase your openness to feedback from others?", 6, "http://www.google.com", true],
+  ["Consider how you determine which communication medium you use for a given message.  Why did you choose this medium?  Can you articulate this choice to others in a way that may help them develop their ability to discern the most appropriate medium?", 6, "http://www.google.com", true],
+  ["Think of a time when you made a surprising and unintended impression on someone. How might your non-verbal cues have led to this impression?", 6, "http://www.google.com", true],
+]
+
+resources.each do |resource|
+  r = Resource.new
+  r.title = resource[0]
+  r.paradigm_id = resource[1]
+  r.link = resource[2]
+  r.active = resource[3]
+  r.save!
+end
