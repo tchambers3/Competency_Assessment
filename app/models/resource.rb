@@ -1,5 +1,8 @@
 class Resource < ActiveRecord::Base
 
+  # Callback Functions
+  before_save :reformat_link
+
   # Relationships
   belongs_to :paradigm
 
@@ -16,13 +19,17 @@ class Resource < ActiveRecord::Base
   scope :inactive, -> { where('active = ?', false) }
 
   # Methods
-
-  def full_link
-    if !self.link.include?("http://")
-      self.link.insert(0,"http://")
+  private
+    # Ensure that all links are saved with 'http://'
+    # so that rails doesn't think the external links are relative links
+    def reformat_link
+      reg = /^https?:\/\//
+      link = self.link
+      if !link.match(reg)
+        link.insert(0,"http://")
+      end
+      self.link = link
     end
-    self.link
-  end
 
   def self.parse(spreadsheet, paradigms)
     resources_sheet = spreadsheet.sheet("Resources")
