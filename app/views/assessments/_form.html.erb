@@ -1,7 +1,7 @@
 <%= form_tag(generate_report_assessment_path(competency_id: @competency), 
   method: :post, onsubmit: "return validAssessment();") do %>
   <% @questions.each_with_index do |question, index| %>
-    <%= content_tag :div, id: "question-#{index}" do %>
+    <%= content_tag :div, id: "question-#{index}", class: "hidden" do %>
       <%= fields_for "questions[]", question do |qf| %>
         <p><%= "#{(index + 1)}. #{question.question}" %></p>
         <br>

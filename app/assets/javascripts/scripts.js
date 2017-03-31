@@ -3,9 +3,7 @@ var num_questions = 0;
 
 function initAssessment(num_q){
   num_questions = num_q;
-  for(var i = 1; i < num_questions; i++){
-    $("#question-" + i).hide();
-  }
+  $("#question-0").show()
   buttonUpdate();
 }
 

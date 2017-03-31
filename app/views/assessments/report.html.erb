@@ -19,7 +19,11 @@
 
             <ul>
               <% resources.each do |resource| %>
-                <li><%= link_to resource.title, full_url(resource.link) %></li>
+                <% if resource.link.nil? %>
+                  <li><%= resource.title.html_safe %></li>
+                <% else %>
+                  <li><%= link_to resource.title.html_safe, resource.link %></li>
+                <% end %>
               <% end %>
             </ul>
           <% end %>
