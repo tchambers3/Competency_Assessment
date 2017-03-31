@@ -4,7 +4,7 @@ var num_questions = 0;
 function initAssessment(num_q){
   num_questions = num_q;
   $("#question-0").show()
-  buttonUpdate();
+  updateAssessment();
 }
 
 function nextQuestion() {
@@ -12,7 +12,7 @@ function nextQuestion() {
     $("#question-" + question_number).hide();
     question_number++;
     $("#question-" + question_number).show();
-    buttonUpdate();
+    updateAssessment();
   } else {
     displayError("This question is required to continue.");
   }
@@ -22,7 +22,12 @@ function previousQuestion() {
   $("#question-" + question_number).hide();
   question_number--;
   $("#question-" + question_number).show();
+  updateAssessment();
+}
+
+function updateAssessment() {
   buttonUpdate();
+  updateProgress();
 }
 
 function buttonUpdate() {
@@ -40,6 +45,13 @@ function buttonUpdate() {
     $("#assessment-prev").prop('disabled', false);
     $("#assessment-next").prop('disabled', false);
   }
+}
+
+function updateProgress() {
+  var elem = $("#assessmentBar")[0]; 
+  var percentage = ((question_number+1)/num_questions) * 100;
+  elem.style.width = percentage + "%";
+  elem.innerHTML = (question_number+1) + " out of " + num_questions; 
 }
 
 function validAssessment() {

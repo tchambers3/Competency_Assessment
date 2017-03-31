@@ -5,6 +5,9 @@
 <% if @questions.empty? %>
   <p><em>There are no questions for this assessment at this time.</em></p>
 <% else %>
+  <div id="assessmentProgress">
+    <div id="assessmentBar"></div>
+  </div>
 
   <%= render "form" %>
 
