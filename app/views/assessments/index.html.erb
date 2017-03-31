@@ -3,5 +3,8 @@
 <ul>
   <% @active_competencies.each do |c| %>
     <li><%= link_to c.name, disclaimer_assessment_path(competency_id: c) %></li>
+    <ul>
+      <li><%= c.description %></li>
+    </ul>
   <% end %>
 </ul>
