@@ -19,19 +19,7 @@ class Resource < ActiveRecord::Base
   scope :inactive, -> { where('active = ?', false) }
 
   # Methods
-  private
-    # Ensure that all links are saved with 'http://'
-    # so that rails doesn't think the external links are relative links
-    def reformat_link
-      reg = /^https?:\/\//
-      link = self.link
-      if !link.match(reg)
-        link.insert(0,"http://")
-      end
-      self.link = link
-    end
-
-  def self.parse(spreadsheet, paradigms)
+   def self.parse(spreadsheet, paradigms)
     resources_sheet = spreadsheet.sheet("Resources")
     resources_hash = 
       resources_sheet.parse(paradigm_id: "Paradigm_ID", title: "Title/Resource", link: "Link")
@@ -52,5 +40,18 @@ class Resource < ActiveRecord::Base
     end
     return resources
   end
+  
+  # Private Methods
+  private
+    # Ensure that all links are saved with 'http://'
+    # so that rails doesn't think the external links are relative links
+    def reformat_link
+      reg = /^https?:\/\//
+      link = self.link
+      if !link.match(reg)
+        link.insert(0,"http://")
+      end
+      self.link = link
+    end
 
 end
