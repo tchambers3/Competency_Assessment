@@ -33,8 +33,10 @@ class ResourceTest < ActiveSupport::TestCase
       assert_equal ["Communication Skills for Dummies", "How to Fail in Business", "How to Succeed in Business", "Public Speaking 101 Workshop"], Resource.alphabetical.map  { |e| e.title }
     end
 
-    should "show link without 'http://' is reformated" do
+    should "show links are formated properly" do
       assert_equal "http://www.google.com", @comm_dumm.link
+      assert_equal "http://www.google.com", @success.link
+      assert_equal "https://www.google.com", @failure.link
     end
 
   end
