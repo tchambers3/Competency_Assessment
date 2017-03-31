@@ -1,0 +1,34 @@
+<%= form_for(@resource) do |f| %>
+  <% if @resource.errors.any? %>
+    <div>
+      <strong><%= pluralize(@resource.errors.count, "error") %> prohibited this resource from being saved:</strong>
+      <ul>
+        <% @resource.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :link %><br>
+    <%= f.text_field :link %>
+  </div>
+  <div>
+    <%= f.label :paradigm_id %><br>
+    <%= f.collection_select :paradigm_id, @active_paradigms,
+      :id, :name, { prompt: "Choose a paradigm..." } %>
+  </div>
+  <div>
+    <%= f.label :active %><br>
+    <%= f.check_box :active %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
