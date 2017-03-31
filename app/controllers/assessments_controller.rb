@@ -22,7 +22,7 @@ class AssessmentsController < ApplicationController
   def take
     if !params[:accept]
       flash[:error] = "You must accept the disclaimer first."
-      redirect_to disclaimer
+      redirect_to disclaimer_assessment_path
     end
     @questions = Question.for_competency(@competency.id)
   end
