@@ -1,14 +1,17 @@
 require 'test_helper'
 
 class QuestionTest < ActiveSupport::TestCase
+  # Test Relationships
+  should have_many(:indicator_questions)
+  should have_many(:indicators).through(:indicator_questions)
+
+  # Basic Validations
   should validate_presence_of(:question)
 
   should allow_value("A question?").for(:question)
   should_not allow_value("").for(:question)
 
-  should have_many(:indicator_questions)
-  should have_many(:indicators).through(:indicator_questions)
-
+  # Scope and method tests
   context "With a proper context, " do
     setup do
       create_questions
@@ -26,15 +29,16 @@ class QuestionTest < ActiveSupport::TestCase
     end
 
     should "Show all Active Questions" do
-      assert_equal [@communication_q2, @communication_q1], Question.active.alphabetical.map { |e| e }
+      assert_equal [@decision_making_q2, @decision_making_q1, @communication_q2, @communication_q1], Question.active.alphabetical
     end
 
     should "Show all Inactive Questions" do
-      assert_equal [@communication_q3], Question.inactive.alphabetical.map { |e| e }
+      assert_equal [@communication_q3, @problem_solving_q1], Question.inactive.alphabetical
     end
 
     should "Show in alphabetical order" do
-      assert_equal [@communication_q3, @communication_q2, @communication_q1], Question.alphabetical.map { |e| e  }
+      assert_equal [@decision_making_q2, @communication_q3, @problem_solving_q1, @decision_making_q1, 
+                    @communication_q2, @communication_q1], Question.alphabetical
     end
 
   end
