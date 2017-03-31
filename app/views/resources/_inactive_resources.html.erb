@@ -20,7 +20,7 @@
           <% p.resources.inactive.each do |r| %>
             <tr>
               <td><%= link_to r.title, resource_path(r) %></td>
-              <td><%= link_to r.link, r.full_link %></td>
+              <td><%= link_to r.link, r.link %></td>
               <td><%= link_to "Edit", edit_resource_path(r) %></td>
               <td>
                 <%= link_to "Delete", resource_path(r),
