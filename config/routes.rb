@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   # Root Path
   root 'home#home'
 
@@ -28,6 +27,9 @@ Rails.application.routes.draw do
   resources :questions
   resources :levels
   resources :indicators
+  resources :resources
+
+
   resources :imports do
     collection { post :parse }
   end
