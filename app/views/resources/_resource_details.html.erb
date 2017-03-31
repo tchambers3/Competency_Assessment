@@ -3,7 +3,12 @@
 </p>
 
 <p>
-  <strong>Link:</strong> <%= link_to @resource.link, @resource.link %>
+  <strong>Link:</strong> 
+  <% if !@resource.link.present? %>
+    No Link
+  <% else %>
+    <%= link_to @resource.link, @resource.link %>
+  <% end %>
 </p>
 
 <p>

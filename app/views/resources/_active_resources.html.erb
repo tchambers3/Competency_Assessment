@@ -20,7 +20,11 @@
           <% p.resources.active.each do |r| %>
             <tr>
               <td><%= link_to r.title.html_safe, resource_path(r) %></td>
-              <td><%= link_to r.link, r.link %></td>
+              <% if !r.link.present? %>
+                <td>No Link</td>
+              <% else %>
+                <td><%= link_to r.link, r.link %></td>
+              <% end %>
               <td><%= link_to "Edit", edit_resource_path(r) %></td>
               <td>
                 <%= link_to "Delete", resource_path(r),
