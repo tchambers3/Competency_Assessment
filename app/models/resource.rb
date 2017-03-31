@@ -19,7 +19,7 @@ class Resource < ActiveRecord::Base
   scope :inactive, -> { where('active = ?', false) }
 
   # Methods
-   def self.parse(spreadsheet, paradigms)
+  def self.parse(spreadsheet, paradigms)
     resources_sheet = spreadsheet.sheet("Resources")
     resources_hash = 
       resources_sheet.parse(paradigm_id: "Paradigm_ID", title: "Title/Resource", link: "Link")
