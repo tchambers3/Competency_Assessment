@@ -17,6 +17,7 @@ class IndicatorResourceTest < ActiveSupport::TestCase
       create_competencies
       create_levels
       create_indicators
+      create_paradigms
       create_resources
       create_indicator_resources
     end
@@ -25,6 +26,7 @@ class IndicatorResourceTest < ActiveSupport::TestCase
       remove_competencies
       remove_levels
       remove_indicators
+      remove_paradigms
       remove_resources
       remove_indicator_resources
     end

@@ -4,7 +4,13 @@ class AssessmentsControllerTest < ActionController::TestCase
   # Test all competency controller actions and methods
   setup do
     create_competencies
+    create_levels
+    create_indicators
     create_questions
+    create_indicator_questions
+    create_paradigms
+    create_resources
+    create_indicator_resources
   end
 
   # Test that the index page displays with proper variables assigned
@@ -40,12 +46,15 @@ class AssessmentsControllerTest < ActionController::TestCase
                             questions: {
                               "1": {"answer": "always"}, 
                               "2": {"answer": "sometimes"}, 
-                              "3": {"answer": "never"} 
+                              "3": {"answer": "never"},
+                              "4": {"answer": "does not apply"} 
                             }
+    # Mocked out object that represents what @developing_stages should be                            
     developing_stages = Hash.new
     developing_stages[:developed] = ["1"]
     developing_stages[:developing] = ["2"]
     developing_stages[:emerging] = ["3"]
+    developing_stages[:does_not_apply] = ["4"]
 
     assert_not_nil assigns(:developing_stages)
     assert_redirected_to report_assessment_path(competency_id: @communication, developing_stages: developing_stages)
@@ -59,8 +68,16 @@ class AssessmentsControllerTest < ActionController::TestCase
                     "developing": ["2"],
                     "emerging": ["3"]
                   }
+    assert_response :success
     assert_not_nil assigns(:developing_stages)
     assert_not_nil assigns(:indicators_resources)
     
+    # Mocked out what @indicator_resources should be
+    indicators_resources = Hash.new
+    indicators_resources["developed"] = [@indicator2, @indicator1]
+    indicators_resources["developing"] = [@indicator3]
+    indicators_resources["emerging"] = [@indicator3]
+
+    assert_equal indicators_resources, assigns(:indicators_resources)
   end
 end
