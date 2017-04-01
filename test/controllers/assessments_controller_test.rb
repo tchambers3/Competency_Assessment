@@ -50,4 +50,17 @@ class AssessmentsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:developing_stages)
     assert_redirected_to report_assessment_path(competency_id: @communication, developing_stages: developing_stages)
   end
+
+  # Test the present assessment report action
+  test "should present the assessment report to the user" do
+    get :report, competency_id: @communication,
+                  developing_stages: {
+                    "developed": ["1"],
+                    "developing": ["2"],
+                    "emerging": ["3"]
+                  }
+    assert_not_nil assigns(:developing_stages)
+    assert_not_nil assigns(:indicators_resources)
+    
+  end
 end

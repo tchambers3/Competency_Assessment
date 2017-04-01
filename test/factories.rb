@@ -59,4 +59,10 @@ FactoryGirl.define do
     association :question
   end
 
+  # IndicatorResource factory set up
+  factory :indicator_resource do
+    association :indicator
+    association :resource
+  end
+
 end
