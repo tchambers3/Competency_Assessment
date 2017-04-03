@@ -2,11 +2,11 @@
 <% if @inactive_resources.empty? %>
   <p><em>There are no active resources at this time.</em></p>
 <% else %>
-    <% @paradigms.each do |p| %>
-      <h4><%= link_to p.name, paradigm_path(p) %></h4>
-      <% if p.resources.inactive.empty? %>
-        <p><em><%= "There are no inactive resources at this time for the #{p.name} paradigm." %></em></p>
-      <% else %>
+  <% @paradigms.each do |p| %>
+    <h4><%= link_to p.name, paradigm_path(p) %></h4>
+    <% if p.resources.inactive.empty? %>
+      <p><em><%= "There are no inactive resources at this time for the #{p.name} paradigm." %></em></p>
+    <% else %>
       <table border="1">
         <thead>
           <tr>
@@ -19,8 +19,12 @@
         <tbody>
           <% p.resources.inactive.each do |r| %>
             <tr>
-              <td><%= link_to r.title, resource_path(r) %></td>
-              <td><%= link_to r.link, r.link %></td>
+              <td><%= link_to r.title.html_safe, resource_path(r) %></td>
+              <% if !r.link.present? %>
+                <td>No Link</td>
+              <% else %>
+                <td><%= link_to r.link, r.link %></td>
+              <% end %>
               <td><%= link_to "Edit", edit_resource_path(r) %></td>
               <td>
                 <%= link_to "Delete", resource_path(r),

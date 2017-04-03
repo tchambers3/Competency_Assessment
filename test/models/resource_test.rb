@@ -9,6 +9,7 @@ class ResourceTest < ActiveSupport::TestCase
 
   # Test Validations
   should validate_presence_of(:title)
+  should validate_presence_of(:paradigm_id)
 
   # Test scopes
   context "With a proper context" do
@@ -24,8 +25,8 @@ class ResourceTest < ActiveSupport::TestCase
 
     should "show that all resources are created properly" do
       assert_equal false, @comm_dumm.nil?
-      assert_equal "How to Succeed in Business", @success.title
-      assert_equal "How to Fail in Business", @failure.title
+      assert_equal "How to Succeed in Business", @busi_success.title
+      assert_equal "How to Fail in Business", @busi_failure.title
       assert_equal "Public Speaking 101 Workshop", @pub_speak.title
     end
 
@@ -35,8 +36,9 @@ class ResourceTest < ActiveSupport::TestCase
 
     should "show links are formated properly" do
       assert_equal "http://www.google.com", @comm_dumm.link
-      assert_equal "http://www.google.com", @success.link
-      assert_equal "https://www.google.com", @failure.link
+      assert_equal "https://www.google.com", @busi_success.link
+      assert_equal "", @busi_failure.link
+      assert_equal nil, @pub_speak.link
     end
 
   end

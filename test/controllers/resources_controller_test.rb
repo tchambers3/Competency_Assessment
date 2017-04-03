@@ -57,13 +57,13 @@ class ResourcesControllerTest < ActionController::TestCase
 
   # Test that the udpate action actually udpates a valid object
   test "should update resource" do
-    patch :update, id: @success, resource: { title: "Test Resource Description Updated" }
+    patch :update, id: @busi_success, resource: { title: "Test Resource Description Updated" }
     assert_redirected_to resource_path(assigns(:resource))
   end
 
   # Test that the update action doesn't update an invalid object
   test "should not update invalid resource" do
-    patch :update, id: @success, resource: { title: "" }
+    patch :update, id: @busi_success, resource: { title: "" }
 
     assert_response :success
     assert_template 'edit'
@@ -72,7 +72,7 @@ class ResourcesControllerTest < ActionController::TestCase
   # Test that the destroy action actually destroys the object
   test "should destroy resource" do
     assert_difference('Resource.count', -1) do
-      delete :destroy, id: @success
+      delete :destroy, id: @busi_success
     end
 
     assert_redirected_to resources_path

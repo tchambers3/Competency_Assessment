@@ -53,16 +53,17 @@ FactoryGirl.define do
     active true
   end
 
-  # Indicator Question factory set up
+
+  # IndicatorQuestion factory set up
   factory :indicator_question do
     association :indicator
     association :question
   end
 
-  # Indicator Resource factory set up
+  # IndicatorResource factory set up
   factory :indicator_resource do
     association :indicator
     association :resource
   end
-  
+
 end
