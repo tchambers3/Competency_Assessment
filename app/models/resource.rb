@@ -48,7 +48,7 @@ class Resource < ActiveRecord::Base
     def reformat_link
       reg = /^https?:\/\//
       link = self.link
-      if !link.match(reg)
+      if link.present? && !link.match(reg)
         link.insert(0,"http://")
       end
       self.link = link

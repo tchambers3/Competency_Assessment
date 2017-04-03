@@ -22,6 +22,9 @@
   * Constants
     * Screaming Snake Case (ex. `SOME_CONSTANT`)
 
+##### Methods to Use
+  * Because certain blank fields can be either nil or an empty string, we should use `present?` instead of `nil?` or `empty?`, etc.
+
 ### Before you put up a PR:
   * Run all tests and they all pass
     * Make sure there is 100% (or close to 100%) coverage as well
