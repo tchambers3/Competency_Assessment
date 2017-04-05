@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -14,10 +14,14 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+gem 'materialize-sass'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+# gem 'turbolinks'
+gem 'jquery-turbolinks'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -41,7 +45,7 @@ gem "roo", "~> 2.7.0"
 # Special gem for specifically xls files
 gem 'roo-xls'
 # With importing a lot of Excel data (more than 4kb) we need to store data somewhere else besides
-# the cookie. The error is: ActionDispatch::Cookies::CookieOverflow. So we need to use this gem to 
+# the cookie. The error is: ActionDispatch::Cookies::CookieOverflow. So we need to use this gem to
 # store sessions in the db.
 gem 'activerecord-session_store'
 
