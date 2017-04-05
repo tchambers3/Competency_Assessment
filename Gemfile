@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -20,6 +20,8 @@ gem 'materialize-sass'
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # gem 'turbolinks'
+# Commented out classic turbolinks gem in favor of the jquery-turbolinks because of compatability issues with Materialize.
+# Read more: https://github.com/mkhairi/materialize-sass 
 gem 'jquery-turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
