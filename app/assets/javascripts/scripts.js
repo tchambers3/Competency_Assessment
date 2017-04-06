@@ -4,38 +4,40 @@
  * ============================================================================
  */
 
-function createLevelsChart(indicators_resources, levels) {
+// Create chart that displays indicators by stage by level.
+function createLevelsChart(indicators_resources, levels, competency) {
   var id = "levels-chart";
-  var categories = [];
-  var data = [];
-  var level_data = {};
-  var num_stages = Object.keys(indicators_resources).length;
+  var title = competency.name + " Assessment Result";
+  // The categories are the list of capitalized stages 
+  // ex) [Developed, Developing, Emerging]
+  var categories = _.keys(indicators_resources).map(function(stage){
+    return _.capitalize(stage);
+  });
 
-  for(var i = 0; i < levels.length; i++) {
-    level_data[levels[i].name] = (new Array(num_stages)).fill(0)
-  }
-  var stage_pos = 0;
-  for(var stage in indicators_resources) {
-    categories.push(stage);
-    var indicators = indicators_resources[stage];
+  // Get list of counts of indicators per level by stage
+  // ex) [{Champion: 9, Contributor: 1, Companion: 2}, {Champion: 2, Contributor: 1, Companion: 7}]
+  var indicators_by_stage_level = _.map(indicators_resources, function(indicators){
+    return _.countBy(indicators, "level.name");
+  });
 
-    for(var i = 0; i < indicators.length; i++) {
-      var level_name = indicators[i].level.name;
-      var level = level_data[level_name];
-      level[stage_pos]++;
-    }
-    stage_pos++;
-  }
-  for(var level in level_data) {
-    data.push({
-      name: level,
-      data: level_data[level]
+  // Parse the data from the the indicator count by level
+  // [{name: Champion, data: [9, 2]}, {name: Contributor, data: [1, 1]}, {name: Companion, data: [2, 7]}]
+  var data = _.map(levels, function(level){
+    var level_name = level.name;
+    // Gets the list of indicator counts for each stage (return 0 if its undefined)
+    var level_data = _.map(indicators_by_stage_level, function(count) {
+      return count[level_name] ? count[level_name] : 0;
     });
-  }
+    return {
+      name: level_name,
+      data: level_data
+    }
+  });
 
-  createChart(id, "column", "Assessment Result", "Stages", "Indicators", categories, data);
+  createChart(id, "column", title, "Stages", "Indicators", categories, data);
 }
 
+// Creates a generic chart with specified type and other fields
 function createChart(container_id, type, title, x_title, y_title, categories, data) {
   Highcharts.chart(container_id, {
     chart: {

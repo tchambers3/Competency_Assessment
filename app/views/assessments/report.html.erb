@@ -38,5 +38,6 @@
 <script type="text/javascript">
   var indicators_resources = <%= raw @indicators_resources.to_json(include: [:level, {:resources => {include: :paradigm}}], :except => [:created_at, :updated_at]) %>;
   var levels = <%= raw @levels.to_json %>;
-  createLevelsChart(indicators_resources, levels);
+  var competency = <%= raw @competency.to_json %>;
+  createLevelsChart(indicators_resources, levels, competency);
 </script>
