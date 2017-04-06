@@ -1,4 +1,7 @@
 class Competency < ActiveRecord::Base
+  # Callback
+  before_destroy :destroy_all
+
   # Relationships
   has_many :indicators
 
@@ -16,7 +19,7 @@ class Competency < ActiveRecord::Base
   # Methods
   def self.parse(spreadsheet)
     competencies_sheet = spreadsheet.sheet("Competencies")
-    competencies_hash = 
+    competencies_hash =
       competencies_sheet.parse(name: "Name", description: "Description")
 
     competencies = []
@@ -26,6 +29,26 @@ class Competency < ActiveRecord::Base
       competencies << competency
     end
     return competencies
+  end
+
+  # Loop through indicator, questions, resources, and the many_to_many tables
+  # and delete them all 
+  def destroy_all
+    self.indicators.each do |i|
+      i.resources.each do |r|
+        r.destroy
+      end
+      i.questions.each do |q|
+        q.destroy
+      end
+      i.indicator_questions.each do |ir|
+        ir.destroy
+      end
+      i.indicator_resources.each do |iq|
+        iq.destroy
+      end
+      i.destroy
+    end
   end
 
 end
