@@ -6,22 +6,22 @@
         <p><%= "#{(index + 1)}. #{question.question}" %></p>
         <br>
         <%= qf.radio_button :answer, 'always', :checked => false %> 
-        <%= label :answer, 'Always' %>
+        <%= qf.label :answer_always, 'Always' %>
 
         <%= qf.radio_button :answer, 'often', :checked => false %> 
-        <%= label :answer, 'Often' %>
+        <%= qf.label :answer_often, 'Often' %>
 
         <%= qf.radio_button :answer, 'sometimes', :checked => false %> 
-        <%= label :answer, 'Sometimes' %>
+        <%= qf.label :answer_sometimes, 'Sometimes' %>
 
         <%= qf.radio_button :answer, 'rarely', :checked => false %> 
-        <%= label :answer, 'Rarely' %>
+        <%= qf.label :answer_rarely, 'Rarely' %>
 
         <%= qf.radio_button :answer, 'never', :checked => false %> 
-        <%= label :answer, 'Never' %>
+        <%= qf.label :answer_never, 'Never' %>
 
         <%= qf.radio_button :answer, 'does not apply', :checked => false %> 
-        <%= label :answer, 'Does Not Apply' %>
+        <%= qf.label :answer_does_not_apply, 'Does Not Apply' %>
       <% end %>
     <% end %>
   <% end %>

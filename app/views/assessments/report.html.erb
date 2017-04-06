@@ -5,12 +5,6 @@
 
 <div id="levels-chart"></div>
 
-<script type="text/javascript">
-  var indicators_resources = <%= raw @indicators_resources.to_json(include: [:level, {:resources => {include: :paradigm}}], :except => [:created_at, :updated_at]) %>;
-  var levels = <%= raw @levels.to_json %>;
-  createLevelsChart(indicators_resources, levels);
-</script>
-
 <% @indicators_resources.each do |stage, indicators| %>
   <h3><%= stage.capitalize %></h3>
 
@@ -40,3 +34,9 @@
     </ul>
   <% end %>
 <% end %>
+
+<script type="text/javascript">
+  var indicators_resources = <%= raw @indicators_resources.to_json(include: [:level, {:resources => {include: :paradigm}}], :except => [:created_at, :updated_at]) %>;
+  var levels = <%= raw @levels.to_json %>;
+  createLevelsChart(indicators_resources, levels);
+</script>
