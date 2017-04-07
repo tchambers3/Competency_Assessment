@@ -53,7 +53,7 @@ class CompetenciesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  # Test that the udpate action actually udpates a valid object
+  # Test that the update action actually udpates a valid object
   test "should update competency" do
     patch :update, id: @communication, competency: { name: "Test Competency 2" }
     assert_redirected_to competency_path(assigns(:competency))
