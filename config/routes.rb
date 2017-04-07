@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   resources :levels
   resources :indicators
   resources :resources
+  resources :indicator_questions
 
 
   resources :imports do

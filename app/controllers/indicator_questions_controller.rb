@@ -1,0 +1,57 @@
+class IndicatorQuestionsController < ApplicationController
+
+  # Callback Methods
+  before_action :set_indicator_question, only: [:show, :edit, :update, :destroy]
+
+
+  def index
+  end
+
+  def show
+  end
+
+  def new
+    @indicator_question = IndicatorQuestion.new
+  end
+
+  def create
+    @indicator_question = IndicatorQuestion.new(indicator_question_params)
+    if @indicator_question.save
+      # QUESTION: Should we truncate the indicator text so it only shows the first 5 words?
+      flash[:notice] = "Successfully added '#{@indicator_question.indicator.description}' indicator to this question."
+      @question = @indicator_question.question
+      # This assumes we add/delete IndicatorQuestions in the show question page
+      redirect_to question_path(@question)
+    else
+      # QUESTION: How should we handle redirection after failed saves for many to many?
+      render "new"
+    end
+  end
+
+  def edit
+  end
+
+  # This action is not necessary as the user will only ever be creating a new or destroying a mapping
+  def update
+  end
+
+  def destroy
+    @question = @indicator_question.question
+    @indicator_question.destroy
+    flash[:notice] = "Successfully deleted Indicator Question mapping"
+    redirect_to question_path(@question)
+  end
+
+  #----------------------------------
+  private
+  #----------------------------------
+
+  def set_indicator_question
+    @indicator_question = IndicatorQuestion.find(params[:id])
+  end
+
+  def indicator_question_params
+    params.require(:indicator_question).permit(:indicator_id, :question_id)
+  end
+
+end
