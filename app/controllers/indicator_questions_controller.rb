@@ -18,11 +18,13 @@ class IndicatorQuestionsController < ApplicationController
     @indicator_question = IndicatorQuestion.new(indicator_question_params)
     if @indicator_question.save
       # QUESTION: This assumes we add/delete IndicatorQuestions in the show question page
-      # QUESTION: Should we truncate the question text so it only shows the first 5 words?
-      flash[:notice] = "Successfully added '#{@indicator_question.indicator.text}' indicator to this question."
-      redirect_to question_path(@indicator_question.question)
+      # QUESTION: Should we truncate the indicator text so it only shows the first 5 words?
+      flash[:notice] = "Successfully added '#{@indicator_question.indicator.description}' indicator to this question."
+      @question = @indicator_question.question
+      redirect_to question_path(@question)
     else
-      render "new"
+      # render "new"
+      head :bad_request
     end
   end
 
@@ -54,7 +56,7 @@ class IndicatorQuestionsController < ApplicationController
   end
 
   def indicator_question_params
-    params.require(:indicator_question).permit(:indicator_id, :question_id, :active)
+    params.require(:indicator_question).permit(:indicator_id, :question_id)
   end
 
 end
