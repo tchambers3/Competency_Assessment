@@ -17,34 +17,29 @@ class IndicatorQuestionsController < ApplicationController
   def create
     @indicator_question = IndicatorQuestion.new(indicator_question_params)
     if @indicator_question.save
-      # QUESTION: This assumes we add/delete IndicatorQuestions in the show question page
       # QUESTION: Should we truncate the indicator text so it only shows the first 5 words?
       flash[:notice] = "Successfully added '#{@indicator_question.indicator.description}' indicator to this question."
       @question = @indicator_question.question
+      # This assumes we add/delete IndicatorQuestions in the show question page
       redirect_to question_path(@question)
     else
-      # render "new"
-      head :bad_request
+      # QUESTION: How should we handle redirection after failed saves for many to many?
+      render "new"
     end
   end
 
   def edit
   end
 
+  # This action is not necessary as the user will only ever be creating a new or destroying a mapping
   def update
-    if @indicator_question.update(indicator_question_params)
-      flash[:notice] = "Successfully udpated Indicator Question mapping"
-      redirect_to question_path(@indicator_question.question)
-    else
-      render "edit"
-    end
   end
 
   def destroy
+    @question = @indicator_question.question
     @indicator_question.destroy
     flash[:notice] = "Successfully deleted Indicator Question mapping"
-    # QUESTION: This assumes there is no view all indicator question mappings page
-    redirect_to questions_path
+    redirect_to question_path(@question)
   end
 
   #----------------------------------

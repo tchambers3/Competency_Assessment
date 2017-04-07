@@ -20,12 +20,32 @@ class IndicatorQuestionsControllerTest < ActionController::TestCase
   end
 
   # Test that the create action does not create an invalid object
+  test "should not create invalid indicator_question missing a question" do
+    assert_no_difference('IndicatorQuestion.count') do
+      post :create, indicator_question: { indicator_id: @indicator5 }
+    end
 
-  # Test that the update action updates a valiid object
+    assert_response :success
+    assert_template 'new'
+  end
 
-  # Test that the update action does not update an invalid object
+  # Test that the create action does not create an invalid object
+  test "should not create invalid indicator_question missing an indicator" do
+    assert_no_difference('IndicatorQuestion.count') do
+      post :create, indicator_question: { question_id: @communication_q1 }
+    end
+
+    assert_response :success
+    assert_template 'new'
+  end
 
   # Test that the destroy action destroys the object
+  test "should destroy indicator_question mapping" do
+    assert_difference('IndicatorQuestion.count', -1) do
+      delete :destroy, id: @indicator5_problem_solving_q1
+    end
 
+    assert_redirected_to question_path(assigns(:question))
+  end
 
 end
