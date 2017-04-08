@@ -1,7 +1,7 @@
 class IndicatorResourcesController < ApplicationController
 
   # Callback Methods
-  before_action :set_indicator_question, only: [:show, :edit, :update, :destroy]
+  before_action :set_indicator_resource, only: [:show, :edit, :update, :destroy]
 
   def index
   end
@@ -18,7 +18,7 @@ class IndicatorResourcesController < ApplicationController
     if @indicator_resource.save
       flash[:notice] = ""
       @indicator = @indicator_resource.indicator
-      # This assumes we add/delete IndicatorResources in the show indicator page 
+      # This assumes we add/delete IndicatorResources in the show indicator page
       redirect_to indicator_path(@indicator)
     else
       render "new"
