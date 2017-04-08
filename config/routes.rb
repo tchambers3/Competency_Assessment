@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   # Root Path
   root 'home#home'
 
+  # Home Paths
+  get '/about' => 'home#about'
+
   # Registration Routes
   get '/signup' => 'users#new'
   post '/users' => 'users#create'

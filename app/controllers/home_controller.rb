@@ -4,4 +4,8 @@ class HomeController < ApplicationController
   def home
   end
 
+  # GET /about
+  def about
+  end
+
 end

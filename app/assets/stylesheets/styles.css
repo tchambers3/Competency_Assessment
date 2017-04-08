@@ -3,12 +3,12 @@
  * General CSS
  * ============================================================================
  */
- 
+
 .hidden {
   display: none;
 }
 
-nav #cmu-logo {
+nav #logo-container, #cmu-logo {
   width: 25%;
   min-width: 200px
 }

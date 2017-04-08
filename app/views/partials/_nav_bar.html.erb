@@ -1,16 +1,18 @@
 <nav role="navigation">
   <div class="nav-wrapper container">
-    <a id="logo-container" href="#" class="brand-logo">
+    <a id="logo-container" href="http://www.cmu.edu/" class="brand-logo left">
       <%= image_tag "logos/CMU_Logo_Horiz_White.png", id: "cmu-logo" %>
     </a>
     <ul class="right hide-on-med-and-down">
-      <li><a href="#">About</a></li>
-      <li><a href="#">Assessments</a></li>
+      <li><%= link_to "About", about_path %></li>
+      <li><%= link_to "Assessments", assessments_path %></li>
+      <li><%= link_to "Login", login_path %></li>
     </ul>
 
     <ul id="nav-mobile" class="side-nav">
-      <li><a href="#">About</a></li>
-      <li><a href="#">Assessments</a></li>
+      <li><%= link_to "About", about_path %></li>
+      <li><%= link_to "Assessments", assessments_path %></li>
+      <li><%= link_to "Login", login_path %></li>
     </ul>
     <a href="#" data-activates="nav-mobile" class="right button-collapse">
       <i class="material-icons">menu</i>
