@@ -139,7 +139,7 @@ class IndicatorTest < ActiveSupport::TestCase
         Indicator.inactive.alphabetical.map { |e| e.description }
     end
 
-    should "Delete Dangling Questions" do
+    should "delete dangling questions and resources" do
       assert_equal false, @indicator1.questions.first.nil?
       assert_equal false, @indicator1.resources.first.nil?
       assert_equal false, @comm_dumm.nil?
@@ -155,7 +155,7 @@ class IndicatorTest < ActiveSupport::TestCase
       # other indicators so it is deleted
       assert_equal true, @indicator1.resources.first.destroyed?
       # @communication_q3, which is @indicator3's only question, is not connected
-      # to other indicators so it is deleted 
+      # to other indicators so it is deleted
       assert_equal true, @indicator3.questions.first.destroyed?
     end
 

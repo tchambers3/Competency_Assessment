@@ -32,21 +32,13 @@ class Competency < ActiveRecord::Base
   end
 
   # Loop through indicator, questions, resources, and the many_to_many tables
-  # and delete them all 
+  # and delete them all
   def destroy_all
     self.indicators.each do |i|
-      i.resources.each do |r|
-        r.destroy
-      end
-      i.questions.each do |q|
-        q.destroy
-      end
-      i.indicator_questions.each do |ir|
-        ir.destroy
-      end
-      i.indicator_resources.each do |iq|
-        iq.destroy
-      end
+      i.resources.each(&:destroy)
+      i.questions.each(&:destroy)
+      i.indicator_questions.each(&:destroy)
+      i.indicator_resources.each(&:destroy)
       i.destroy
     end
   end
