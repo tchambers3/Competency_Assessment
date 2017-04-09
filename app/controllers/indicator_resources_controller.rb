@@ -15,9 +15,9 @@ class IndicatorResourcesController < ApplicationController
 
   def create
     @indicator_resource = IndicatorResource.new(indicator_resource_params)
+    @indicator = @indicator_resource.indicator
     if @indicator_resource.save
       flash[:notice] = "Successfully created Indicator Resource mapping"
-      @indicator = @indicator_resource.indicator
       # This assumes we add/delete IndicatorResources in the show indicator page
       redirect_to indicator_path(@indicator)
     else

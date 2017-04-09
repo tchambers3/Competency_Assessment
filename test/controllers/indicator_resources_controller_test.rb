@@ -21,24 +21,13 @@ class IndicatorResourcesControllerTest < ActionController::TestCase
     assert_redirected_to indicator_path(assigns(:indicator))
   end
 
-  # Test that the create action does not create an invalid object
-  test "should not create invalid indicator_resource missing an indicator" do
-    assert_no_difference('IndicatorResource.count') do
-      post :create, indicator_resource: { resource_id: @comm_dumm }
-    end
-
-    assert_response :success
-    assert_template 'new'
-  end
-
   # Test that create action does not create an invalid object
   test "should not create invalid indicator_resource missing a resource" do
     assert_no_difference('IndicatorResource.count') do
       post :create, indicator_resource: { indicator_id: @indicator5 }
     end
 
-    assert_response :success
-    assert_template 'new'
+    assert_redirected_to indicator_path(assigns(:indicator))
   end
 
   # Test that the destroy action destroys

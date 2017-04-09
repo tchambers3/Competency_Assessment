@@ -25,8 +25,7 @@ class IndicatorQuestionsControllerTest < ActionController::TestCase
       post :create, indicator_question: { indicator_id: @indicator5 }
     end
 
-    assert_response :success
-    assert_template 'new'
+    assert_redirected_to question_path(assigns(:question))
   end
 
   # Test that the create action does not create an invalid object
@@ -35,8 +34,7 @@ class IndicatorQuestionsControllerTest < ActionController::TestCase
       post :create, indicator_question: { question_id: @communication_q1 }
     end
 
-    assert_response :success
-    assert_template 'new'
+    assert_redirected_to question_path(assigns(:question))
   end
 
   # Test that the destroy action destroys the object
