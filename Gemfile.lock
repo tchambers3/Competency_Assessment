@@ -90,8 +90,6 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
-    material_icons (2.2.1)
-      railties (>= 3.2)
     materialize-sass (0.98.1)
       sass (~> 3.3)
     mime-types (3.0)
@@ -216,7 +214,6 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   lodash-rails
-  material_icons
   materialize-sass
   minitest (= 5.8.4)
   minitest-rails (= 2.2.0)

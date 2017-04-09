@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>CMU PDS Competency Assessment</title>
-
+    <%= stylesheet_link_tag    "https://fonts.googleapis.com/icon?family=Material+Icons" %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
@@ -12,11 +12,6 @@
   <body>
 
     <%= render :partial => "partials/nav_bar" %>
-
-    <div id="index-banner" class="container center">
-        <%= image_tag "logos/Prof_devel_web_ban_plaid.jpg", id: "pds-banner" %>
-    </div>
-
 
     <%= render :partial => "partials/flash" %>
 

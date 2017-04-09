@@ -8,17 +8,20 @@
   display: none;
 }
 
-nav #logo-container, #cmu-logo {
+nav #cmu-logo {
+  margin: 5px 0px;
   width: 25%;
   min-width: 200px;
 }
 
 nav #pds-logo {
-  width: 50%;
+  padding-top: 5px;
+  width: 30%;
+  max-height: 64px;
 }
 
-#pds-banner {
-  width: 100%;
+nav .nav-content {
+  background-color: $cmu-dark-gray;
 }
 
 
