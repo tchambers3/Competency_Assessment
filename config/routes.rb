@@ -1,4 +1,41 @@
 Rails.application.routes.draw do
+
+  # Root Path
+  root 'home#home'
+
+  # Registration Routes
+  get '/signup' => 'users#new'
+  post '/users' => 'users#create'
+  get '/users' => 'users#index'
+
+  # Login/Logout Routes
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+
+  # Routes for taking an assessment
+  get '/assessments' => 'assessments#index', as: :assessments
+  get '/assessments/disclaimer' => 'assessments#disclaimer', as: :disclaimer_assessment
+  get '/assessments/take' => 'assessments#disclaimer'
+  post '/assessments/take' => 'assessments#take', as: :take_assessment
+  post '/assessments/report' => 'assessments#generate_report', as: :generate_report_assessment
+  get '/assessments/report' => 'assessments#report', as: :report_assessment
+
+  # Model Resources for CRUD operations
+  resources :competencies
+  resources :paradigms
+  resources :questions
+  resources :levels
+  resources :indicators
+  resources :resources
+  resources :indicator_questions
+  resources :indicator_resources
+
+
+  resources :imports do
+    collection { post :parse }
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

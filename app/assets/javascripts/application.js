@@ -12,5 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require jquery.turbolinks
+//= require materialize
 //= require_tree .
+//= require lodash
+//= require highcharts
+//= require highcharts/highcharts-more
+//= require_scripts
