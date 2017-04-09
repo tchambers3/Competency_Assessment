@@ -20,15 +20,6 @@ class IndicatorQuestionsControllerTest < ActionController::TestCase
   end
 
   # Test that the create action does not create an invalid object
-  test "should not create invalid indicator_question missing a question" do
-    assert_no_difference('IndicatorQuestion.count') do
-      post :create, indicator_question: { indicator_id: @indicator5 }
-    end
-
-    assert_redirected_to question_path(assigns(:question))
-  end
-
-  # Test that the create action does not create an invalid object
   test "should not create invalid indicator_question missing an indicator" do
     assert_no_difference('IndicatorQuestion.count') do
       post :create, indicator_question: { question_id: @communication_q1 }
