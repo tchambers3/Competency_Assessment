@@ -10,7 +10,15 @@
 
 nav #logo-container, #cmu-logo {
   width: 25%;
-  min-width: 200px
+  min-width: 200px;
+}
+
+nav #pds-logo {
+  width: 50%;
+}
+
+#pds-banner {
+  width: 100%;
 }
 
 

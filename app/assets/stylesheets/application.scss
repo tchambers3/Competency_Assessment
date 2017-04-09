@@ -15,4 +15,7 @@
  *= require material_icons
  *= require_styles
  */
+@import "materialize/components/color";
+$primary-color: #b00 !default;
+$secondary-color: #e0e0e0 !default;
 @import "materialize";

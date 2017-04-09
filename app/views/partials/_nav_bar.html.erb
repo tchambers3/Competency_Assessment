@@ -1,18 +1,24 @@
-<nav role="navigation">
+<nav role="navigation" class="nav-extended">
+  <div class="nav-content">
+    <%= image_tag "logos/CMU_Logo_Horiz_White.png", id: "cmu-logo" %>
+  </div>
+
   <div class="nav-wrapper container">
     <a id="logo-container" href="http://www.cmu.edu/" class="brand-logo left">
-      <%= image_tag "logos/CMU_Logo_Horiz_White.png", id: "cmu-logo" %>
+      <%= image_tag "logos/PSD_plain logo_white.png", id: "pds-logo" %>
     </a>
     <ul class="right hide-on-med-and-down">
-      <li><%= link_to "About", about_path %></li>
-      <li><%= link_to "Assessments", assessments_path %></li>
-      <li><%= link_to "Login", login_path %></li>
+      <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Home", root_path %></li>
+      <li class="<%= 'active' if current_page?(about_path) %>"><%= link_to "About", about_path %></li>
+      <li class="<%= 'active' if current_page?(assessments_path) %>"><%= link_to "Assessments", assessments_path %></li>
+      <li class="<%= 'active' if current_page?(login_path) %>"><%= link_to "Login", login_path %></li>
     </ul>
 
     <ul id="nav-mobile" class="side-nav">
-      <li><%= link_to "About", about_path %></li>
-      <li><%= link_to "Assessments", assessments_path %></li>
-      <li><%= link_to "Login", login_path %></li>
+      <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Home", root_path %></li>
+      <li class="<%= 'active' if current_page?(about_path) %>"><%= link_to "About", about_path %></li>
+      <li class="<%= 'active' if current_page?(assessments_path) %>"><%= link_to "Assessments", assessments_path %></li>
+      <li class="<%= 'active' if current_page?(login_path) %>"><%= link_to "Login", login_path %></li>
     </ul>
     <a href="#" data-activates="nav-mobile" class="right button-collapse">
       <i class="material-icons">menu</i>

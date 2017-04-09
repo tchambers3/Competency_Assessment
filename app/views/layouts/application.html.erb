@@ -13,9 +13,16 @@
 
     <%= render :partial => "partials/nav_bar" %>
 
+    <div id="index-banner" class="container center">
+        <%= image_tag "logos/Prof_devel_web_ban_plaid.jpg", id: "pds-banner" %>
+    </div>
+
+
     <%= render :partial => "partials/flash" %>
 
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
 
   </body>
 </html>
