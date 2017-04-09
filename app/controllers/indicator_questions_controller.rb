@@ -16,15 +16,15 @@ class IndicatorQuestionsController < ApplicationController
 
   def create
     @indicator_question = IndicatorQuestion.new(indicator_question_params)
+    @question = @indicator_question.question
     if @indicator_question.save
       # QUESTION: Should we truncate the indicator text so it only shows the first 5 words?
       flash[:notice] = "Successfully added '#{@indicator_question.indicator.description}' indicator to this question."
-      @question = @indicator_question.question
       # This assumes we add/delete IndicatorQuestions in the show question page
       redirect_to question_path(@question)
     else
-      # QUESTION: How should we handle redirection after failed saves for many to many?
-      render "new"
+      flash[:error] = "IndicatorQuestion failed to save."
+      redirect_to question_path(@question)
     end
   end
 

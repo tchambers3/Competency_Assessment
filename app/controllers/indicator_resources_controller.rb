@@ -21,7 +21,8 @@ class IndicatorResourcesController < ApplicationController
       # This assumes we add/delete IndicatorResources in the show indicator page
       redirect_to indicator_path(@indicator)
     else
-      render "new"
+      flash[:error] = "IndicatorResource failed to save."
+      redirect_to indicator_path(@indicator)
     end
   end
 
