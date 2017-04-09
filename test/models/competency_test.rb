@@ -65,15 +65,15 @@ class CompetencyTest < ActiveSupport::TestCase
       assert_equal false, @communication.indicators.first.destroyed?
       assert_equal false, @communication.indicators.first.resources.first.destroyed?
       assert_equal false, @communication.indicators.first.questions.first.destroyed?
-      assert_equal false, @communication.indicators.first.indicator_questions.first.destroyed?
-      assert_equal false, @communication.indicators.first.indicator_resources.first.destroyed?
+      assert_equal false, @communication.indicators.first.indicator_questions.first.nil?
+      assert_equal false, @communication.indicators.first.indicator_resources.first.nil?
       @communication.destroy
       assert_equal true, @communication.destroyed?
       assert_equal true, @communication.indicators.first.destroyed?
       assert_equal true, @communication.indicators.first.resources.first.destroyed?
       assert_equal true, @communication.indicators.first.questions.first.destroyed?
-      assert_equal true, @communication.indicators.first.indicator_questions.first.destroyed?
-      assert_equal true, @communication.indicators.first.indicator_resources.first.destroyed?
+      assert_equal true, @communication.indicators.first.indicator_questions.first.nil?
+      assert_equal true, @communication.indicators.first.indicator_resources.first.nil?
     end
 
   end
