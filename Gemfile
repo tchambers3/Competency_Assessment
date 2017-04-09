@@ -29,6 +29,12 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+# Highcharts allows easy creation of simple charts
+gem 'highcharts-rails'
+# Lodash (built on top of underscore.js) is a great js library 
+# that has tons of helper functions to manipulate objects, arrays, etc.
+gem 'lodash-rails'
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 

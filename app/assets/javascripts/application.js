@@ -15,4 +15,7 @@
 //= require jquery.turbolinks
 //= require materialize
 //= require_tree .
+//= require lodash
+//= require highcharts
+//= require highcharts/highcharts-more
 //= require_scripts
