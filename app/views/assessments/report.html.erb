@@ -1,0 +1,54 @@
+<h1><%= "Assessment Report for #{@competency.name}" %></h1>
+
+<br>
+<%= link_to "Pick Another Assessment", assessments_path %>
+
+<div id="levels-chart"></div>
+
+<% @indicators_resources.each do |stage, indicators| %>
+  <h3><%= stage.capitalize %></h3>
+
+  <% if indicators.empty? %>
+    <p><em>There are no indicators for this stage at this time.</em></p>
+  <% else %>
+    <ul>
+      <% indicators.each do |indicator| %>
+        <li><%= "#{indicator.description} - Level: #{indicator.level.name}" %></li>
+
+        <ul>
+          <% indicator.resources.group_by(&:paradigm).each do |paradigm, resources| %>
+            <li><%= paradigm.name %></li>
+
+            <ul>
+              <% resources.each do |resource| %>
+                <% if !resource.link.present? %>
+                  <li><%= resource.title.html_safe %></li>
+                <% else %>
+                  <li><%= link_to resource.title.html_safe, resource.link %></li>
+                <% end %>
+              <% end %>
+            </ul>
+          <% end %>
+        </ul>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>
+
+<script type="text/javascript">
+  var indicators_resources = 
+    <%= raw @indicators_resources.to_json(
+          include: [
+            :level, 
+            {
+              :resources => {
+                include: :paradigm
+              }
+            }
+          ], 
+          except: [:created_at, :updated_at]
+    ) %>;
+  var levels = <%= raw @levels.to_json %>;
+  var competency = <%= raw @competency.to_json %>;
+  createLevelsChart(indicators_resources, levels, competency);
+</script>

@@ -1,0 +1,21 @@
+<p>
+  <strong>Title:</strong> <%= @resource.title.html_safe %>
+</p>
+
+<p>
+  <strong>Link:</strong> 
+  <% if !@resource.link.present? %>
+    No Link
+  <% else %>
+    <%= link_to @resource.link, @resource.link %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Paradigm:</strong>
+  <%= link_to @resource.paradigm.name, paradigm_path(@resource.paradigm) %>
+</p>
+
+<p>
+  <strong>Active:</strong> <%= @resource.active ? "Yes" : "No" %>
+</p>

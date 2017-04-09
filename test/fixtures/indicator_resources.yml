@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  indictaor_id: 1
+  resource_id: 1
+
+two:
+  indictaor_id: 1
+  resource_id: 1
