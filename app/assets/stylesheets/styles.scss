@@ -8,6 +8,25 @@
   display: none;
 }
 
+.primary-color {
+  color: $primary-color;
+}
+
+.secondary-color {
+  color: $secondary-color;
+}
+
+* {
+  font-family: 'Open Sans', Helvetica, sans-serif;
+}
+
+h1, h2 {
+  color: $cmu-dark-red;
+}
+
+
+/* Nav Bar */
+
 nav #cmu-logo {
   margin: 5px 0px;
   width: 25%;
@@ -22,6 +41,27 @@ nav #pds-logo {
 
 nav .nav-content {
   background-color: $cmu-dark-gray;
+}
+
+
+/* Pick Assessment */
+
+#pick-assessment .card-image{
+  max-width: 20%;
+}
+
+#pick-assessment .card-image img{
+  height: 100%;
+  width: 100%;
+}
+
+#pick-assessment .card-title a {
+  color: $secondary-color;
+  font-weight: 600;
+}
+
+#pick-assessment .card-action a {
+  color: $cmu-dark-red;
 }
 
 
