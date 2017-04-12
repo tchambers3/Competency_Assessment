@@ -8,4 +8,8 @@ class HomeController < ApplicationController
   def about
   end
 
+  # GET /dashboard
+  def dashboard
+  end
+
 end
