@@ -1,6 +1,12 @@
 $cmu-red: #b00;
+$cmu-dark-red: #800;
 $cmu-gray: #e0e0e0;
 $cmu-dark-gray: #666;
+$cmu-gold: #a60;
+$cmu-teal: #067;
+$cmu-blue: #247;
+$cmu-green: #085;
+$cmu-dark-green: #243;
 
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
@@ -18,7 +24,7 @@ $cmu-dark-gray: #666;
  *= require_self
  */
 @import "materialize/components/color";
-$primary-color: #b00 !default;
-$secondary-color: #067 !default;
+$primary-color: $cmu-red !default;
+$secondary-color: $cmu-teal !default;
 @import "materialize";
 @import "styles";
