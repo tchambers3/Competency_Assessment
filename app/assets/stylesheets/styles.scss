@@ -4,6 +4,15 @@
  * ============================================================================
  */
 
+
+* {
+  font-family: 'Open Sans', Helvetica, sans-serif;
+}
+
+h1, h2 {
+  color: $cmu-dark-red;
+}
+
 .hidden {
   display: none;
 }
@@ -16,12 +25,8 @@
   color: $secondary-color;
 }
 
-* {
-  font-family: 'Open Sans', Helvetica, sans-serif;
-}
-
-h1, h2 {
-  color: $cmu-dark-red;
+.bold {
+  font-weight: 600;
 }
 
 
