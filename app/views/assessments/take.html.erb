@@ -3,23 +3,25 @@
 
   <div class="row">
     <div id="assessment-errors"></div>
-
-    <% if @questions.empty? %>
-      <p><em>There are no questions for this assessment at this time.</em></p>
-    <% else %>
-    
-      <div id="assessment-progress">
-        <div id="assessment-bar"></div>
-      </div>
-
-      <%= render "form" %>
-
-      <script>
-        initAssessment(<%= @questions.length %>);
-      </script>
-
-    <% end %>
   </div>
+
+  <% if @questions.empty? %>
+    <p><em>There are no questions for this assessment at this time.</em></p>
+  <% else %>
+
+    <div class="row">
+      <div id="assessment-progress">
+        <div id="assessment-bar" class="tooltipped" data-position="top" data-delay="50" data-tooltip="I am tooltip"></div>
+      </div>
+    </div>
+
+    <%= render "form" %>
+
+    <script>
+      initAssessment(<%= @questions.length %>);
+    </script>
+
+  <% end %>
 
   <div class="row">
     <%= link_to "Pick Another Assessment", assessments_path %>

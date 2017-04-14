@@ -25,8 +25,23 @@ h1, h2 {
   color: $secondary-color;
 }
 
+.primary-color-background {
+  background-color: $primary-color;
+}
+
+.secondary-color-background {
+  background-color: $secondary-color;
+}
+
 .bold {
   font-weight: 600;
+}
+
+#toast-container {
+  top: auto !important;
+  right: 7%;
+  bottom: 10%;
+  left: auto !important;  
 }
 
 
@@ -49,6 +64,12 @@ nav .nav-content {
 }
 
 
+/*
+ * ============================================================================
+ * Assessment CSS
+ * ============================================================================
+ */
+
 /* Pick Assessment */
 
 #pick-assessment .card-image{
@@ -70,22 +91,31 @@ nav .nav-content {
 }
 
 
-/*
- * ============================================================================
- * Assessment CSS
- * ============================================================================
- */
+/* Take Assessment */
 
 #assessment-progress {
     width: 100%;
-    background-color: grey;
+    background-color: $cmu-dark-gray;
 }
 
 #assessment-bar {
     width: 0%;
     height: 30px;
-    background-color: green;
+    background-color: $cmu-teal;
     text-align: center;
     line-height: 30px;
     color: white; 
+    transition: all 0.5s ease;
+}
+
+#take-assessment form {
+  margin-top: 5%;
+}
+
+#take-assessment form .question {
+  font-size: 19px;
+}
+
+#assessment-submit {
+  background-color: $cmu-green;
 }

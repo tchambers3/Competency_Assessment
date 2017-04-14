@@ -183,7 +183,7 @@ function updateProgress() {
   var current_question_number = question_number + 1;
   var percentage = (current_question_number / num_questions) * 100;
   elem.style.width = percentage + "%";
-  elem.innerHTML = current_question_number + " out of " + num_questions; 
+  elem.innerHTML = current_question_number + " of " + num_questions; 
 }
 
 // Called before submitting the assessment and 
@@ -200,8 +200,9 @@ function validAssessment() {
 
 // Helper function to display the assessment error
 function displayError(msg) {
-  $("#assessment-errors").show();
-  $("#assessment-errors").html(msg)
+  // $("#assessment-errors").show();
+  // $("#assessment-errors").html(msg);
+  Materialize.toast(msg, 4000, "primary-color-background bottom");
 }
 
 // Helper function for removing the assessment error
