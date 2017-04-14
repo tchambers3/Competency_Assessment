@@ -16,6 +16,13 @@
 })(jQuery); // end of jQuery name space
 
 
+$(function(){
+  var year = new Date().getFullYear();
+  var copyright = "© " + year + " Carnegie Mellon University";
+  $("footer #copyright").html(copyright);
+});
+
+
 /*
  * ============================================================================
  * Assessment Report Code
