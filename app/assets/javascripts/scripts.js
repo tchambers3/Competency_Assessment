@@ -125,6 +125,18 @@ function createChart(container_id, type, title, x_title, y_title, categories, da
  * ============================================================================
  */
 
+// Used to make sure that all cards are of the same height
+function standardizeCardSize() {
+  var maxHeight = -1;
+  $('.card').each(function() {
+    maxHeight = maxHeight > $(this).height() ? maxHeight : $(this).height();
+  });
+
+  $('.card').each(function() {
+    $(this).height(maxHeight);
+  });
+} 
+
 // Global variables for the assessment
 var question_number = 0;
 var num_questions = 0;
