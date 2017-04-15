@@ -11,6 +11,7 @@ class QuestionsController < ApplicationController
 
   # GET /questions/:id
   def show
+    @indicator_questions = @question.indicator_questions
   end
 
   # GET /questions/new
