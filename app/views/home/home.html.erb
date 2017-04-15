@@ -1,9 +1,4 @@
 <h2>Home Page</h2>
 
-<h4>Import Data</h4>
-<%= form_tag parse_imports_path, multipart: true do %>
-  <%= file_field_tag :file, accept: ".xls,.xlsx" %>
-  <%= submit_tag "Import" %>
-<% end %>
 <br>
 <%= link_to "Take an Assessment", assessments_path %>
