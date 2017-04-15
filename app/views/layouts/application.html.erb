@@ -15,7 +15,7 @@
 
     <%= render :partial => "partials/flash" %>
 
-    <div id="main" class="container">
+    <div id="main" class="<%= 'container' if !current_page?(root_path) %>">
       <%= yield %>
     </div>
 
