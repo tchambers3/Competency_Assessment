@@ -24,7 +24,7 @@ $cmu-dark-green: #243;
  *= require_self
  */
 @import "materialize/components/color";
-$primary-color: $cmu-red !default;
-$secondary-color: $cmu-teal !default;
+$primary-color: $cmu-red;
+$secondary-color: $cmu-teal;
 @import "materialize";
 @import "styles";

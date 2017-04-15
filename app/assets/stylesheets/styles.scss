@@ -9,11 +9,11 @@
 }
 
 .primary-color {
-  color: $primary-color;
+  color: $cmu-red;
 }
 
 .secondary-color {
-  color: $secondary-color;
+  color: $cmu-teal;
 }
 
 * {
@@ -43,6 +43,11 @@ nav .nav-content {
   background-color: $cmu-dark-gray;
 }
 
+/* Admin Nav Bar */
+
+nav .admin-nav-content {
+  background-color: $cmu-teal;
+}
 
 /* Pick Assessment */
 
@@ -82,5 +87,5 @@ nav .nav-content {
     background-color: green;
     text-align: center;
     line-height: 30px;
-    color: white; 
+    color: white;
 }
