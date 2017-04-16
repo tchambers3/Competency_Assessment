@@ -1,0 +1,26 @@
+<a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i>Menu</a>
+    <ul id="slide-out" class="side-nav">
+      <li><div class="userView">
+        <a href="#!name"><span class="white-text name">John Doe</span></a>
+        <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+      </div></li>
+      <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+      <li><a href="#!">Second Link</a></li>
+      <li><div class="divider"></div></li>
+      <li><a class="subheader">Subheader</a></li>
+      <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    </ul>
+<div class="row">
+  <h4> Active Competencies </h4>
+  <% @active_competencies.each do |c| %>
+    <%= render partial: "partials/competency_card", locals: {
+                                                              object: c} %>
+  <% end %>
+</div>
+<br>
+<h4>Import Data</h4>
+<%= form_tag parse_imports_path, multipart: true do %>
+  <%= file_field_tag :file, accept: ".xls,.xlsx" %>
+  <%= submit_tag "Import" %>
+<% end %>
+<br>
