@@ -14,10 +14,7 @@
           <%= image_tag "logos/PDS_plain_logo_white.png", id: "pds-logo" %>
         </a>
         <ul class="right hide-on-med-and-down">
-          <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Home", root_path %></li>
-          <li class="<%= 'active' if current_page?(about_path) %>"><%= link_to "About", about_path %></li>
-          <li class="<%= 'active' if current_page?(assessments_path) %>"><%= link_to "Assessments", assessments_path %></li>
-          <li class="<%= 'active' if current_page?(login_path) %>"><%= link_to "Login", login_path %></li>
+          <%= render "partials/navbar_menu" %>
         </ul>
 
         <a href="#" data-activates="nav-mobile" class="right button-collapse">
@@ -28,9 +25,6 @@
   </div>
 
   <ul id="nav-mobile" class="side-nav">
-    <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Home", root_path %></li>
-    <li class="<%= 'active' if current_page?(about_path) %>"><%= link_to "About", about_path %></li>
-    <li class="<%= 'active' if current_page?(assessments_path) %>"><%= link_to "Assessments", assessments_path %></li>
-    <li class="<%= 'active' if current_page?(login_path) %>"><%= link_to "Login", login_path %></li>
+    <%= render "partials/navbar_menu" %>
   </ul>
 </header>

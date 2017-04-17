@@ -90,6 +90,14 @@ nav .nav-content {
   background-color: $cmu-dark-gray;
 }
 
+nav ul li.active {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+nav ul li:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
 /* Home Page */
 
 .banner-text {
