@@ -16,8 +16,7 @@
       <li><%= link_to c.name, competency_path(c) %></li>
     <% end %>
  </ul>
-
-    <div class="row">
+    <div class="row" id="dash-cards">
       <% @active_competencies.each do |c| %>
           <%= render partial: "partials/competency_card", locals: {object: c} %>
       <% end %>
