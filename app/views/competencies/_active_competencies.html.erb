@@ -4,8 +4,7 @@
 <% else %>
   <div class="row">
     <% @active_competencies.each do |c| %>
-      <%= render partial: "partials/competency_card", locals: {
-                                                                object: c} %>
+      <%= render partial: "partials/competency_card", locals: {object: c} %>
     <% end %>
   </div>
 <% end %>
