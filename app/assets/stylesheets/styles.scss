@@ -48,6 +48,14 @@ footer {
   background-color: $secondary-color;
 }
 
+.cmu-blue-background {
+  background-color: $cmu-blue;
+}
+
+.cmu-green-background {
+  background-color: $cmu-green;
+}
+
 .bold {
   font-weight: 600;
 }
@@ -151,4 +159,16 @@ nav .nav-content {
 
 #assessment-submit {
   background-color: $cmu-green;
+}
+
+
+/* Assessment Report */
+
+#tap-menu {
+  bottom: 45px;
+  right: 25px;
+}
+
+.tap-target-content {
+  top: 45px !important;
 }

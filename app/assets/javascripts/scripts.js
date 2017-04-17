@@ -10,8 +10,8 @@
     $(".button-collapse").sideNav({
       edge: "right"
     });
-    $('.parallax').parallax();
-    $('.scrollspy').scrollSpy({
+    $(".parallax").parallax();
+    $(".scrollspy").scrollSpy({
       scrollOffset: 100
     });
 
