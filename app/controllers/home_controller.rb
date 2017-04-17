@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_action :check_login, :except => [:home]
+  before_action :check_login, :except => [:home, :about] 
 
   # GET / (a.k.a root_path)
   def home
