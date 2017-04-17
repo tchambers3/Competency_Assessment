@@ -9,11 +9,11 @@
 }
 
 .primary-color {
-  color: $primary-color;
+  color: $cmu-red;
 }
 
 .secondary-color {
-  color: $secondary-color;
+  color: $cmu-teal;
 }
 
 * {
@@ -22,6 +22,10 @@
 
 h1, h2 {
   color: $cmu-dark-red;
+}
+
+h3, h4, h5, h6 {
+  color: $cmu-green;
 }
 
 
@@ -43,6 +47,11 @@ nav .nav-content {
   background-color: $cmu-dark-gray;
 }
 
+/* Admin Nav Bar */
+
+nav .admin-nav-content {
+  background-color: $cmu-teal;
+}
 
 /* Pick Assessment */
 
