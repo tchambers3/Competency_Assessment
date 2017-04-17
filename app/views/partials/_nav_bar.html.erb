@@ -1,33 +1,36 @@
-<div class="navbar-fixed">
-  <nav role="navigation" class="nav-extended">
-    <div class="nav-content">
-      <div class="container">
-        <a href="http://www.cmu.edu/">
-          <%= image_tag "logos/CMU_Logo_Horiz_White.png", id: "cmu-logo" %>
+<header>
+  <div class="navbar-fixed">
+    <nav role="navigation" class="nav-extended">
+      <div class="nav-content">
+        <div class="container">
+          <a href="http://www.cmu.edu/">
+            <%= image_tag "logos/CMU_Logo_Horiz_White.png", id: "cmu-logo" %>
+          </a>
+        </div>
+      </div>
+
+      <div class="nav-wrapper container">
+        <a id="logo-container" href="http://www.cmu.edu/hr/professional-development/" class="brand-logo left">
+          <%= image_tag "logos/PDS_plain_logo_white.png", id: "pds-logo" %>
+        </a>
+        <ul class="right hide-on-med-and-down">
+          <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Home", root_path %></li>
+          <li class="<%= 'active' if current_page?(about_path) %>"><%= link_to "About", about_path %></li>
+          <li class="<%= 'active' if current_page?(assessments_path) %>"><%= link_to "Assessments", assessments_path %></li>
+          <li class="<%= 'active' if current_page?(login_path) %>"><%= link_to "Login", login_path %></li>
+        </ul>
+
+        <a href="#" data-activates="nav-mobile" class="right button-collapse">
+          <i class="material-icons">menu</i>
         </a>
       </div>
-    </div>
+    </nav>
+  </div>
 
-    <div class="nav-wrapper container">
-      <a id="logo-container" href="http://www.cmu.edu/hr/professional-development/" class="brand-logo left">
-        <%= image_tag "logos/PDS_plain_logo_white.png", id: "pds-logo" %>
-      </a>
-      <ul class="right hide-on-med-and-down">
-        <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Home", root_path %></li>
-        <li class="<%= 'active' if current_page?(about_path) %>"><%= link_to "About", about_path %></li>
-        <li class="<%= 'active' if current_page?(assessments_path) %>"><%= link_to "Assessments", assessments_path %></li>
-        <li class="<%= 'active' if current_page?(login_path) %>"><%= link_to "Login", login_path %></li>
-      </ul>
-
-      <ul id="nav-mobile" class="side-nav">
-        <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Home", root_path %></li>
-        <li class="<%= 'active' if current_page?(about_path) %>"><%= link_to "About", about_path %></li>
-        <li class="<%= 'active' if current_page?(assessments_path) %>"><%= link_to "Assessments", assessments_path %></li>
-        <li class="<%= 'active' if current_page?(login_path) %>"><%= link_to "Login", login_path %></li>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="right button-collapse">
-        <i class="material-icons">menu</i>
-      </a>
-    </div>
-  </nav>
-</div>
+  <ul id="nav-mobile" class="side-nav">
+    <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Home", root_path %></li>
+    <li class="<%= 'active' if current_page?(about_path) %>"><%= link_to "About", about_path %></li>
+    <li class="<%= 'active' if current_page?(assessments_path) %>"><%= link_to "Assessments", assessments_path %></li>
+    <li class="<%= 'active' if current_page?(login_path) %>"><%= link_to "Login", login_path %></li>
+  </ul>
+</header>

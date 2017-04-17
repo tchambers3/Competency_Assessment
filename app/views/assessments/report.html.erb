@@ -35,6 +35,14 @@
   <% end %>
 <% end %>
 
+<div class="tap-target" data-activates="menu">
+  <div class="tap-target-content">
+    <h5>Title</h5>
+    <p>A bunch of text</p>
+  </div>
+</div>
+<a id="menu" class="waves-effect waves-light btn btn-floating" ><i class="material-icons">menu</i></a>
+
 <script type="text/javascript">
   var indicators_resources = 
     <%= raw @indicators_resources.to_json(
@@ -51,4 +59,8 @@
   var levels = <%= raw @levels.to_json %>;
   var competency = <%= raw @competency.to_json %>;
   createLevelsChart(indicators_resources, levels, competency);
+</script>
+
+<script type="text/javascript">
+  $('.tap-target').tapTarget('open');
 </script>
