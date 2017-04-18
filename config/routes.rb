@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   # Home Paths
   get '/about' => 'home#about'
-  get '/dashboard' => 'home#dashboard'
+  get '/dashboard' => 'home#dashboard', as: :dashboard
 
   # Registration Routes
   get '/signup' => 'users#new'

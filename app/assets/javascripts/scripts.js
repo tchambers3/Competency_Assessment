@@ -26,7 +26,7 @@
 function createLevelsChart(indicators_resources, levels, competency) {
   var id = "levels-chart";
   var title = competency.name + " Assessment Result";
-  // The categories are the list of capitalized stages 
+  // The categories are the list of capitalized stages
   // ex) [Developed, Developing, Emerging]
   var categories = _.keys(indicators_resources).map(function(stage){
     return _.capitalize(stage);
@@ -132,7 +132,7 @@ function initAssessment(num_q){
 
 // Called when the next question button is clicked
 // Checks that the current question is answered and if so
-// increase the current question number variable by 1. 
+// increase the current question number variable by 1.
 function nextQuestion() {
   if(hasCheckedRadio(question_number)) {
     $("#question-" + question_number).hide();
@@ -179,14 +179,14 @@ function buttonUpdate() {
 
 // Updates the progress bar based on question number
 function updateProgress() {
-  var elem = $("#assessment-bar")[0]; 
+  var elem = $("#assessment-bar")[0];
   var current_question_number = question_number + 1;
   var percentage = (current_question_number / num_questions) * 100;
   elem.style.width = percentage + "%";
-  elem.innerHTML = current_question_number + " out of " + num_questions; 
+  elem.innerHTML = current_question_number + " out of " + num_questions;
 }
 
-// Called before submitting the assessment and 
+// Called before submitting the assessment and
 // checks if the assessment is valid and if all questions are answered.
 function validAssessment() {
   for(var i = 0; i < num_questions; i++) {
