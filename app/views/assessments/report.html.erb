@@ -11,25 +11,33 @@
   <% if indicators.empty? %>
     <p><em>There are no indicators for this stage at this time.</em></p>
   <% else %>
-    <ul>
+    <ul class="collapsible popout" data-collapsible="accordion">
       <% indicators.each do |indicator| %>
-        <li><%= "#{indicator.description} - Level: #{indicator.level.name}" %></li>
+        <li>
+          <div class="collapsible-header">
+            <i class="material-icons">filter_drama</i> 
+            <%= indicator.description.html_safe %>
+            <%= " - Level: #{indicator.level.name}" %>
+          </div>
 
-        <ul>
-          <% indicator.resources.group_by(&:paradigm).each do |paradigm, resources| %>
-            <li><%= paradigm.name %></li>
-
+          <div class="collapsible-body">
             <ul>
-              <% resources.each do |resource| %>
-                <% if !resource.link.present? %>
-                  <li><%= resource.title.html_safe %></li>
-                <% else %>
-                  <li><%= link_to resource.title.html_safe, resource.link %></li>
-                <% end %>
+              <% indicator.resources.group_by(&:paradigm).each do |paradigm, resources| %>
+                <li><%= paradigm.name %></li>
+
+                <ul>
+                  <% resources.each do |resource| %>
+                    <% if !resource.link.present? %>
+                      <li><%= resource.title.html_safe %></li>
+                    <% else %>
+                      <li><%= link_to resource.title.html_safe, resource.link %></li>
+                    <% end %>
+                  <% end %>
+                </ul>
               <% end %>
             </ul>
-          <% end %>
-        </ul>
+          </div>
+        </li>        
       <% end %>
     </ul>
   <% end %>
