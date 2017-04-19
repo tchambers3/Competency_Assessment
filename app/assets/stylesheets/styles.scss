@@ -131,10 +131,26 @@ nav .admin-nav-content {
 .icon-block {
   padding: 0 15px;
 }
+
 .icon-block .material-icons {
   font-size: inherit;
 }
 
+/* About Page */
+
+#about .banner-text {
+  font-size: 16px;
+}
+
+#about button.modal-action.modal-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+#about .tabs {
+  overflow-x: hidden;
+}
 
 /*
  * ============================================================================
