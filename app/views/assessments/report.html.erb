@@ -6,7 +6,7 @@
 <div id="levels-chart"></div>
 
 <% @indicators_resources.each do |stage, indicators| %>
-  <h3><%= stage.capitalize %></h3>
+  <h3 class="secondary-color"><%= stage.capitalize %></h3>
 
   <% if indicators.empty? %>
     <p><em>There are no indicators for this stage at this time.</em></p>
@@ -15,25 +15,29 @@
       <% indicators.each do |indicator| %>
         <li>
           <div class="collapsible-header">
-            <i class="material-icons">filter_drama</i> 
+            <i class="material-icons tooltipped level-icon" data-level="<%= indicator.level.name %>" data-position="left" data-delay="50" data-tooltip="<%= indicator.level.name %>">assignment_turned_in</i>
             <%= indicator.description.html_safe %>
-            <%= " - Level: #{indicator.level.name}" %>
           </div>
 
-          <div class="collapsible-body">
-            <ul>
+          <div class="collapsible-body indicator">
+            <ul class="collection with-header">
               <% indicator.resources.group_by(&:paradigm).each do |paradigm, resources| %>
-                <li><%= paradigm.name %></li>
+                <li class="collection-header paradigm">
+                  <h5><%= paradigm.name %></h5>
+                </li>
 
-                <ul>
-                  <% resources.each do |resource| %>
-                    <% if !resource.link.present? %>
-                      <li><%= resource.title.html_safe %></li>
-                    <% else %>
-                      <li><%= link_to resource.title.html_safe, resource.link %></li>
-                    <% end %>
-                  <% end %>
-                </ul>
+                <% resources.each do |resource| %>
+                  <li class="collection-item">
+                    <div>
+                      <%= resource.title.html_safe %>
+                      <% if resource.link.present? %>
+                        <a href="<%= resource.link %>" class="secondary-content">
+                          <i class="material-icons">send</i>
+                        </a>
+                      <% end %>
+                    </div>
+                  </li>
+                <% end %>
               <% end %>
             </ul>
           </div>
@@ -58,7 +62,9 @@
     ) %>;
   var levels = <%= raw @levels.to_json %>;
   var competency = <%= raw @competency.to_json %>;
+  initColors(levels);
   createLevelsChart(indicators_resources, levels, competency);
+  setLevelColor();
 </script>
 
 <%= render "hover_menu" %>

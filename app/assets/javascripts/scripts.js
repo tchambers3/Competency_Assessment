@@ -32,6 +32,32 @@ $(function(){
  * ============================================================================
  */
 
+var colors = ["#a60", "#247", "#085"];
+var level_colors = {};
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+function initColors(levels) {
+  if(levels.length <= colors.length){
+    colors = _.slice(colors, 0, levels.length);
+  } else {
+    for(var i = colors.length; i < levels.length; i++){
+      colors.push(getRandomColor());
+    }
+  }
+  for(var i = 0; i < levels.length; i++){
+    var name = levels[i].name;
+    level_colors[name] = colors[i];
+  }
+}
+
 // Create chart that displays indicators by stage by level.
 function createLevelsChart(indicators_resources, levels, competency) {
   var id = "levels-chart";
@@ -104,6 +130,7 @@ function createChart(container_id, type, title, x_title, y_title, categories, da
       borderWidth: 1,
       shadow: false
     },
+    colors: colors,
     tooltip: {
       headerFormat: '<b>{point.x}</b><br/>',
       pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
@@ -121,6 +148,14 @@ function createChart(container_id, type, title, x_title, y_title, categories, da
   });
 }
 
+function setLevelColor() {
+  var icons = $(".level-icon");
+  for(var i = 0; i < icons.length; i++) {
+    var icon = $(icons[i]);
+    var level = icon.data("level");
+    icon.css("color", level_colors[level]);
+  }
+}
 
 /*
  * ============================================================================
