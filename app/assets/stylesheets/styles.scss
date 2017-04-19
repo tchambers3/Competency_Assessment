@@ -33,11 +33,11 @@ footer {
 }
 
 .primary-color {
-  color: $primary-color;
+  color: $cmu-red;
 }
 
 .secondary-color {
-  color: $secondary-color;
+  color: $cmu-teal;
 }
 
 .primary-color-background {
@@ -71,6 +71,10 @@ footer {
   height: 90px;
 }
 
+h3, h4, h5, h6 {
+  color: $cmu-green;
+}
+
 
 /* Nav Bar */
 
@@ -96,6 +100,12 @@ nav ul li.active {
 
 nav ul li:hover {
   background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Admin Nav Bar */
+
+nav .admin-nav-content {
+  background-color: $cmu-teal;
 }
 
 
@@ -188,3 +198,21 @@ nav ul li:hover {
 .tap-target-content {
   top: 45px !important;
 }
+
+/*
+ * ============================================================================
+ * Admin Dashboard
+ * ============================================================================
+ */
+
+.center-text {
+  text-align: center;
+}
+
+ .dash-side-nav-btn {
+   font-size: 100%
+ }
+
+ #dash-cards .card-image{
+   max-width: 30%;
+ }
