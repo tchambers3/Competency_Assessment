@@ -14,8 +14,7 @@
     $(".scrollspy").scrollSpy({
       scrollOffset: 100
     });
-    $('.modal').modal();
-    $('.carousel').carousel();
+    $(".modal").modal();
     
   }); // end of document ready
 })(jQuery); // end of jQuery name space
@@ -34,9 +33,11 @@ $(function(){
  * ============================================================================
  */
 
+// The initial set of colors for each level
 var colors = ["#a60", "#247", "#085"];
 var level_colors = {};
 
+// Helper method to get a random color
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
     var color = '#';
@@ -46,7 +47,9 @@ function getRandomColor() {
     return color;
 }
 
+// Initialize the level colors for the report
 function initColors(levels) {
+  // Generate the list of colors needed for each level
   if(levels.length <= colors.length){
     colors = _.slice(colors, 0, levels.length);
   } else {
@@ -54,6 +57,7 @@ function initColors(levels) {
       colors.push(getRandomColor());
     }
   }
+  // Create a hash of level name to color mapping
   for(var i = 0; i < levels.length; i++){
     var name = levels[i].name;
     level_colors[name] = colors[i];
@@ -150,6 +154,7 @@ function createChart(container_id, type, title, x_title, y_title, categories, da
   });
 }
 
+// Set the icon colors to the corresponding level colors in the report
 function setLevelColor() {
   var icons = $(".level-icon");
   for(var i = 0; i < icons.length; i++) {
