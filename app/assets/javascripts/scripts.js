@@ -72,7 +72,6 @@ function initColors(levels) {
 // Create chart that displays indicators by stage by level.
 function createLevelsChart(indicators_resources, levels, competency) {
   var id = "levels-chart";
-  var title = competency.name + " Assessment Result";
   // The categories are the list of capitalized stages
   // ex) [Developed, Developing, Emerging]
   var categories = _.keys(indicators_resources).map(function(stage){
@@ -99,7 +98,7 @@ function createLevelsChart(indicators_resources, levels, competency) {
     }
   });
 
-  createChart(id, "column", title, "Stages", "Indicators", categories, data);
+  createChart(id, "column", "", "Stages", "Indicators", categories, data);
 }
 
 // Creates a generic chart with specified type and other fields
