@@ -15,6 +15,11 @@
       scrollOffset: 100
     });
     $(".modal").modal();
+    $("ul.tabs").tabs({
+      onShow: function(tab) {
+        $(".carousel").carousel();
+      }
+    });
     
   }); // end of document ready
 })(jQuery); // end of jQuery name space
