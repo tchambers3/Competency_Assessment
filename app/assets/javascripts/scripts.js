@@ -10,10 +10,21 @@
     $(".button-collapse").sideNav({
       edge: "right"
     });
-    $('.parallax').parallax();
-
+    $(".parallax").parallax();
+    $(".scrollspy").scrollSpy({
+      scrollOffset: 100
+    });
+    $(".modal").modal();
+    
   }); // end of document ready
 })(jQuery); // end of jQuery name space
+
+
+$(function(){
+  var year = new Date().getFullYear();
+  var copyright = "© " + year + " Carnegie Mellon University";
+  $("footer #copyright").html(copyright);
+});
 
 
 /*
@@ -21,6 +32,37 @@
  * Assessment Report Code
  * ============================================================================
  */
+
+// The initial set of colors for each level
+var colors = ["#a60", "#247", "#085"];
+var level_colors = {};
+
+// Helper method to get a random color
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+// Initialize the level colors for the report
+function initColors(levels) {
+  // Generate the list of colors needed for each level
+  if(levels.length <= colors.length){
+    colors = _.slice(colors, 0, levels.length);
+  } else {
+    for(var i = colors.length; i < levels.length; i++){
+      colors.push(getRandomColor());
+    }
+  }
+  // Create a hash of level name to color mapping
+  for(var i = 0; i < levels.length; i++){
+    var name = levels[i].name;
+    level_colors[name] = colors[i];
+  }
+}
 
 // Create chart that displays indicators by stage by level.
 function createLevelsChart(indicators_resources, levels, competency) {
@@ -94,6 +136,7 @@ function createChart(container_id, type, title, x_title, y_title, categories, da
       borderWidth: 1,
       shadow: false
     },
+    colors: colors,
     tooltip: {
       headerFormat: '<b>{point.x}</b><br/>',
       pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
@@ -111,12 +154,33 @@ function createChart(container_id, type, title, x_title, y_title, categories, da
   });
 }
 
+// Set the icon colors to the corresponding level colors in the report
+function setLevelColor() {
+  var icons = $(".level-icon");
+  for(var i = 0; i < icons.length; i++) {
+    var icon = $(icons[i]);
+    var level = icon.data("level");
+    icon.css("color", level_colors[level]);
+  }
+}
 
 /*
  * ============================================================================
  * Assessments Code
  * ============================================================================
  */
+
+// Used to make sure that all cards are of the same height
+function standardizeCardSize() {
+  var maxHeight = -1;
+  $('.card').each(function() {
+    maxHeight = maxHeight > $(this).height() ? maxHeight : $(this).height();
+  });
+
+  $('.card').each(function() {
+    $(this).height(maxHeight);
+  });
+} 
 
 // Global variables for the assessment
 var question_number = 0;
@@ -183,7 +247,7 @@ function updateProgress() {
   var current_question_number = question_number + 1;
   var percentage = (current_question_number / num_questions) * 100;
   elem.style.width = percentage + "%";
-  elem.innerHTML = current_question_number + " out of " + num_questions;
+  elem.innerHTML = current_question_number + " of " + num_questions; 
 }
 
 // Called before submitting the assessment and
@@ -200,8 +264,9 @@ function validAssessment() {
 
 // Helper function to display the assessment error
 function displayError(msg) {
-  $("#assessment-errors").show();
-  $("#assessment-errors").html(msg)
+  // $("#assessment-errors").show();
+  // $("#assessment-errors").html(msg);
+  Materialize.toast(msg, 4000, "primary-color-background bottom");
 }
 
 // Helper function for removing the assessment error
