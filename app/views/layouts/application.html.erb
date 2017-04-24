@@ -13,9 +13,10 @@
 
     <%= render :partial => "partials/nav_bar" %>
 
-    <%= render :partial => "partials/flash" %>
+    
 
     <div id="main" class="<%= 'container' if !current_page?(root_path) and !current_page?(about_path) %>">
+    <%= render :partial => "partials/flash" %>
       <%= yield %>
     </div>
 
