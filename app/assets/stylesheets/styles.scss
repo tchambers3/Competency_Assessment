@@ -156,6 +156,24 @@ nav .admin-nav-content {
   overflow-x: hidden;
 }
 
+#about #competencies .card-content {
+  background-color: $cmu-dark-gray;
+  padding: 15px;
+}
+
+#about #competencies .card-content p {
+  font-size: 22px;
+  max-width: 100%;
+}
+
+#about #competencies .carousel {
+  height: 550px;
+}
+
+#about #competencies .carousel .carousel-item {
+  width:300px !important;
+}
+
 /*
  * ============================================================================
  * Assessment CSS
