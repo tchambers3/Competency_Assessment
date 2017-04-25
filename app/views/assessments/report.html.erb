@@ -5,8 +5,14 @@
 
 <div id="levels-chart"></div>
 
+<% stage_descriptions = {
+    "developed" => "You consistently demonstrate these abilities and behaviors.  Your goal is to maintain and maximize.",
+    "developing" => "You demonstrate these abilities and behaviors on an inconsistent basis.  Your goal is to build consistency and continuity.",
+    "emerging" => "These abilities and behaviors are yet to be developed.  Your goal is to familiarize and practice."} %>
+
 <% @indicators_resources.each do |stage, indicators| %>
   <h3 class="secondary-color"><%= stage.capitalize %></h3>
+  <p class="stage-description"><%= stage_descriptions[stage] %></p>
 
   <% if indicators.empty? %>
     <p><em>There are no indicators for this stage at this time.</em></p>
