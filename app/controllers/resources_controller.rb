@@ -1,4 +1,6 @@
 class ResourcesController < ApplicationController
+  layout "admin"
+
   # Callback Methods
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
   before_action :set_paradigm, only: [:new, :create, :edit, :update]
@@ -7,8 +9,13 @@ class ResourcesController < ApplicationController
   # GET /resources
   def index
     @paradigms = Paradigm.all.alphabetical
-    @active_resources = Resource.active.alphabetical
-    @inactive_resources = Resource.inactive.alphabetical
+    if(params[:id])
+      @active_resources = Resource.for_competency(params[:id]).active
+      @inactive_resources = Resource.for_competency(params[:id]).inactive
+    else
+      @active_resources = Resource.active.alphabetical
+      @inactive_resources = Resource.inactive.alphabetical
+    end
   end
 
   # GET /resources/:id
