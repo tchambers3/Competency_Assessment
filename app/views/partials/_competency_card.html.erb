@@ -1,15 +1,19 @@
 <div class="col s12 m6">
-  <div class="card blue-grey darken-1 small">
-    <div class="card-content white-text">
-      <% c = object %> 
-      <span class="card-title"><%= link_to c.name, competency_path(c) %></span>
-      <p><%= c.description %></p>
+  <div class="card horizontal hoverable">
+    <div class="card-image">
+      <%= image_tag "logos/CMU-Tartan-Digital-Half.png" %>
     </div>
-    <div class="card-action">
-      <%= link_to "Edit", edit_competency_path(c) %>
-      <%= link_to "Delete", competency_path(c),
-            method: 'delete',
-            data: {confirm: "Are you sure you want to permanently delete #{c.name}?"} %>
+    <div class="card-stacked">
+      <% c = object %>
+      <div class="card-content">
+        <span class="card-title">
+          <%= link_to c.name, competency_path(c) %>
+        </span>
+        <span><%= c.description %></span>
+      </div>
+      <div class="card-action">
+        <%= link_to "Manage Competency", competency_path(c) %>
+      </div>
     </div>
   </div>
 </div>

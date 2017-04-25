@@ -58,5 +58,4 @@ class ResourceTest < ActiveSupport::TestCase
 
   end
 
-
 end

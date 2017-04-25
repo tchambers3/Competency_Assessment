@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  layout "admin"
   # Callback Methods
   before_action :set_question, only: [:show, :edit, :update, :destroy]
   before_action :check_login
@@ -11,6 +12,7 @@ class QuestionsController < ApplicationController
 
   # GET /questions/:id
   def show
+    @indicator_questions = @question.indicator_questions
   end
 
   # GET /questions/new

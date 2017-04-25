@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   before_action :check_login, :except => [:home, :about] 
+  layout "admin", only: [:dashboard]
 
   # GET / (a.k.a root_path)
   def home
