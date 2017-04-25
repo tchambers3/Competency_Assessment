@@ -1,4 +1,6 @@
 class CompetenciesController < ApplicationController
+  layout "admin"
+
   # Callback Methods
   before_action :set_competency, only: [:show, :edit, :update, :destroy]
   before_action :check_login
