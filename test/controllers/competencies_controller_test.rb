@@ -4,6 +4,13 @@ class CompetenciesControllerTest < ActionController::TestCase
   # Test all competency controller actions and methods
   setup do
     create_competencies
+    create_users
+    # Stub the session creation so the controller methods can be accessed
+    # from behind the authentication
+    competency_controller = @controller
+    @controller = SessionsController.new
+    post :create, {username:"admin", password:"password"}
+    @controller = competency_controller
   end
 
   # Test that the index page displays with proper variables assigned
@@ -62,7 +69,6 @@ class CompetenciesControllerTest < ActionController::TestCase
   # Test that the update action doesn't update an invalid object
   test "should not update invalid competency" do
     patch :update, id: @communication, competency: { name: "" }
-
     assert_response :success
     assert_template 'edit'
   end
