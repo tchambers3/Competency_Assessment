@@ -2,6 +2,7 @@ class IndicatorResourcesController < ApplicationController
 
   # Callback Methods
   before_action :set_indicator_resource, only: [:show, :edit, :update, :destroy]
+  before_action :check_login
 
   def index
   end

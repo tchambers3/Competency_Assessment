@@ -6,6 +6,13 @@ class IndicatorsControllerTest < ActionController::TestCase
     create_competencies
     create_levels
     create_indicators
+    create_users
+    # Stub the session creation so the controller methods can be accessed
+    # from behind the authentication
+    competency_controller = @controller
+    @controller = SessionsController.new
+    post :create, {username:"admin", password:"password"}
+    @controller = competency_controller
   end
 
   # Test that the index page displays with proper variables assigned
