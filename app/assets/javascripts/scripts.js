@@ -175,9 +175,9 @@ function setLevelColor() {
  */
 
 // Used to make sure that all cards are of the same height
-function standardizeCardSize() {
+function standardizeCardSize(element) {
   var maxHeight = -1;
-  $('.card').each(function() {
+  $(element + ' .card').each(function() {
     maxHeight = maxHeight > $(this).height() ? maxHeight : $(this).height();
   });
 

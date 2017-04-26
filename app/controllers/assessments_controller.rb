@@ -60,6 +60,7 @@ class AssessmentsController < ApplicationController
   def report
     @developing_stages = params[:developing_stages]
     @levels = Level.all.by_ranking
+    @paradigms = Paradigm.all.by_ranking
 
     # Create a new hash with the appropriate indicators 
     # (based on the question id's) in the corresponding stage
