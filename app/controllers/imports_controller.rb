@@ -34,8 +34,6 @@ class ImportsController < ApplicationController
       paradigms, new_paradigms = Paradigm.parse(spreadsheet)
       questions = Question.parse(spreadsheet)
     rescue => exception
-      puts "level 1"
-      puts exception
       flash[:error] = EXCEPTION_ERROR_MSG
       return redirect_to dashboard_path
     end
@@ -56,8 +54,6 @@ class ImportsController < ApplicationController
       indicators = Indicator.parse(spreadsheet, competencies, levels)
       resources = Resource.parse(spreadsheet, paradigms)
     rescue => exception
-      puts "level 2"
-      puts exception
       rollback_saved_models(new_models)
       flash[:error] = EXCEPTION_ERROR_MSG
       return redirect_to dashboard_path
@@ -78,8 +74,6 @@ class ImportsController < ApplicationController
       indicator_resources = IndicatorResource.parse(spreadsheet, indicators, resources)
       indicator_questions = IndicatorQuestion.parse(spreadsheet, indicators, questions)
     rescue => exception
-      puts "level 3"
-      puts exception
       rollback_saved_models(new_models + dependent_models)
       flash[:error] = EXCEPTION_ERROR_MSG
       return redirect_to dashboard_path
