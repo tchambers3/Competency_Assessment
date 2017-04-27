@@ -1,7 +1,6 @@
 class LevelsController < ApplicationController
   # Callback Methods
   before_action :set_level, only: [:show, :edit, :update, :destroy]
-  before_action :check_login
 
   # GET /levels
   def index

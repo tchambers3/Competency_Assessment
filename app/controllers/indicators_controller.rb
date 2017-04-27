@@ -2,7 +2,6 @@ class IndicatorsController < ApplicationController
   # Callback Methods
   before_action :set_indicator, only: [:show, :edit, :update, :destroy]
   before_action :set_competencies_levels, only: [:new, :create, :edit, :update]
-  before_action :check_login
 
   # GET /indicators
   def index

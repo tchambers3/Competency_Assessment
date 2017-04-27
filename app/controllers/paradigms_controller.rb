@@ -1,7 +1,6 @@
 class ParadigmsController < ApplicationController
   # Callback Methods
   before_action :set_paradigm, only: [:show, :edit, :update, :destroy]
-  before_action :check_login
 
   # GET /paradigms
   def index
