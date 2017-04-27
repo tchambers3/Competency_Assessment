@@ -3,7 +3,7 @@
  * General CSS
  * ============================================================================
  */
-
+@import "materialize";
 
 * {
   font-family: 'Open Sans', Helvetica, sans-serif;
@@ -64,7 +64,7 @@ footer {
   top: auto !important;
   right: 7%;
   bottom: 10%;
-  left: auto !important;  
+  left: auto !important;
 }
 
 .navbar-fixed {
@@ -122,7 +122,7 @@ nav .admin-nav-content {
 
 .header {
   font-weight: 600;
-} 
+}
 
 .parallax-container {
   height: 450px;
@@ -192,7 +192,7 @@ nav .admin-nav-content {
     background-color: $cmu-teal;
     text-align: center;
     line-height: 30px;
-    color: white; 
+    color: white;
     transition: all 0.5s ease;
 }
 
@@ -244,4 +244,12 @@ nav .admin-nav-content {
 
  #dash-cards .card-image{
    max-width: 30%;
+ }
+
+ .dataTables_paginate {
+   float: right
+ }
+
+ .paginate_button {
+   padding: 5px;
  }
