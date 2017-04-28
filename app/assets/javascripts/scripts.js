@@ -4,6 +4,8 @@
  * ============================================================================
  */
 
+var tab_load_count = 0;
+// Contains all set up functions, mainly for materialize
 (function($){
   $(function(){
 
@@ -17,26 +19,42 @@
     $(".modal").modal();
     $("ul.tabs").tabs({
       onShow: function(tab) {
-        $(".carousel").carousel();
+        if(tab_load_count == 0) {
+          $(".carousel").carousel();
+          tab_load_count++;
+        }
       }
     });
     
   }); // end of document ready
 })(jQuery); // end of jQuery name space
 
-
+// Autogenerate the copyright text
 $(function(){
   var year = new Date().getFullYear();
   var copyright = "© " + year + " Carnegie Mellon University";
   $("footer #copyright").html(copyright);
 });
 
+// Set up event listeners for the flash and error messages
 $(function(){
   $("#alert-close").click(function(){
     $( "#alert-box" ).fadeOut( "slow", function() {
     });
   });
 });
+
+// Used to make sure that all cards are of the same height
+function standardizeCardSize(element) {
+  var maxHeight = -1;
+  $(element + " .card").each(function() {
+    maxHeight = maxHeight > $(this).height() ? maxHeight : $(this).height();
+  });
+
+  $(element + " .card").each(function() {
+    $(this).height(maxHeight);
+  });
+} 
 
 
 /*
@@ -180,18 +198,6 @@ function setLevelColor() {
  * Assessments Code
  * ============================================================================
  */
-
-// Used to make sure that all cards are of the same height
-function standardizeCardSize(element) {
-  var maxHeight = -1;
-  $(element + " .card").each(function() {
-    maxHeight = maxHeight > $(this).height() ? maxHeight : $(this).height();
-  });
-
-  $(element + " .card").each(function() {
-    $(this).height(maxHeight);
-  });
-} 
 
 // Global variables for the assessment
 var question_number = 0;
