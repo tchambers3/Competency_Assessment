@@ -89,6 +89,10 @@ class AssessmentsController < ApplicationController
       @indicators_resources[stage] = 
         current_stage.to_a.sort {|a,b| a.level.ranking <=> b.level.ranking}
     end
+
+    if params[:printable] == "true"
+      return render 'printable_report'
+    end
   end
 
 

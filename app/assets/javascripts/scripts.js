@@ -191,6 +191,13 @@ function setLevelColor() {
     var level = icon.data("level");
     icon.css("color", level_colors[level]);
   }
+
+  var descriptions = $("#level-descriptions .card");
+  for(var i = 0; i < descriptions.length; i++) {
+    var descript = $(descriptions[i]);
+    var level = descript.data("level");
+    descript.css("background-color", level_colors[level]);
+  }
 }
 
 /*

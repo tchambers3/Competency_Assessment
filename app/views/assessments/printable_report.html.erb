@@ -2,8 +2,25 @@
 
 <br>
 <%= link_to "Pick Another Assessment", assessments_path %>
+<br>
+<%= link_to "View Web Version", params.merge(:printable => false) %>
 
 <div id="levels-chart"></div>
+
+<h3 class="report-subheading center">Our Levels</h3>
+
+<div id="level-descriptions" class="row">
+  <% @levels.each do |level| %>
+    <div class="col s12 m4">
+      <div class="card" data-level="<%= level.name %>">
+        <div class="card-content white-text">
+          <span class="card-title"><%= level.name %></span>
+          <p><%= level.description.html_safe %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
 
 <h3 class="report-subheading center">Our Paradigm</h3>
 
@@ -20,8 +37,6 @@
   <% end %>
 </div>
 
-<h3 class="report-subheading center">Your Development Plan and Resources</h3>
-
 <% stage_descriptions = {
     "developed" => "You consistently demonstrate these abilities and behaviors.  Your goal is to maintain and maximize.",
     "developing" => "You demonstrate these abilities and behaviors on an inconsistent basis.  Your goal is to build consistency and continuity.",
@@ -34,35 +49,35 @@
   <% if indicators.empty? %>
     <p><em>There are no indicators for this stage at this time.</em></p>
   <% else %>
-    <ul class="collapsible popout" data-collapsible="accordion">
+    <ul>
       <% indicators.each do |indicator| %>
         <li>
           <div class="collapsible-header">
             <i class="material-icons tooltipped level-icon" data-level="<%= indicator.level.name %>" data-position="left" data-delay="50" data-tooltip="<%= indicator.level.name %>">assignment_turned_in</i>
-            <%= indicator.description.html_safe %>
+            <strong><%= indicator.description.html_safe %></strong>
           </div>
-
-          <div class="collapsible-body indicator">
-            <ul class="collection with-header">
-              <% indicator.resources.group_by(&:paradigm).each do |paradigm, resources| %>
-                <li class="collection-header paradigm">
-                  <h5><%= paradigm.name %></h5>
-                </li>
-
-                <% resources.each do |resource| %>
-                  <li class="collection-item">
-                    <div>
-                      <%= resource.title.html_safe %>
-                      <% if resource.link.present? %>
-                        <a href="<%= resource.link %>" class="secondary-content" target="_blank">
-                          <i class="material-icons">send</i>
-                        </a>
-                      <% end %>
-                    </div>
+          <div class="row">
+            <div class="col s12 m11 offset-m1 indicator">
+              <ul class="collection with-header">
+                <% indicator.resources.group_by(&:paradigm).each do |paradigm, resources| %>
+                  <li class="collection-header paradigm">
+                    <strong><%= paradigm.name %></strong>
                   </li>
+                  <% resources.each do |resource| %>
+                    <li class="collection-item">
+                      <div>
+                        <%= resource.title.html_safe %>
+                        <% if resource.link.present? %>
+                          <a href="<%= resource.link %>" class="secondary-content" target="_blank">
+                            <i class="material-icons">send</i>
+                          </a>
+                        <% end %>
+                      </div>
+                    </li>
+                  <% end %>
                 <% end %>
-              <% end %>
-            </ul>
+              </ul>
+            </div>
           </div>
         </li>        
       <% end %>
@@ -70,7 +85,9 @@
   <% end %>
 <% end %>
 
+
 <script type="text/javascript">
+  standardizeCardSize("#level-descriptions");
   standardizeCardSize("#paradigm-descriptions");
   var indicators_resources = 
     <%= raw @indicators_resources.to_json(
@@ -90,5 +107,3 @@
   createLevelsChart(indicators_resources, levels, competency);
   setLevelColor();
 </script>
-
-<%= render "hover_menu" %>
