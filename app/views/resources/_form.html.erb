@@ -1,13 +1,6 @@
 <%= form_for(@resource) do |f| %>
   <% if @resource.errors.any? %>
-    <div>
-      <strong><%= pluralize(@resource.errors.count, "error") %> prohibited this resource from being saved:</strong>
-      <ul>
-        <% @resource.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
+    <%= render partial: "partials/errors", locals: {object: @resource} %>
   <% end %>
 
   <div>

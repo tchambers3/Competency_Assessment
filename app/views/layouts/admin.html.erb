@@ -13,9 +13,11 @@
 
     <%= render :partial => "partials/admin_nav_bar" %>
 
-    <%= render :partial => "partials/flash" %>
+    
 
     <div class="container">
+      <%= render :partial => "partials/flash" %>
+      
       <%= yield %>
     </div>
 
