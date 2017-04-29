@@ -24,8 +24,7 @@ var tab_load_count = 0;
           tab_load_count++;
         }
       }
-    });
-    
+    });    
   }); // end of document ready
 })(jQuery); // end of jQuery name space
 
@@ -206,6 +205,7 @@ function setLevelColor() {
  * ============================================================================
  */
 
+
 // Global variables for the assessment
 var question_number = 0;
 var num_questions = 0;
@@ -270,7 +270,7 @@ function updateProgress() {
   var current_question_number = question_number + 1;
   var percentage = (current_question_number / num_questions) * 100;
   elem.style.width = percentage + "%";
-  elem.innerHTML = current_question_number + " of " + num_questions; 
+  elem.innerHTML = current_question_number + " of " + num_questions;
 }
 
 // Called before submitting the assessment and
@@ -300,3 +300,13 @@ function hasCheckedRadio(q_num) {
 function iAgree(){
   $("#disclaimer-submit")[0].disabled = !$("#accept")[0].checked;
 }
+
+/*
+ * ============================================================================
+ * Datatables Code
+ * ============================================================================
+ */
+
+ $(document).ready(function() {
+     $('table.display').dataTable({"sPaginationType": "full_numbers", "iDisplayLength" : 2, ordering: true});
+ });
