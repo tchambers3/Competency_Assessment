@@ -111,7 +111,7 @@
     var competency = <%= raw @competency.to_json %>;
     initColors(levels);
     createLevelsChart(indicators_resources, levels, competency);
-
+    setLevelColor();
     setTimeout(function() {
       window.print()
     }, 1000 );
