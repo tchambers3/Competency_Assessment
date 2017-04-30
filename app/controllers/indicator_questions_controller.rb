@@ -12,6 +12,7 @@ class IndicatorQuestionsController < ApplicationController
 
   def new
     @indicator_question = IndicatorQuestion.new
+    @question = Question.find_by(params[:question])
   end
 
   def create
