@@ -292,5 +292,5 @@ function iAgree(){
  */
 
  $(document).ready(function() {
-     $('table.display').dataTable({"sPaginationType": "full_numbers", "iDisplayLength" : 2, ordering: true});
+     $('table.display').dataTable({"sPaginationType": "full_numbers", "iDisplayLength" : 10, ordering: true});
  });
