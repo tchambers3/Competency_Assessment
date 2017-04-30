@@ -1,3 +1,5 @@
-<%= render partial: "partials/show_structure", locals: {model_name: "paradigm",
-                                                        object: @paradigm,
-                                                        object_details: "paradigm_details"} %>
+<h1><%=@paradigm.name%> Details</h1>
+
+<%= render partial: "paradigm_details" %>
+
+<%= link_to "Display all Paradigm", paradigms_path, class: "waves-effect waves-light btn" %>
