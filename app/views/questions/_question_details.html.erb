@@ -4,7 +4,7 @@
       <span class="card-title">Question Details</span>
       <p><%= @question.question %></p>
       <br>
-      <p>This question is <%= @question.active ? "active" : "inactive" %></p>
+      <p>This question is <%= @question.active ? "active" : "inactive" %>.</p>
     </div>
     <div class="card-action">
 
@@ -16,12 +16,12 @@
     </div>
   </div>
 </div>
-<br><br>
-<h3>Manage Indicator Question Mappings</h3>
+<br>
+<h2>Manage Indicator Question Mappings</h2>
 <% if @question.indicator_questions.empty? %>
   <p><em>There are no Indicator Question mappings for this question.</em></p>
 <% else %>
-    <table class="striped responsive-table">
+    <table id="" class="display striped responsive-table">
       <thead>
         <tr>
           <th>Indicator</th>
@@ -47,3 +47,4 @@
 <div= "container">
   <%= link_to "Create Indicator Question Mapping", new_indicator_question_path(:question => @question), class: "waves-effect waves-light btn-large" %>
 </div>
+<br><br>

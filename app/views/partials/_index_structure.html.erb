@@ -1,7 +1,5 @@
 <h1><%= model_name.pluralize.capitalize %></h1>
 
-</br>
-
 <%= render "#{primary}" %>
 
 <% unless secondary.nil? %>
@@ -14,3 +12,4 @@
 <%= link_to(eval("new_#{model_name}_path")) do %>
   Add a New <%= model_name.capitalize %>
 <% end %>
+<br><br>
