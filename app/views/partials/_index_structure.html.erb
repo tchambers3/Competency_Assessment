@@ -8,8 +8,10 @@
 <% end %>
 
 <br>
+<% if model_name != "question" %>
 
-<%= link_to(eval("new_#{model_name}_path")) do %>
-  Add a New <%= model_name.capitalize %>
+  <%= link_to(eval("new_#{model_name}_path")) do %>
+    Add a New <%= model_name.capitalize %>
+  <% end %>
 <% end %>
 <br><br>

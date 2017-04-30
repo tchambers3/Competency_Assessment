@@ -1,3 +1,6 @@
 <%= render partial: "partials/form_structure", locals: {model_name: "question",
                                                         object: nil,
                                                         action: "create"} %>
+<%= link_to questions_path(:id => @competency_id) do %>
+  Back
+<% end %>
