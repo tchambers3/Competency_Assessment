@@ -1,11 +1,15 @@
 class IndicatorsController < ApplicationController
+  layout 'admin'
+
   # Callback Methods
   before_action :set_indicator, only: [:show, :edit, :update, :destroy]
   before_action :set_competencies_levels, only: [:new, :create, :edit, :update]
 
   # GET /indicators
   def index
-    @competencies = Competency.all.alphabetical
+    @competency = Competency.find(params[:id])
+    @active_indicators = Indicator.active.for_competency(params[:id])
+    @inactive_indicators = Indicator.inactive.for_competency(params[:id])
   end
 
   # GET /indicators/:id

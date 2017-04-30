@@ -22,7 +22,7 @@ class Indicator < ActiveRecord::Base
   scope :by_competency, -> { joins(:competency).order("competencies.name") }
   scope :for_level, -> (level) { joins(:level).where("levels.name LIKE ?", level) }
   scope :for_description, -> (desc) { where("indicators.description LIKE ?", desc) }
-  scope :for_competency, -> (competency) { joins(:competency).where("competencies.name LIKE ?", competency) }
+  scope :for_competency, -> (competency_id) { joins(:competency).where("competencies.id = ?", competency_id) }
   scope :for_question, -> (question) {joins(:indicator_questions).where("indicator_questions.question_id = ? ",question)}
   scope :for_resource, -> (resource) { joins(:indicator_resources).where("indicator_resources.resource_id = ?",resource) }
   scope :active, -> { where("indicators.active = ?", true) }
