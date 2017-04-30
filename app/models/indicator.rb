@@ -27,6 +27,8 @@ class Indicator < ActiveRecord::Base
   scope :for_resource, -> (resource) { joins(:indicator_resources).where("indicator_resources.resource_id = ?",resource) }
   scope :active, -> { where("indicators.active = ?", true) }
   scope :inactive, -> { where("indicators.active = ?", false) }
+  # used in create new indicator_question to avoid duplicate mappings
+  scope :excluding_question, -> (question) {joins(:indicator_questions).where("indicator_questions.question_id != ? ",question)}
 
 
   # Methods
