@@ -251,5 +251,20 @@ nav .admin-nav-content {
  }
 
  .paginate_button {
+
    padding: 5px;
+ }
+
+ .paginate_button:hover {
+   border: 1px solid;
+   border-color: #cacaca;
+   background: $cmu-red;
+   color: white;
+  }
+
+ .paginate_button.current {
+   border: 1px solid;
+   border-color: #cacaca;
+   background: linear-gradient(to bottom, #fff 0%, #dcdcdc 100%);
+   color: black;
  }
