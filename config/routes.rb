@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   # Root Path
   root 'home#home'
+
   # Home Paths
   get '/about' => 'home#about'
   get '/dashboard' => 'home#dashboard', as: :dashboard

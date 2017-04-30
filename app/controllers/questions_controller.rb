@@ -2,7 +2,6 @@ class QuestionsController < ApplicationController
   layout "admin"
   # Callback Methods
   before_action :set_question, only: [:show, :edit, :update, :destroy]
-  before_action :check_login
 
   # GET /questions
   def index
