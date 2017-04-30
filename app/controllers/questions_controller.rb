@@ -8,7 +8,7 @@ class QuestionsController < ApplicationController
     # Get questions related to the competency
     @active_questions = Question.active.for_competency(params[:id])
     @inactive_questions = Question.inactive.for_competency(params[:id])
-    @competency_id = params[:id]
+    @competency_id = params[:competency_id]
   end
 
   # GET /questions/:id
@@ -19,7 +19,7 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     @question = Question.new
-    @competency_id = params[:id]
+    @competency_id = params[:competency_id]
   end
 
   # POST /questions
@@ -35,6 +35,7 @@ class QuestionsController < ApplicationController
 
   # GET /questions/:id/edit
   def edit
+    @competency_id = params[:competency_id]
   end
 
   # PATCH/PUT /questions/:id
