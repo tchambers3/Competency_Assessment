@@ -251,5 +251,8 @@ nav .admin-nav-content {
  }
 
  .paginate_button {
+   .current {
+     color: $cmu-green
+   }
    padding: 5px;
  }
