@@ -7,7 +7,7 @@
     <% if @inactive_resources.for_paradigm(p.id).empty? %>
       <p><em><%= "There are no inactive resources at this time for the #{p.name} paradigm." %></em></p>
     <% else %>
-      <table border="1">
+    <table id="" class="display striped responsive-table" border="1">
         <thead>
           <tr>
             <th>Title</th>

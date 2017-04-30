@@ -2,7 +2,7 @@ class IndicatorQuestionsController < ApplicationController
 
   # Callback Methods
   before_action :set_indicator_question, only: [:show, :edit, :update, :destroy]
-  before_action :check_login
+
 
   def index
   end

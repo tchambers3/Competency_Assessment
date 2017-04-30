@@ -6,16 +6,16 @@ class HomeController < ApplicationController
   def home
   end
 
-  # GET /about
-  def about
-  end
-
-  # GET /dashboard
   def dashboard
     @active_competencies = Competency.active.alphabetical
     @inactive_competencies = Competency.inactive.alphabetical
     @levels = Level.active.by_ranking
     @paradigms = Paradigm.active.by_ranking
   end
+
+  # GET /about
+  def about
+  end
+
 
 end
