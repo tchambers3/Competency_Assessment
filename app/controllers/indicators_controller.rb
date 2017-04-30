@@ -7,9 +7,9 @@ class IndicatorsController < ApplicationController
 
   # GET /indicators
   def index
-    @competency = Competency.find(params[:id])
-    @active_indicators = Indicator.active.for_competency(params[:id])
-    @inactive_indicators = Indicator.inactive.for_competency(params[:id])
+    @competency = Competency.find(params[:competency_id])
+    @active_indicators = Indicator.active.for_competency(params[:competency_id])
+    @inactive_indicators = Indicator.inactive.for_competency(params[:competency_id])
   end
 
   # GET /indicators/:id
