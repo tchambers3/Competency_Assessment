@@ -295,6 +295,22 @@ function iAgree(){
      $('table.display').dataTable({"sPaginationType": "full_numbers", "iDisplayLength" : 10, ordering: true});
  });
 
+ /*
+  * ============================================================================
+  * Collection_select Code
+  * ============================================================================
+  */
+
  $(document).ready(function() {
   $('select').material_select();
+});
+
+/*
+ * ============================================================================
+ * Tabs Code
+ * ============================================================================
+ */
+
+$(document).ready(function(){
+  $('ul.tabs').tabs();
 });
