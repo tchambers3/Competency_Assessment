@@ -8,7 +8,7 @@
 <% end %>
 
 <br>
-<% if model_name != "question" %>
+<% if ["resource","question"].exclude? model_name %>
 
   <%= link_to(eval("new_#{model_name}_path")) do %>
     Add a New <%= model_name.capitalize %>

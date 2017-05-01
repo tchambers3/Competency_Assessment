@@ -1,3 +1,6 @@
 <%= render partial: "partials/index_structure", locals: {model_name: "resource",
                                                          primary: "active_resources",
                                                          secondary: "inactive_resources"} %>
+
+<%= link_to "Add a New Question", new_question_path(:competency_id => @competency_id), class: "waves-effect waves-light btn-large"  %>
+<br><br>
