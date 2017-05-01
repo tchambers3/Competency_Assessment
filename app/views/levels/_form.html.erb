@@ -1,13 +1,6 @@
 <%= form_for(@level) do |f| %>
   <% if @level.errors.any? %>
-    <div>
-      <strong><%= pluralize(@level.errors.count, "error") %> prohibited this level from being saved:</strong>
-      <ul>
-        <% @level.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
+    <%= render partial: "partials/errors", locals: {object: @level} %>
   <% end %>
 
   <div>

@@ -1,13 +1,6 @@
 <%= form_for(@paradigm) do |f| %>
   <% if @paradigm.errors.any? %>
-    <div>
-      <strong><%= pluralize(@paradigm.errors.count, "error") %> prohibited this paradigm from being saved:</strong>
-      <ul>
-        <% @paradigm.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
+    <%= render partial: "partials/errors", locals: {object: @paradigm} %>
   <% end %>
 
   <div>
