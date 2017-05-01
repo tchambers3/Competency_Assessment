@@ -3,7 +3,7 @@
     <span class="card-title"><%=model_name.pluralize.capitalize%></span>
   </div>
   <div class="card-action">
-    <%= link_to(eval("#{model_name.pluralize}_path(:id => #{@competency.id})")) do %>
+    <%= link_to(eval("#{model_name.pluralize}_path(:competency_id => #{@competency.id})")) do %>
       Manage <%= model_name.pluralize.capitalize %>
     <% end %>
   </div>

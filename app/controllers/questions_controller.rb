@@ -6,8 +6,8 @@ class QuestionsController < ApplicationController
   # GET /questions
   def index
     # Get questions related to the competency
-    @active_questions = Question.active.for_competency(params[:id])
-    @inactive_questions = Question.inactive.for_competency(params[:id])
+    @active_questions = Question.active.for_competency(params[:competency_id])
+    @inactive_questions = Question.inactive.for_competency(params[:competency_id])
     @competency_id = params[:competency_id]
   end
 
