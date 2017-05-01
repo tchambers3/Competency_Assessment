@@ -10,9 +10,10 @@ class ResourcesController < ApplicationController
     @paradigms = Paradigm.all.alphabetical
     # Check if we are coming from manage competency page vs. nav bar
     # Nav bar should display all resources and won't have a competency id in the params
-    if(params[:id])
-      @active_resources = Resource.for_competency(params[:id]).active
-      @inactive_resources = Resource.for_competency(params[:id]).inactive
+    if(params[:competency_id])
+      @active_resources = Resource.for_competency(params[:competency_id]).active
+      @inactive_resources = Resource.for_competency(params[:competency_id]).inactive
+      @competency_id = params[:competency_id]
     else
       @active_resources = Resource.active.alphabetical
       @inactive_resources = Resource.inactive.alphabetical
@@ -26,6 +27,7 @@ class ResourcesController < ApplicationController
   # GET /resources/new
   def new
     @resource = Resource.new
+    @competency_id = params[:competency_id]
   end
 
   # POST /resources
@@ -41,6 +43,7 @@ class ResourcesController < ApplicationController
 
   # GET /resources/:id/edit
   def edit
+    @competency_id = params[:competency_id]
   end
 
   # PATCH/PUT /resources/:id
