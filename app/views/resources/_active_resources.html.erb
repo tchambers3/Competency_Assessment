@@ -25,16 +25,19 @@
               <% else %>
                 <td><%= link_to r.link, r.link %></td>
               <% end %>
-              <td><%= link_to "Edit", edit_resource_path(r) %></td>
+              <td><%= link_to "Edit", edit_resource_path(r, :competency_id => @competency_id), class: "waves-effect waves-light btn" %></td>
               <td>
                 <%= link_to "Delete", resource_path(r),
                     method: 'delete',
-                    data: {confirm: "Are you sure you want to permanently delete #{r.title}?"} %>
+                    data: {confirm: "Are you sure you want to permanently delete #{r.title}?"},
+                    class: "waves-effect waves-light red btn" %>
               </td>
             </tr>
           <% end %>
         </tbody>
       </table>
+      <br><br>
+      <div class="divider"></div>
     <% end %>
   <% end %>
 <% end %>
