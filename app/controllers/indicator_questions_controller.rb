@@ -1,5 +1,6 @@
 class IndicatorQuestionsController < ApplicationController
-
+  layout "admin"
+  
   # Callback Methods
   before_action :set_indicator_question, only: [:show, :edit, :update, :destroy]
 
