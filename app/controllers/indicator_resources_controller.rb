@@ -1,5 +1,5 @@
 class IndicatorResourcesController < ApplicationController
-
+  layout "admin"
   # Callback Methods
   before_action :set_indicator_resource, only: [:show, :edit, :update, :destroy]
 
