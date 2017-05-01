@@ -22,6 +22,7 @@ class ResourcesController < ApplicationController
 
   # GET /resources/:id
   def show
+    @competency_id = params[:competency_id]
   end
 
   # GET /resources/new

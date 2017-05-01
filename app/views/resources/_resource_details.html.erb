@@ -22,7 +22,7 @@
     </div>
     <div class="card-action">
 
-        <%= link_to "Edit", edit_resource_path(@resource), class: "waves-effect waves-light btn" %>
+        <%= link_to "Edit", edit_resource_path(@resource, :competency_id => @competency_id), class: "waves-effect waves-light btn" %>
         <%= link_to "Delete", resource_path(@resource),
             method: 'delete',
             data: {confirm: "Are you sure you want to permanently delete #{@resource.title}?"},
@@ -47,14 +47,16 @@
           <tr>
             <td><%= link_to iq.indicator.description, indicator_path(iq.indicator) %></td>
             <td>
-              <%= link_to "Delete", indicator_resource_path(iq),
-                  method: 'delete',
-                  data: {confirm: "Are you sure you want to permanently delete this mapping?"},
-                  class: "waves-effect waves-light btn red" %>
+              <%= link_to "Manage", indicator_path(iq.indicator),
+                  class: "waves-effect waves-light btn" %>
             </td>
           </tr>
         <% end %>
       </tbody>
     </table>
 <% end %>
+<br><br>
+<div class="divider"></div>
+<br><br>
+<%= link_to "Return to this competency's resources", resources_path(:competency_id => @competency_id), class: "waves-effect waves-light btn"  %>
 <br><br>

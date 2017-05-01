@@ -26,7 +26,7 @@
         <tbody>
           <% @active_resources.for_paradigm(p.id).each do |r| %>
             <tr>
-              <td><%= link_to r.title.html_safe, resource_path(r) %></td>
+              <td><%= link_to r.title.html_safe, resource_path(r, :competency_id => @competency_id) %></td>
               <% if !r.link.present? %>
                 <td>No Link</td>
               <% else %>
