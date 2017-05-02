@@ -9,6 +9,7 @@ class QuestionsController < ApplicationController
     @active_questions = Question.active.for_competency(params[:competency_id])
     @inactive_questions = Question.inactive.for_competency(params[:competency_id])
     @competency_id = params[:competency_id]
+    @competency = Competency.find(params[:competency_id])
   end
 
   # GET /questions/:id

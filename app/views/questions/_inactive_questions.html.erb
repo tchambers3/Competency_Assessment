@@ -1,4 +1,4 @@
-<h3>Inactive Questions</h3>
+<h3>Inactive Questions for <%= link_to @competency.name, competency_path(@competency) %></h3>
 <% if @inactive_questions.empty? %>
   <p><em>There are no inactive questions at this time.</em></p>
 <% else %>
