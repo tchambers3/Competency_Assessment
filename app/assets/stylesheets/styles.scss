@@ -88,7 +88,7 @@ h3, h4, h5, h6 {
   top: 10px;
   font-size: 20px;
   color: white;
-  cursor:pointer; 
+  cursor:pointer;
 }
 
 #alert-box {
@@ -297,9 +297,9 @@ nav .admin-nav-content {
 /* Printable Assessment Report */
 
 @media print {
-  #printable-report .page-break { 
-    display: block; 
-    page-break-before: always; 
+  #printable-report .page-break {
+    display: block;
+    page-break-before: always;
   }
 
   header {
@@ -313,7 +313,7 @@ nav .admin-nav-content {
   #printable-report .collection-item {
     border-style: none !important;
     padding-top: 3px;
-    padding-bottom: 3px; 
+    padding-bottom: 3px;
   }
 
   #printable-report .collapsible-header {
