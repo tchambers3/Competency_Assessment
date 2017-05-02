@@ -1,5 +1,6 @@
 class IndicatorQuestionsController < ApplicationController
-
+  layout "admin"
+  
   # Callback Methods
   before_action :set_indicator_question, only: [:show, :edit, :update, :destroy]
 
@@ -12,6 +13,7 @@ class IndicatorQuestionsController < ApplicationController
 
   def new
     @indicator_question = IndicatorQuestion.new
+    @question = Question.find_by(params[:question])
   end
 
   def create

@@ -1,3 +1,4 @@
 <%= render partial: "partials/form_structure", locals: {model_name: "question",
                                                         object: nil,
                                                         action: "create"} %>
+<%= link_to "Return to this competency's questions ", questions_path(:competency_id => @competency_id), class: "waves-effect waves-light btn"  %>
