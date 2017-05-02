@@ -17,7 +17,7 @@
         <tr>
           <td><%= link_to i.description, indicator_path(i) %></td>
           <td><%= link_to i.level.name, level_path(i.level) %></td>
-          <td><%= link_to "Edit", edit_indicator_path(i) %></td>
+          <td><%= link_to "Edit", edit_indicator_path(i, :competency_id => @competency_id) %></td>
           <td>
             <%= link_to "Delete", indicator_path(i),
                 method: 'delete',
