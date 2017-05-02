@@ -14,6 +14,7 @@ class QuestionsController < ApplicationController
   # GET /questions/:id
   def show
     @indicator_questions = @question.indicator_questions
+    @competency_id = params[:competency_id]
   end
 
   # GET /questions/new
