@@ -8,6 +8,7 @@ class IndicatorsController < ApplicationController
   
   # GET /indicators
   def index
+    @competency_id = params[:competency_id]
     @competency = Competency.find(params[:competency_id])
     @active_indicators = Indicator.active.for_competency(params[:competency_id])
     @inactive_indicators = Indicator.inactive.for_competency(params[:competency_id])
@@ -15,11 +16,14 @@ class IndicatorsController < ApplicationController
 
   # GET /indicators/:id
   def show
+    @competency_id = params[:competency_id]
+    @indicator_resources = @indicator.indicator_resources
   end
 
   # GET /indicators/new
   def new
     @indicator = Indicator.new
+    @competency_id = params[:competency_id]
   end
 
   # POST /indicators
@@ -35,6 +39,7 @@ class IndicatorsController < ApplicationController
 
   # GET /indicators/:id/edit
   def edit
+    @competency_id = params[:competency_id]
   end
 
   # PATCH/PUT /indicators/:id
