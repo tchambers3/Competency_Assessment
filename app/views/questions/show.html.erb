@@ -1,5 +1,8 @@
 <br>
-<%= link_to "Return to this competency's questions ", questions_path(:competency_id => @competency_id), class: "waves-effect waves-light btn-large"  %>
+<a href="<%= questions_path(:competency_id => @competency_id) %>" class="btn-large waves-effect waves-light">
+  Return to this competency's questions
+  <i class="material-icons left">navigate_before</i>
+</a>
 
 <h2>Manage Question</h2>
 
