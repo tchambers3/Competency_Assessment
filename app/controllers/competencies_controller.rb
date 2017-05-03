@@ -3,7 +3,7 @@ class CompetenciesController < ApplicationController
 
   # Callback Methods
   before_action :set_competency, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_login
   # GET /competencies
   def index
     @active_competencies = Competency.active.alphabetical

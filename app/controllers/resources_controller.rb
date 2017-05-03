@@ -4,6 +4,7 @@ class ResourcesController < ApplicationController
   # Callback Methods
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
   before_action :set_paradigm, only: [:new, :create, :edit, :update]
+  before_action :check_login
 
   # GET /resources
   def index
