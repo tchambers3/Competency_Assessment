@@ -11,6 +11,7 @@ class IndicatorResourcesController < ApplicationController
 
   def new
     @indicator_resource = IndicatorResource.new
+    @indicator = Indicator.find_by(params[:indicator])
   end
 
   def create
