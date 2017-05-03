@@ -2,7 +2,7 @@
 <% if @inactive_paradigms.empty? %>
   <p><em>There are no Inactive paradigms at this time.</em></p>
 <% else %>
-  <table id="" class="display" border="1">
+  <table id="" class="display striped" border="1">
       <thead>
         <tr>
           <th>Name</th>
@@ -15,7 +15,7 @@
       <tbody>
         <% @inactive_paradigms.each do |p| %>
           <tr>
-            <td><%= link_to p.name, paradigm_path(p) %></td>
+            <td><%= p.name %></td>
             <td><%= p.description %></td>
             <td><%= p.ranking %></td>
             <td><%= link_to "Edit", edit_paradigm_path(p), class: "waves-effect waves-light btn" %></td>
