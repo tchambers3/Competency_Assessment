@@ -19,7 +19,7 @@
     <tbody>
       <% @active_indicators.each do |i| %>
         <tr>
-          <td><%= link_to i.description, indicator_path(i) %></td>
+          <td><%= link_to i.description, indicator_path(i, :competency_id => @competency_id) %></td>
           <td><%= i.level.name %></td>
           <td><%= link_to "Edit", edit_indicator_path(i, :competency_id => @competency_id), class: "waves-effect waves-light btn" %></td>
           <td>

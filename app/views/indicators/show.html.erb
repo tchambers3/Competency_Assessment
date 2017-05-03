@@ -1,3 +1,6 @@
-<%= render partial: "partials/show_structure", locals: {model_name: "indicator",
-                                                        object: @indicator,
-                                                        object_details: "indicator_details"} %>
+<br>
+<%= link_to "Return to this competency's indicators ", indicators_path(:competency_id => @competency_id), class: "waves-effect waves-light btn-large"  %>
+
+<h2>Manage Indicator</h2>
+
+<%= render "indicator_details" %>

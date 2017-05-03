@@ -15,6 +15,8 @@ class IndicatorsController < ApplicationController
 
   # GET /indicators/:id
   def show
+    @competency_id = params[:competency_id]
+    @indicator_resources = @indicator.indicator_resources
   end
 
   # GET /indicators/new
