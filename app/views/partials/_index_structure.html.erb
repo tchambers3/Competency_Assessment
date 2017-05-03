@@ -7,11 +7,4 @@
   <%= render "#{secondary}" %>
 <% end %>
 
-<br>
-<% if model_name != "question" and model_name != "indicator" %>
-
-  <%= link_to(eval("new_#{model_name}_path")) do %>
-    Add a New <%= model_name.capitalize %>
-  <% end %>
-<% end %>
 <br><br>

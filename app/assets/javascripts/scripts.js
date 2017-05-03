@@ -24,7 +24,7 @@ var tab_load_count = 0;
           tab_load_count++;
         }
       }
-    });    
+    });
   }); // end of document ready
 })(jQuery); // end of jQuery name space
 
@@ -53,7 +53,17 @@ function standardizeCardSize(element) {
   $(element + " .card").each(function() {
     $(this).height(maxHeight);
   });
-} 
+}
+
+/*
+ * ============================================================================
+ * Collection_select Code
+ * ============================================================================
+ */
+
+$(document).ready(function() {
+ $('select').material_select();
+});
 
 
 /*
@@ -310,7 +320,3 @@ function iAgree(){
  $(document).ready(function() {
      $('table.display').dataTable({"sPaginationType": "full_numbers", "iDisplayLength" : 10, ordering: true});
  });
-
- $(document).ready(function() {
-  $('select').material_select();
-});
