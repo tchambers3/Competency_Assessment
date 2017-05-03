@@ -37,15 +37,11 @@
      <%= form_tag(send_email_path, method: "get") do %>
       <%= label_tag(:email, "Email:") %>
       <%= text_field_tag(:email) %>
-      <%= submit_tag("Send") %>
+      <button class="btn waves-effect waves-light" type="submit">Send
+        <i class="material-icons right">send</i>
+      </button>
      <% end %>
 
-   </div>
-   <div class="modal-footer">
-     <a class=" modal-action modal-close btn-large waves-effect waves-light">
-       Send
-       <i class="material-icons right">send</i>
-     </a>
    </div>
  </div>
 
