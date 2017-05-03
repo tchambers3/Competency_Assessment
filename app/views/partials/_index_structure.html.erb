@@ -7,11 +7,4 @@
   <%= render "#{secondary}" %>
 <% end %>
 
-<br>
-<% if ["resource","question"].exclude? model_name %>
-
-  <%= link_to(eval("new_#{model_name}_path")) do %>
-    Add a New <%= model_name.capitalize %>
-  <% end %>
-<% end %>
 <br><br>
