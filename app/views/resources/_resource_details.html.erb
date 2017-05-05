@@ -23,7 +23,7 @@
     <div class="card-action">
 
         <%= link_to "Edit", edit_resource_path(@resource, :competency_id => @competency_id), class: "waves-effect waves-light btn" %>
-        <%= link_to "Delete", resource_path(@resource),
+        <%= link_to "Delete", resource_path(@resource, :competency_id => @competency_id),
             method: 'delete',
             data: {confirm: "Are you sure you want to permanently delete #{@resource.title}?"},
             class: "waves-effect waves-light btn red" %>
@@ -43,11 +43,11 @@
         </tr>
       </thead>
       <tbody>
-        <% @resource.indicator_resources.each do |iq| %>
+        <% @resource.indicator_resources.each do |ir| %>
           <tr>
-            <td><%= link_to iq.indicator.description, indicator_path(iq.indicator) %></td>
+            <td><%= link_to ir.indicator.description, indicator_path(ir.indicator, :competency_id => @competency_id) %></td>
             <td>
-              <%= link_to "Manage", indicator_path(iq.indicator),
+              <%= link_to "Manage", indicator_path(ir.indicator, :competency_id => @competency_id),
                   class: "waves-effect waves-light btn" %>
             </td>
           </tr>

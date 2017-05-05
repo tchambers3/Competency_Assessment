@@ -62,7 +62,7 @@ class ResourcesController < ApplicationController
   def destroy
     @resource.destroy
     flash[:notice] = "Successfully deleted #{@resource.title}"
-    redirect_to resources_path
+    redirect_to resources_path(:competency_id => params[:competency_id])
   end
 
 
