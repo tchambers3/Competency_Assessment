@@ -52,7 +52,7 @@ class ResourcesController < ApplicationController
   def update
     if @resource.update(resource_params)
       flash[:notice] = "Successfully updated #{@resource.title}"
-      redirect_to resource_path(@resource)
+      redirect_to resource_path(@resource,:competency_id => params[:competency_id])
     else
       render "edit"
     end
