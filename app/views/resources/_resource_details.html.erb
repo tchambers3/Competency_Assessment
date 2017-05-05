@@ -58,8 +58,15 @@
 <br><br>
 <div class="divider"></div>
 <br><br>
-<a id="back-button" href="<%= resources_path(:competency_id => @competency_id) %>" class="btn-large waves-effect waves-light">
-  Return to this competency's resources
-  <i class="material-icons left">navigate_before</i>
-</a>
+<% if @competency_id %>
+  <a id="back-button" href="<%= resources_path(:competency_id => @competency_id) %>" class="btn-large waves-effect waves-light">
+    Return to this competency's resources
+    <i class="material-icons left">navigate_before</i>
+  </a>
+<% else %>
+  <a id="back-button" href="<%= resources_path() %>" class="btn-large waves-effect waves-light">
+    Return to all resources
+    <i class="material-icons left">navigate_before</i>
+  </a>
+<% end %>
 <br><br>
