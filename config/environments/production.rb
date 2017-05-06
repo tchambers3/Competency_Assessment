@@ -80,11 +80,11 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address              => 'smtp.live.com',
+    :address              => "smtp.live.com",
     :port                 => 587,
     :domain               => 'outlook.com',
-    :user_name            => 'competentu@outlook.com',
-    :password             => 'CmuPd$17',
+    :user_name            => 'example@outlook.com',
+    :password             => 'password',
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
 end
