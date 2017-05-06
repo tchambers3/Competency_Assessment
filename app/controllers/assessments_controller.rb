@@ -22,7 +22,7 @@ class AssessmentsController < ApplicationController
   def send_email
     @email = params[:email]
     @link = request.referer
-    AssesmentMailer.send_assesment(@email,@link).deliver_now
+    AssessmentMailer.send_assessment(@email,@link).deliver_now
     redirect_to @link
   end
 
