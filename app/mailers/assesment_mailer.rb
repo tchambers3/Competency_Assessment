@@ -1,5 +1,5 @@
 class AssesmentMailer < ApplicationMailer
-  default :from => "tjchambers8@gmail.com"
+  default :from => "competentu@outlook.com"
 
   def send_assesment(user_email,link)
     @user_email = user_email
